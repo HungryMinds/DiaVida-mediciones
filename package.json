@@ -23,7 +23,9 @@
     "@angular/platform-server": "5.2.1",
     "@angular/router": "5.2.1",
     "@angular/service-worker": "5.2.1",
+    "angularfire2": "5.0.0-rc.4",
     "core-js": "2.5.3",
+    "firebase": "4.9.0",
     "ng-pwa-tools": "0.0.15",
     "rxjs": "5.5.6",
     "zone.js": "0.8.20"
