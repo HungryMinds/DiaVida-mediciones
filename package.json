@@ -20,9 +20,11 @@
     "@angular/http": "^5.2.0",
     "@angular/platform-browser": "^5.2.0",
     "@angular/platform-browser-dynamic": "^5.2.0",
+    "@angular/platform-server": "5.2.1",
     "@angular/router": "^5.2.0",
-    "@angular/service-worker": "^5.2.0",
+    "@angular/service-worker": "5.2.1",
     "core-js": "^2.4.1",
+    "ng-pwa-tools": "0.0.15",
     "rxjs": "^5.5.6",
     "zone.js": "^0.8.19"
   },
