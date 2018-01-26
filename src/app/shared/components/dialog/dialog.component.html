@@ -1,0 +1,13 @@
+<div class="container">
+    <header>
+        <span> {{ dialogConfig?.title }} </span>
+        <span (click)="dismiss()"><i class="icon-quit"></i></span>
+    </header>
+    <div class="content">
+        {{ dialogConfig?.message }}
+    </div>
+    <footer>
+        <button type="reset" (click)="dismiss()">{{ dialogConfig?.cancelAction }}</button>
+        <button type="submit" (click)="confirm()">{{ dialogConfig?.applyAction }}</button>
+    </footer>
+</div>

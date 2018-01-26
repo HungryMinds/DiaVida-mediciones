@@ -1,0 +1,36 @@
+<div class="login-section">
+    <div class="error-notification" [class.open]="error.display">
+        <p>{{ error.message }}</p>
+    </div>
+    <div class="busy-loader" [hidden]="!loggingUser">
+        <img src="assets/images/loader.gif" alt="">
+        <p>Iniciando sesión...</p>
+    </div>
+    <div class="form-section" [hidden]="loggingUser">
+        <h1><img src="assets/images/logo.svg" alt="SAC"></h1>
+        <form [formGroup]="loginForm" autocomplete="off">
+            <div class="input-block" [class.invalid]="inputHandlers.networkUser.invalid">
+                <div class="input-area" (click)="setFocusedElement(networkUser)" [class.editing]="inputHandlers.networkUser.editing">
+                    <label for="networkuser">Usuario de red</label>
+                    <input #networkUser id="networkuser" type="text" formControlName="networkUser"
+                        (focus)="onInputFocus(inputHandlers.networkUser)"
+                        (blur)="onInputBlur(inputHandlers.networkUser)">
+                </div>
+            </div>
+            <div class="input-block" [class.invalid]="inputHandlers.employeeNumber.invalid">
+                <div class="input-area" (click)="setFocusedElement(employeeNumber)" [class.editing]="inputHandlers.employeeNumber.editing">
+                    <label for="employeenumber">Número de empleado</label>
+                    <input #employeeNumber id="employeenumber" [type]="showPassword ? 'text': 'password'" formControlName="employeeNumber"
+                        (focus)="onInputFocus(inputHandlers.employeeNumber)"
+                        (blur)="onInputBlur(inputHandlers.employeeNumber)">
+                </div>
+                <div class="input-action">
+                    <button type="button"
+                    (click)="toggleShowPassword()"
+                    [class.hide]="showPassword">{{showPassword ? 'OCULTAR' : 'MOSTRAR' }}</button>
+                </div>
+            </div>
+            <button type="submit" (click)="loginUser()" [disabled]="loginForm.invalid">Ingresar</button>
+        </form>
+    </div>
+</div>

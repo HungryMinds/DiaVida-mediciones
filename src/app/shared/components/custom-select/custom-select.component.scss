@@ -1,0 +1,115 @@
+/* ••••••••••••••••••••••••••••••••••••••••••• */
+/* ••   SAC client RequestList  styling     •• */
+/* ••••••••••••••••••••••••••••••••••••••••••• */
+
+/* ––––––––––––––––– VARIABLES ––––––––––––––––– */
+@import "../../../../style/sac.base";
+
+/* ––––––––––––––––– VARIABLES ––––––––––––––––– */
+
+// Colors
+$border-color: #000000;
+$dropdown-background-color: #FFFFFF;
+$item-over-color: #F1F3F5;
+
+$content-header-color: #AAADB0;
+$item-border-color: #E3E7EA;
+$selected-item-color: #03B576;
+
+// List padding
+$content-padding: .425em;
+
+// Transitions
+$soft-bezier: cubic-bezier(0.25, 0.8, 0.25, 1);
+
+/* ––––––––––––––––– GENERAL ––––––––––––––––– */
+
+.custom-select {
+    position: relative;  
+    width: 100%;
+}
+/* ––––––––––––––––– HEADER ––––––––––––––––– */
+
+.custom-select > header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: $content-padding $content-padding * 1.33 $content-padding $content-padding * 2;
+
+    border-radius: 3px;
+    border: 1px solid $border-color;
+    cursor: pointer;
+
+    .header-content {
+        width: 95%;
+
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    i {
+        font-size: .9em;
+    }
+}
+
+/* ––––––––––––––––– DROPDOWN ––––––––––––––––– */
+
+.dropdown-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    overflow-y: auto;
+    max-height: 300px;
+    width: 100%;
+
+    box-shadow: 0 8px 12px rgba(0,0,0,.13);
+    transform-origin: center top;
+
+    background-color: $dropdown-background-color;
+
+    & > header {
+        padding: .25em 0;
+
+        .header-label {
+            padding: $content-padding * 1.35 $content-padding * 2.5;
+            color: $content-header-color;
+            font-size: .935em;
+            font-weight: 300;
+        }
+
+        &.fixed {
+            border-bottom: 1px solid $item-border-color;
+        }
+    }
+
+    .items-container {
+        padding: .25em 0 .25em;
+    }
+}
+
+/* ––––––––––––––––– DROPDOWN ITEM ––––––––––––––––– */
+
+.item {
+
+    padding: $content-padding * 1.5 $content-padding * 2.5;
+
+    transition: background-color 1s $soft-bezier;
+    will-change: background-color;
+
+    &:hover {
+        background-color: $item-over-color;
+        cursor: pointer;
+    }
+
+    &.selected {
+        color: $selected-item-color;
+    }
+}
+
+.empty-message {
+    padding: .4em .4em 1em;
+    text-align: center;
+}

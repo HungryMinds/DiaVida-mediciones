@@ -1,0 +1,31 @@
+<div class="search-block">
+    <ng-content select="[search-label]"></ng-content>
+    <input type="text"
+        [(ngModel)]="searchCriteria"
+        (focus)="onInputFocus()"
+        (click)="stopPropagation($event)"
+        (keyup)="keyboardHandler($event)"
+        (input)="updateCriteriaHints($event.target.value)" 
+        placeholder="Escriba el nombre de usuario aquí">
+
+    <div class="dropdown" [@openState]="dropdownState" #dropdown>
+        <header>
+            Sugerencias:
+        </header>
+        <div *ngFor="let item of availableValues; let itemIndex = index"
+            [class.highlighted]="isHighlightedIndex(itemIndex)"
+            (mouseover)="setHighlightedIndex(itemIndex)" 
+            (click)="addItem(item)" class="dropdown-item">
+            {{ item.label }}
+        </div>
+        <div class="empty-hints" [hidden]="availableValues.length">Sin coincidencias disponibles</div>
+    </div>
+</div>
+<div class="selected-block" [hidden]="!selectedValues.length">
+    <ng-content select="[selected-label]"></ng-content>
+    <div class="selected-items">
+        <div *ngFor="let selectedItem of selectedValues; let itemIndex = index" class="selected-item">
+            <span class="selected-item__label">{{ selectedItem.label }}</span><span class="remove-section" [hidden]="isFixedItem(selectedItem)"><i class="icon-quit" (click)="removeItem(itemIndex)"></i></span> 
+        </div> 
+    </div>
+</div>

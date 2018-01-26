@@ -1,0 +1,228 @@
+/* ••••••••••••••••••••••••••••••••••••••••••• */
+/* ••   Login Component's specific styles   •• */
+/* ••••••••••••••••••••••••••••••••••••••••••• */
+/* ––––––––––––––––– IMPORTS ––––––––––––––––– */
+@import "../../../../style/sac.base";
+
+/* ––––––––––––––––– VARIABLES ––––––––––––––––– */
+
+// Colors
+$login-block-bakcground: #FFFFFF;
+
+$input-placeholder-color: #9F9F9F;
+$input-border-color: #979797;
+$input-action-color: #7F7F7F;
+$input-action-background: #F0F0F0;
+$primary-disabled-color: #99ABBB;
+$primary-color: #215280;
+$dark-primary-color: #123E68;
+$white-font: #FFFFFF;
+$invalid-color: #C80341;
+
+$busy-loader-color: #5F8EBA;
+
+// Transitions
+$soft-bezier: cubic-bezier(0.25, 0.8, 0.25, 1);
+
+/* ––––––––––––––– CONTAINER ––––––––––––––– */
+
+:host {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    height: 100%;
+}
+
+.login-section {
+    position: relative;
+    overflow: hidden;
+
+    width: 40%;
+
+    border-radius: 6px;
+    box-shadow: 0px 4px 7px 0px rgba(0, 0, 0, .13);
+
+    text-align: center;
+    background-color: $login-block-bakcground;
+}
+
+.form-section {
+    padding: 1em 2.5em;
+}
+
+/* –––––––––––– ERROR NOTIFICATION –––––––––––– */
+
+.error-notification {
+    position: absolute;
+    top: 0;
+
+    width: 100%;
+    padding: .625em;
+
+    font-size: .8em;
+    background-color: rgba($invalid-color, .1);
+    color: $invalid-color;
+
+    transform: translateY(-100%);
+    will-change: transform;
+
+    transition: transform 300ms $soft-bezier;
+
+    &.open {
+        transform: translateY(0);
+    }
+}
+
+/* –––––––––––––––––– TITLE –––––––––––––––––– */
+
+h1 {
+    padding: 1.25em 0 1em;
+}
+/* ––––––––––––––– INPUT BLOCK ––––––––––––––– */
+
+.input-block {
+
+    display: flex;
+    align-items: stretch;
+
+    width: 100%;
+    height: 3em;
+
+    margin-bottom: 8px;
+    border-radius: 2px;
+    border: 1px solid rgba($input-border-color, .76);
+
+    &.invalid {
+        border-color: $invalid-color;
+
+        .input-area label, .input-area input {
+            color: $invalid-color;
+        }
+    }
+}
+
+.input-area {
+    flex-basis: 100%;
+
+    padding: 1.75em 1em 0;
+    cursor: text;
+
+    text-align: left;
+    font-size: .875em;
+    input {
+        width: 100%;
+
+        opacity: 0;
+    }
+
+    label {
+        position: absolute;
+
+        padding-bottom: .25em;
+
+        pointer-events: none;
+
+        color: $input-placeholder-color;
+        font-size: 1em;
+        font-weight: lighter;
+        font-style: italic;
+
+        transform: translateY(-45%);
+        transform-origin: bottom left;
+
+        transition: transform 400ms $soft-bezier,
+            color 400ms $soft-bezier;
+
+        will-change: transform;
+    }
+
+    &.editing {
+        label {
+            transform: translateY(-100%) scale(.75);
+
+            color: $primary-color;
+            font-style: normal;
+        }
+
+        input {
+            font-weight: bold;
+            opacity: 1;
+        }
+    }
+}
+
+.input-action {
+    flex-basis: 30%;
+    flex-shrink: 0;
+
+
+    border-left: 1px solid rgba($input-border-color, .76);
+
+    button {
+        height: 100%;
+        width: 100%;
+
+        cursor: pointer;
+
+        font-size: .7em;
+        color: $input-action-color;
+        background-color: $input-action-background;
+
+        transition: color 250ms cubic-bezier(0.175, 0.885, 0.32, 1.275),
+                    background-color 250ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+        &.hide {
+            color: $primary-color;
+        }
+    }
+}
+
+button[type="submit"] {
+    width: 100%;
+
+    margin-top: 15px;
+    padding: .75em .75em .5em;
+    cursor: pointer;
+
+    background-color: $primary-color;
+    color: $white-font;
+    font-weight: lighter;
+
+    transition: background-color 500ms cubic-bezier(0.25, 0.8, 0.25, 1);
+
+    &[disabled] {
+        cursor: not-allowed;
+        background-color: $primary-disabled-color;
+    }
+
+    &:active:not([disabled]){
+        background-color: $dark-primary-color;
+    }
+}
+
+/* ––––––––––––––– BUSY LOADER ––––––––––––––– */
+.busy-loader {
+
+    padding: 4em 0;
+    img {
+        width: 30%;
+    }
+    p {
+        margin-top: 1.25em;
+
+        font-style: italic;
+        color: $busy-loader-color;
+    }
+}
+
+/* ––––––––––––––– MEDIA QUERIES ––––––––––––––– */
+
+@media screen {
+
+    @media (min-width: $lg-devices){
+        .login-section {
+            width: 30%;
+        }
+    }
+}

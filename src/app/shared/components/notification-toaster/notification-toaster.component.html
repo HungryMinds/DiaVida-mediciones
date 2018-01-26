@@ -1,0 +1,3 @@
+<div class="notification" [ngClass]="notificationType" [@displayState]="notificationState">
+    <p><i [ngClass]="notificationIcon"></i><span>{{ notificationMessage | truncate:70 }}</span></p>
+</div>
