@@ -2,15 +2,15 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-const sacRoutes = [
-    { path: 'requests', loadChildren: 'app/request/request.module#RequestModule' },
-    { path: 'admin', loadChildren: 'app/admin/admin.module#AdminModule' },
-    { path: '', redirectTo: '/login', pathMatch: 'full' },
-    { path: '**', redirectTo: '/login' }
+const appRoutes = [
+  // { path: 'requests', loadChildren: 'app/request/request.module#RequestModule' },
+  // { path: 'admin', loadChildren: 'app/admin/admin.module#AdminModule' },
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: '**', redirectTo: '/login' }
 ];
 
 @NgModule({
-    imports: [RouterModule.forRoot(sacRoutes)],
-    exports: [RouterModule]
+  imports: [RouterModule.forRoot(appRoutes)],
+  exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
