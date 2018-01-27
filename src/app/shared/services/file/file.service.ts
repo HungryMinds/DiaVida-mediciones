@@ -31,6 +31,6 @@ export class FileService {
   }
 
   saveFile(file: Blob | File, filename?: string) {
-    saveAs(file, filename);
+    // saveAs(file, filename);
   }
 }
