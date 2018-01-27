@@ -21,3 +21,7 @@ The stack used to develop the webapp is the following
 ### server / cdn
 
 firebase
+
+## Coding
+
+The code is linted with tslinter, so the most recommended action is to add tslint to the ide that is being used for code
