@@ -1,17 +1,19 @@
 // Platform imports
 import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 
 // App imports
 import { LoginComponent } from './components';
-import { AuthGuard } from '../core/guards/auth.guard';
 
-const authRoutes = [
-  { path: 'login', component: LoginComponent, canActivate: [AuthGuard] }
-];
+const authRoutes = [{ path: 'login', component: LoginComponent }];
 
 @NgModule({
-  imports: [RouterModule.forChild(authRoutes)],
+  imports: [
+    FormsModule,
+    ReactiveFormsModule,
+    RouterModule.forChild(authRoutes)
+  ],
   exports: [RouterModule]
 })
 export class AuthRoutingModule {}
