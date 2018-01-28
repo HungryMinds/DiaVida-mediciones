@@ -10,6 +10,8 @@ import { AppComponent } from './app.component';
 import { environment } from '../environments/environment';
 import { NotfoundComponent } from './notfound/notfound.component';
 
+import { NgcFloatButtonModule } from 'ngc-float-button';
+
 @NgModule({
   declarations: [AppComponent, NotfoundComponent],
   imports: [
@@ -18,6 +20,7 @@ import { NotfoundComponent } from './notfound/notfound.component';
       enabled: environment.production
     }),
     BrowserAnimationsModule,
+    NgcFloatButtonModule,
     // AuthModule,
     // CoreModule,
     AppRoutingModule
