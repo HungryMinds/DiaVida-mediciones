@@ -45,12 +45,20 @@
   .login-form {
     width: 100%;
     padding: 30px 0 0;
+    position: relative;
 
     h2 {
       font-size: 1.2rem;
+      margin-bottom: 15px;
     }
     button {
       float: right;
+    }
+
+    .mat-error.custom-error {
+      font-size: 75%;
+      position: absolute;
+      bottom: 38px;
     }
   }
 }

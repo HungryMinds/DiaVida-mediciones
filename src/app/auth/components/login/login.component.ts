@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import {
   FormControl,
   FormBuilder,
@@ -42,14 +43,17 @@ export class LoginComponent {
 
   constructor(
     private fb: FormBuilder,
-    public fbAuth: AngularFireAuth
+    public fbAuth: AngularFireAuth,
+    private router: Router
   ) {
     this.createForm();
   }
 
   state = 'small';
+  errorWhenSubmitted: Boolean = false;
+  error: string;
 
-  animateMe() {
+  expand() {
     this.state = this.state === 'small' ? 'large' : 'small';
   }
 
@@ -60,12 +64,31 @@ export class LoginComponent {
     });
   }
 
+  setErrorMessage(err) {
+    if (err.code === 'auth/user-not-found') {
+      this.error = '¡El usuario no existe!';
+    } else if (err.code === 'auth/wrong-password') {
+      this.error = '¡Usuario o contraseña incorrecto';
+    }
+  }
+
   onSubmit() {
-    this.fbAuth.auth.signInWithEmailAndPassword(
-      this.loginForm.value.email,
-      this.loginForm.value.password
-    )
-    .then(console.log)
-    .catch(console.error);
+    this.fbAuth.auth
+      .signInWithEmailAndPassword(
+        this.loginForm.value.email,
+        this.loginForm.value.password
+      )
+      .then(res => {
+        this.errorWhenSubmitted = false;
+        this.error = '';
+        console.log(res);
+        // Navigate to listado de campistas
+        this.router.navigate(['/listado']);
+      })
+      .catch(err => {
+        this.errorWhenSubmitted = true;
+        this.setErrorMessage(err);
+        console.log(err);
+      });
   }
 }

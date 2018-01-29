@@ -16,9 +16,10 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 
 import { NgcFloatButtonModule } from 'ngc-float-button';
 import { CoreModule } from './core/index';
+import { ListadocampistasComponent } from './listadocampistas/listadocampistas.component';
 
 @NgModule({
-  declarations: [AppComponent, NotfoundComponent],
+  declarations: [AppComponent, NotfoundComponent, ListadocampistasComponent],
   imports: [
     BrowserModule,
     ServiceWorkerModule.register('/ngsw-worker.js', {
