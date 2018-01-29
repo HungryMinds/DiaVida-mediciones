@@ -15,6 +15,7 @@ import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 
 import { NgcFloatButtonModule } from 'ngc-float-button';
+import { CoreModule } from './core/index';
 
 @NgModule({
   declarations: [AppComponent, NotfoundComponent],
@@ -27,8 +28,7 @@ import { NgcFloatButtonModule } from 'ngc-float-button';
     NgcFloatButtonModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule.enablePersistence(),
-    // AuthModule,
-    // CoreModule,
+    CoreModule,
     AppRoutingModule
   ],
   providers: [],

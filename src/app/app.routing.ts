@@ -1,7 +1,7 @@
 // Platform imports
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { RouterModule, Routes } from '@angular/router';
+import { RouterModule } from '@angular/router';
 
 // @Components
 import { NotfoundComponent } from './notfound/notfound.component';
