@@ -6,7 +6,7 @@
     <!-- show this when click -->
     <form [ngClass]="(state ==='large') ? 'expanded' : ''" class="login-form" [formGroup]="loginForm" (ngSubmit)="onSubmit()"
       novalidate>
-      <div [@showForm]='state' class="form-wrapper">
+      <div class="form-wrapper">
         <h2>Ingrese sus credenciales</h2>
         <mat-form-field class="full-width">
           <input matInput placeholder="Correo electrónico" name="email" formControlName="email">

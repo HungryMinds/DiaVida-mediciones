@@ -23,15 +23,16 @@ import {
   animations: [
     trigger('grow', [
       state('small', style('*')),
-      state('large', style({ height: 'auto' })),
-      transition('small => large', animate('100ms ease-in')),
-      transition('large => small', animate('100ms ease-out'))
-    ]),
-    trigger('showForm', [
-      state('small', style({ opacity: 0 })),
-      state('large', style({ opacity: 1 })),
-      transition('small => large', animate('100ms ease-in')),
-      transition('large => small', animate('100ms ease-out'))
+      state('large', style({ height: '312px', top: '80px' })),
+      transition('small => large', [
+        animate(
+          '.3s cubic-bezier(.42,0,.58,1)',
+          style({ height: '312px', top: '80px' })
+        )
+      ]),
+      transition('large => small', [
+        animate('.3s cubic-bezier(.42,0,.58,1)', style({ height: '*', top: 0 }))
+      ])
     ])
   ]
 })
