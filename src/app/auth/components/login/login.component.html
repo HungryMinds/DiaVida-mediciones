@@ -1,7 +1,7 @@
 <div class="login-view">
   <div class="logo"></div>
   <div [@grow]='state' class="initLogin">
-    <span (click)="animateMe()">Iniciar Sesión</span>
+    <span (click)="expand()">Iniciar Sesión</span>
 
     <!-- show this when click -->
     <form [ngClass]="(state ==='large') ? 'expanded' : ''" class="login-form" [formGroup]="loginForm" (ngSubmit)="onSubmit()"
@@ -26,6 +26,9 @@
             <strong>requerida</strong>
           </mat-error>
         </mat-form-field>
+        <span *ngIf="errorWhenSubmitted" class="mat-error custom-error">
+          {{error}}
+        </span>
         <button [disabled]="!loginForm.valid" mat-raised-button>Entrar</button>
       </div>
     </form>

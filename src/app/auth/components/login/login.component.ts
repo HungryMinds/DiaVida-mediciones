@@ -17,6 +17,7 @@ import {
   state
 } from '@angular/animations';
 import { AngularFireAuth } from 'angularfire2/auth';
+import { setTimeout } from 'timers';
 
 @Component({
   templateUrl: './login.component.html',
@@ -40,16 +41,15 @@ import { AngularFireAuth } from 'angularfire2/auth';
 export class LoginComponent {
   public loginForm: FormGroup;
 
-  constructor(
-    private fb: FormBuilder,
-    public fbAuth: AngularFireAuth
-  ) {
+  constructor(private fb: FormBuilder, public fbAuth: AngularFireAuth) {
     this.createForm();
   }
 
   state = 'small';
+  errorWhenSubmitted: Boolean = false;
+  error: string;
 
-  animateMe() {
+  expand() {
     this.state = this.state === 'small' ? 'large' : 'small';
   }
 
@@ -60,12 +60,25 @@ export class LoginComponent {
     });
   }
 
+  setErrorMessage(err) {
+    if (err.code === 'auth/user-not-found') {
+      this.error = '¡El usuario no existe!';
+    } else if (err.code === 'auth/wrong-password') {
+      this.error = '¡Usuario o contraseña incorrecto';
+    }
+  }
+
   onSubmit() {
-    this.fbAuth.auth.signInWithEmailAndPassword(
-      this.loginForm.value.email,
-      this.loginForm.value.password
-    )
-    .then(console.log)
-    .catch(console.error);
+    this.fbAuth.auth
+      .signInWithEmailAndPassword(
+        this.loginForm.value.email,
+        this.loginForm.value.password
+      )
+      .then(console.log)
+      .catch(err => {
+        this.errorWhenSubmitted = true;
+        this.setErrorMessage(err);
+        console.log(err);
+      });
   }
 }
