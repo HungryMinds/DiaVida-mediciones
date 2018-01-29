@@ -17,7 +17,6 @@ import {
   state
 } from '@angular/animations';
 import { AngularFireAuth } from 'angularfire2/auth';
-import { setTimeout } from 'timers';
 
 @Component({
   templateUrl: './login.component.html',
@@ -74,7 +73,11 @@ export class LoginComponent {
         this.loginForm.value.email,
         this.loginForm.value.password
       )
-      .then(console.log)
+      .then(res => {
+        this.errorWhenSubmitted = false;
+        this.error = '';
+        console.log(res);
+      })
       .catch(err => {
         this.errorWhenSubmitted = true;
         this.setErrorMessage(err);
