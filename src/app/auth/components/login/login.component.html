@@ -1,21 +1,33 @@
-<form [formGroup]="loginForm" (ngSubmit)="onSubmit()" novalidate>
-  <mat-form-field class="full-width">
-    <input matInput placeholder="Correo electrónico" name="email" formControlName="email">
-    <!-- <mat-hint>Correo electrónico del participante</mat-hint> -->
-    <mat-error *ngIf="loginForm.controls.email.hasError('email') && !loginForm.controls.email.hasError('required')">
-      Por favor ingrese un correo electrónico válido
-    </mat-error>
-    <mat-error *ngIf="loginForm.controls.email.hasError('required')">
-      Correo electrónico es
-      <strong>requerido</strong>
-    </mat-error>
-  </mat-form-field>
-  <mat-form-field class="full-width">
-    <input matInput type="password" placeholder="Contraseña" formControlName="password">
-    <mat-error *ngIf="loginForm.controls.password.hasError('required')">
-      Contraseña es
-      <strong>requerida</strong>
-    </mat-error>
-  </mat-form-field>
-  <button [disabled]="!loginForm.valid" mat-raised-button>Entrar</button>
-</form>
+<div class="login-view">
+  <div class="logo"></div>
+  <div [@grow]='state' class="initLogin">
+    <span (click)="animateMe()">Iniciar Sesión</span>
+
+    <!-- show this when click -->
+    <form [ngClass]="(state ==='large') ? 'expanded' : ''" class="login-form" [formGroup]="loginForm" (ngSubmit)="onSubmit()"
+      novalidate>
+      <div class="form-wrapper">
+        <h2>Ingrese sus credenciales</h2>
+        <mat-form-field class="full-width">
+          <input matInput placeholder="Correo electrónico" name="email" formControlName="email">
+          <!-- <mat-hint>Correo electrónico del participante</mat-hint> -->
+          <mat-error *ngIf="loginForm.controls.email.hasError('email') && !loginForm.controls.email.hasError('required')">
+            Por favor ingrese un correo electrónico válido
+          </mat-error>
+          <mat-error *ngIf="loginForm.controls.email.hasError('required')">
+            Correo electrónico es
+            <strong>requerido</strong>
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="full-width">
+          <input matInput type="password" placeholder="Contraseña" formControlName="password">
+          <mat-error *ngIf="loginForm.controls.password.hasError('required')">
+            Contraseña es
+            <strong>requerida</strong>
+          </mat-error>
+        </mat-form-field>
+        <button [disabled]="!loginForm.valid" mat-raised-button>Entrar</button>
+      </div>
+    </form>
+  </div>
+</div>
