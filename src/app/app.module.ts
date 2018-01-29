@@ -28,6 +28,7 @@ import { CoreModule } from './core/index';
     NgcFloatButtonModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule.enablePersistence(),
+    AngularFireAuthModule,
     CoreModule,
     AppRoutingModule
   ],
