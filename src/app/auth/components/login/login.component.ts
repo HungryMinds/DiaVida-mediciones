@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import {
   FormControl,
   FormBuilder,
@@ -40,7 +41,11 @@ import { AngularFireAuth } from 'angularfire2/auth';
 export class LoginComponent {
   public loginForm: FormGroup;
 
-  constructor(private fb: FormBuilder, public fbAuth: AngularFireAuth) {
+  constructor(
+    private fb: FormBuilder,
+    public fbAuth: AngularFireAuth,
+    private router: Router
+  ) {
     this.createForm();
   }
 
@@ -77,6 +82,8 @@ export class LoginComponent {
         this.errorWhenSubmitted = false;
         this.error = '';
         console.log(res);
+        // Navigate to listado de campistas
+        this.router.navigate(['/listado']);
       })
       .catch(err => {
         this.errorWhenSubmitted = true;
