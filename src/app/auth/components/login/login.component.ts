@@ -16,6 +16,7 @@ import {
   keyframes,
   state
 } from '@angular/animations';
+import { AngularFireAuth } from 'angularfire2/auth';
 
 @Component({
   templateUrl: './login.component.html',
@@ -39,7 +40,10 @@ import {
 export class LoginComponent {
   public loginForm: FormGroup;
 
-  constructor(private fb: FormBuilder) {
+  constructor(
+    private fb: FormBuilder,
+    public fbAuth: AngularFireAuth
+  ) {
     this.createForm();
   }
 
@@ -57,6 +61,11 @@ export class LoginComponent {
   }
 
   onSubmit() {
-    console.log(this.loginForm.value);
+    this.fbAuth.auth.signInWithEmailAndPassword(
+      this.loginForm.value.email,
+      this.loginForm.value.password
+    )
+    .then(console.log)
+    .catch(console.error);
   }
 }

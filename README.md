@@ -25,3 +25,21 @@ firebase
 ## Coding
 
 The code is linted with tslinter, so the most recommended action is to add tslint to the ide that is being used for code
+
+## Initialization
+
+there must exist a file in the directory `src/environments/firestore.ts` in the format:
+
+```ts
+const firebase = {
+  apiKey: '<api key>',
+  authDomain: '<auth firebase domain>',
+  databaseURL: '<database firebase url>',
+  projectId: '<id of the project>',
+  storageBucket: '<bucket where we will store the assets>',
+  messagingSenderId: '<message sender id>'
+};
+
+export default firebase;
+
+```
