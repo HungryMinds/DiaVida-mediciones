@@ -72,6 +72,11 @@ export class LoginComponent {
     }
   }
 
+  resetError() {
+    this.errorWhenSubmitted = false;
+    this.error = '';
+  }
+
   onSubmit() {
     this.fbAuth.auth
       .signInWithEmailAndPassword(

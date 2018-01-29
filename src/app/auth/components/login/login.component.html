@@ -9,7 +9,7 @@
       <div class="form-wrapper">
         <h2>Ingrese sus credenciales</h2>
         <mat-form-field class="full-width">
-          <input matInput placeholder="Correo electrónico" name="email" formControlName="email">
+          <input (keyup)="resetError()" matInput placeholder="Correo electrónico" name="email" formControlName="email">
           <!-- <mat-hint>Correo electrónico del participante</mat-hint> -->
           <mat-error *ngIf="loginForm.controls.email.hasError('email') && !loginForm.controls.email.hasError('required')">
             Por favor ingrese un correo electrónico válido
@@ -20,7 +20,7 @@
           </mat-error>
         </mat-form-field>
         <mat-form-field class="full-width">
-          <input matInput type="password" placeholder="Contraseña" formControlName="password">
+          <input (keyup)="resetError()" matInput type="password" placeholder="Contraseña" formControlName="password">
           <mat-error *ngIf="loginForm.controls.password.hasError('required')">
             Contraseña es
             <strong>requerida</strong>
