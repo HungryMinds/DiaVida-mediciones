@@ -1,3 +1,49 @@
+.login-view {
+  background-image: url('../../../../assets/noise-pattern.png');
+  background-color: #38a297;
+  display: flex;
+  height: 100vh;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  .logo {
+    background-image: url('../../../../assets/logo.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    width: 360px;
+    height: 300px;
+  }
+
+  .initLogin {
+    display: flex;
+    padding: 26px;
+    width: 90%;
+    height: 75px;
+    align-items: center;
+    flex-direction: column;
+    background-color: white;
+    box-shadow: 0 19px 38px 0 rgba(0, 0, 0, 0.3),
+      0 15px 12px 0 rgba(0, 0, 0, 0.22);
+
+    span {
+      width: 100%;
+      font-size: 1.4rem;
+      border-radius: 2px;
+      cursor: pointer;
+    }
+  }
+  .login-form {
+    width: 100%;
+    padding: 20px 0 0;
+
+    h2 {
+      font-size: 1.2rem;
+    }
+  }
+}
+
 .mat-form-field {
   display: flex;
 }
