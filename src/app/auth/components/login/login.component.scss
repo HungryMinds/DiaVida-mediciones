@@ -1,5 +1,5 @@
 .login-view {
-  background-image: url('../../../../assets/noise-pattern.png');
+  background-image: url("../../../../assets/noise-pattern.png");
   background-color: #38a297;
   display: flex;
   height: 100vh;
@@ -9,11 +9,11 @@
   position: relative;
 
   .logo {
-    background-image: url('../../../../assets/logo.png');
+    background-image: url("../../../../assets/logo2.svg");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-    width: 360px;
+    width: 300px;
     height: 300px;
     position: absolute;
     top: 40px;
@@ -37,7 +37,9 @@
 
     span {
       width: 100%;
-      font-size: 1.4rem;
+      color: #252525;
+      font-size: 20px;
+      font-weight: 300;
       border-radius: 2px;
       cursor: pointer;
     }
@@ -48,7 +50,8 @@
     position: relative;
 
     h2 {
-      font-size: 1.2rem;
+      color: #252525;
+      font-size: 1rem;
       margin-bottom: 15px;
     }
     button {
@@ -68,4 +71,10 @@
 }
 .full-width {
   width: 100%;
+}
+
+@media only screen and (max-width: 318px) and (min-height: 480px) {
+  .login-view .initLogin {
+    margin-top: 0;
+  }
 }
