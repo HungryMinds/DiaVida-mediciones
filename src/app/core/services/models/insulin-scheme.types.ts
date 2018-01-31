@@ -1,5 +1,5 @@
 import { InsulinIntervals } from './insulin-intervals.enum';
-import { FoodTime, FoodType } from './food.types';
+import { FoodTime, FoodType } from './food.enum';
 
 export class InsulinScheme {
   foodTime: string;

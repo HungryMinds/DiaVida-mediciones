@@ -4,7 +4,7 @@ import {
   InsulinSchemeRatio
 } from './insulin-scheme.types';
 import { BasalInsulin } from './basal-insulin.class';
-import { FoodTable } from './food.types';
+import { FoodTable } from './food.class';
 
 export class Campist {
   id: string;
