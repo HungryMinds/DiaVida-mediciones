@@ -7,7 +7,7 @@ import {
 
 import { Observable } from 'rxjs/Observable';
 
-import { Campist } from './campist.interface';
+import { Campist } from './campist.class';
 
 @Injectable()
 export class CampistService {
