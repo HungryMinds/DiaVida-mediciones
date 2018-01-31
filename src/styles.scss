@@ -1,6 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
-@import "~@angular/material/prebuilt-themes/indigo-pink.css";
-@import url("https://fonts.googleapis.com/css?family=Roboto");
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+@import url('https://fonts.googleapis.com/css?family=Roboto');
 
 html,
 body,
@@ -109,7 +109,7 @@ section {
 }
 html,
 body {
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-size: 18px;
 }
 body {
@@ -130,7 +130,7 @@ blockquote:before,
 blockquote:after,
 q:before,
 q:after {
-  content: "";
+  content: '';
   content: none;
 }
 table {
@@ -138,6 +138,25 @@ table {
   border-spacing: 0;
 }
 
+md-icon {
+  font-family: 'Material Icons' !important;
+}
+
+app-navbar {
+  display: flex;
+  width: 100%;
+  background-color: #25a99b;
+}
+.full-width {
+  width: 100%;
+  display: flex;
+}
+.half-width {
+  width: 44%;
+}
+.half-width:first-child {
+  margin-right: 11%;
+}
 // Reset style for login input
 .mat-form-field .mat-form-field-wrapper {
   width: 100%;
