@@ -19,7 +19,7 @@ export class FoodTable {
   foodType: string;
 
   constructor(fdRw: any) {
-    this.foodTime = FoodTime[fdRw.foodTime];
-    this.foodType = FoodType[fdRw.foodType];
+    this.foodTime = fdRw.foodTime;
+    this.foodType = fdRw.foodType;
   }
 }
