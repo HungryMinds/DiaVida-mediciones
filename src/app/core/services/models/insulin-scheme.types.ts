@@ -1,12 +1,11 @@
 import { InsulinIntervals } from './insulin-intervals.enum';
-import { FoodTime, FoodType } from './food.enum';
 
 export class InsulinScheme {
   foodTime: string;
   quantity: number;
 
   constructor(inShIntRw: any) {
-    this.foodTime = FoodTime[inShIntRw.foodTime];
+    this.foodTime = inShIntRw.foodTime;
     this.quantity = inShIntRw.quantity;
   }
 }
@@ -17,7 +16,7 @@ export class InsulinSchemeInterval extends InsulinScheme {
   constructor(inShIntRw: any) {
     super(inShIntRw);
 
-    this.scheme = InsulinIntervals[inShIntRw.scheme];
+    this.scheme = inShIntRw.scheme;
   }
 }
 

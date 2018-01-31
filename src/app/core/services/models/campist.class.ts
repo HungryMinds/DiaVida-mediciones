@@ -1,4 +1,3 @@
-import { Team } from './team.enum';
 import {
   InsulinSchemeInterval,
   InsulinSchemeRatio
@@ -24,7 +23,7 @@ export class Campist {
     this.names = campRO.names;
     this.lastNames = campRO.lastNames;
     this.age = campRO.age;
-    this.team = Team[campRO.team];
+    this.team = campRO.team;
     this.allergies = campRO.allergies;
     this.medications = campRO.medications;
     this.insulinSchemeInterval = new InsulinSchemeInterval(
