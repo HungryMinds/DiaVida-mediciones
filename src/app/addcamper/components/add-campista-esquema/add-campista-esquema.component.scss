@@ -1,0 +1,66 @@
+.add-camper {
+  background-color: #e6edec;
+  height: 100vh;
+  position: relative;
+
+  .add-camper-form {
+    padding: 10px 28px;
+
+    p {
+      font-size: 14px;
+      margin-bottom: 20px;
+    }
+  }
+  .button-row {
+    padding: 0px 28px;
+    margin-top: 20px;
+    text-align: right;
+    position: absolute;
+    bottom: 20px;
+    right: 0;
+
+    button {
+      padding: 5px 22px;
+      font-size: 16px;
+      font-weight: bold;
+      background-color: #009688;
+      text-transform: uppercase;
+    }
+    button:last-child {
+      margin-left: 12px;
+    }
+  }
+
+  .choose-option {
+    display: flex;
+    flex-direction: row;
+    padding: 30px 30px 0;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 10px;
+
+    .option-item:not(:last-child) {
+      margin-right: 30px;
+    }
+
+    p {
+      font-size: 14px;
+    }
+  }
+  .form-row {
+    p {
+      margin: 0;
+    }
+    .mat-form-field {
+      width: 23%;
+    }
+  }
+
+  .form-2 {
+    .form-row {
+      .mat-form-field {
+        width: 32%;
+      }
+    }
+  }
+}
