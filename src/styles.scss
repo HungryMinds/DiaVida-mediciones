@@ -161,3 +161,9 @@ app-navbar {
 .mat-form-field .mat-form-field-wrapper {
   width: 100%;
 }
+.mat-slide-toggle.mat-checked:not(.mat-disabled) .mat-slide-toggle-bar {
+  background-color: rgba(36, 169, 155, 0.62);
+}
+.mat-slide-toggle.mat-checked:not(.mat-disabled) .mat-slide-toggle-thumb {
+  background-color: #24a99b;
+}
