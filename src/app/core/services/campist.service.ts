@@ -66,7 +66,7 @@ const campist = {
   insulinSchemeRatio: {
     scheme: [
       {
-        foodTime: '[]',
+        foodTime: '[Breakfast, ...etc]',
         quantity: '[numero]'
       }
     ],
