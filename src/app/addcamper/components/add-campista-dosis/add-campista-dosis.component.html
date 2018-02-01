@@ -1,0 +1,43 @@
+<div class="add-camper">
+  <app-navbar [title]="title" [subtitle]="subtitle"></app-navbar>
+  <div class="choose-option">
+    <p>Utiliza más de una dosis basal por día?</p>
+    <mat-slide-toggle (change)="toogleView($event)" [color]="color" [checked]="checked" [disabled]="disabled">
+    </mat-slide-toggle>
+  </div>
+  <div class="add-camper-form">
+    <div *ngIf="!isChecked" class="form-1">
+      <p>Aplicación</p>
+      <mat-form-field class="full-width">
+        <input type="time" matInput placeholder="Hora">
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <input type="number" matInput placeholder="Dosis">
+      </mat-form-field>
+    </div>
+
+    <div *ngIf="isChecked" class="form-2">
+      <p>Primera aplicación</p>
+      <mat-form-field class="full-width">
+        <input type="time" matInput placeholder="Hora">
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <input type="number" matInput placeholder="Dosis">
+      </mat-form-field>
+      <p>Segunda aplicación</p>
+      <mat-form-field class="full-width">
+        <input type="time" matInput placeholder="Hora">
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <input type="number" matInput placeholder="Dosis">
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="button-row">
+    <button mat-raised-button color="primary">Anterior</button>
+    <button mat-raised-button color="primary">Siguiente</button>
+  </div>
+</div>
