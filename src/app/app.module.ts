@@ -1,7 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatFormFieldModule, MatTableModule, MatInputModule } from '@angular/material';
 // App Imports
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { AppRoutingModule } from './app.routing';
@@ -11,7 +10,8 @@ import {
   MatIconModule,
   MatFormFieldModule,
   MatSelectModule,
-  MatButtonModule
+  MatButtonModule,
+  MatTableModule
 } from '@angular/material';
 
 import { environment } from '../environments/environment';

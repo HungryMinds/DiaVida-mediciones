@@ -8,7 +8,6 @@ import { NotfoundComponent } from './notfound/notfound.component';
 import { CampersListComponent } from './campers-list/campers-list.component';
 
 const appRoutes = [
-  // { path: 'requests', loadChildren: 'app/request/request.module#RequestModule' },
   { path: '', redirectTo: '/auth/login', pathMatch: 'full' },
   { path: 'listado', component: CampersListComponent },
   { path: 'auth', loadChildren: 'app/auth/auth.module#AuthModule' },
