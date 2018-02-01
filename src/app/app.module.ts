@@ -6,9 +6,17 @@ import { MatFormFieldModule, MatTableModule, MatInputModule } from '@angular/mat
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { AppRoutingModule } from './app.routing';
 import { AppComponent } from './app.component';
+import {
+  MatInputModule,
+  MatIconModule,
+  MatFormFieldModule,
+  MatSelectModule,
+  MatButtonModule
+} from '@angular/material';
 
 import { environment } from '../environments/environment';
 import { NotfoundComponent } from './notfound/notfound.component';
+import { NavBarComponent } from './shared/navbar/navbar.component';
 
 import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
@@ -34,6 +42,11 @@ import { CampersListComponent } from './campers-list/campers-list.component';
     AngularFirestoreModule.enablePersistence(),
     AngularFireAuthModule,
     CoreModule,
+    MatInputModule,
+    MatIconModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    MatButtonModule,
     AppRoutingModule
   ],
   providers: [],

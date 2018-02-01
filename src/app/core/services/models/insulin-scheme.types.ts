@@ -1,6 +1,6 @@
 import { InsulinIntervals } from './insulin-intervals.enum';
 
-export class InsulinScheme {
+class InsulinScheme {
   foodTime: string;
   quantity: number;
 
@@ -10,22 +10,26 @@ export class InsulinScheme {
   }
 }
 
-export class InsulinSchemeInterval extends InsulinScheme {
-  scheme: string;
+export class InsulinSchemeInterval {
+  comment: string;
+  scheme: InsulinScheme;
 
   constructor(inShIntRw: any) {
-    super(inShIntRw);
-
-    this.scheme = inShIntRw.scheme;
+    this.scheme = inShIntRw.scheme.map((scheme) => {
+      return new InsulinScheme(scheme);
+    });
+    this.comment = inShIntRw.comment;
   }
 }
 
 export class InsulinSchemeRatio {
+  comment: string;
   scheme: InsulinScheme[];
   fC: number;
 
   constructor(iSRRw: any) {
     this.scheme = iSRRw.scheme.map(sch => new InsulinScheme(sch));
     this.fC = iSRRw.fC;
+    this.comment = iSRRw.comment;
   }
 }
