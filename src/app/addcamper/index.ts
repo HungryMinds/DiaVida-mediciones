@@ -5,5 +5,6 @@ export * from './addcamper.module';
 export {
   AddCampistaComponent,
   AddCampistaDosisComponent,
-  AddCampistaEsquemaComponent
+  AddCampistaEsquemaComponent,
+  AddCampistaFoodComponent
 } from './components';

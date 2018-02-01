@@ -18,11 +18,15 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NavBarComponent } from '../shared/navbar/navbar.component';
 
 // Routing Imports
-import { AddCampistaEsquemaComponent } from './components/add-campista-esquema/add-campista-esquema.component';
 import { AddCamperRoutingModule } from './addcamper.routing';
 
 // Application Imports
-import { AddCampistaComponent, AddCampistaDosisComponent } from './components';
+import {
+  AddCampistaComponent,
+  AddCampistaDosisComponent,
+  AddCampistaFoodComponent,
+  AddCampistaEsquemaComponent
+} from './components';
 
 @NgModule({
   imports: [
@@ -42,12 +46,14 @@ import { AddCampistaComponent, AddCampistaDosisComponent } from './components';
     NavBarComponent,
     AddCampistaComponent,
     AddCampistaDosisComponent,
-    AddCampistaEsquemaComponent
+    AddCampistaEsquemaComponent,
+    AddCampistaFoodComponent
   ],
   exports: [
     AddCampistaComponent,
     AddCampistaDosisComponent,
-    AddCampistaEsquemaComponent
+    AddCampistaEsquemaComponent,
+    AddCampistaFoodComponent
   ]
 })
 export class AddCamperModule {}
