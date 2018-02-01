@@ -167,3 +167,11 @@ app-navbar {
 .mat-slide-toggle.mat-checked:not(.mat-disabled) .mat-slide-toggle-thumb {
   background-color: #24a99b;
 }
+
+.mat-radio-button.mat-accent .mat-radio-inner-circle {
+  background-color: #24a99b;
+}
+
+.mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle {
+  border-color: #24a99b;
+}

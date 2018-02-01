@@ -1,0 +1,109 @@
+<div class="add-camper">
+  <app-navbar [title]="title" [subtitle]="subtitle"></app-navbar>
+  <div class="choose-option">
+    <mat-radio-group>
+      <mat-radio-button checked (change)="toogleView($event)" class="option-item" labelPosition="before" value="1">Escalas</mat-radio-button>
+      <mat-radio-button (change)="toogleView($event)" class="option-item" labelPosition="before" value="2">Ratios</mat-radio-button>
+    </mat-radio-group>
+  </div>
+  <div class="add-camper-form">
+    <div *ngIf="valueChecked === '1'" class="form-1">
+      <div class="form-row">
+        <p>Desayuno</p>
+
+        <mat-form-field class="example-full-width">
+          <input type="number" min="0" max="250" matInput placeholder="<80">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <input type="number" min="0" max="250" matInput placeholder="81-160">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <input type="number" min="0" max="250" matInput placeholder="161-250">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <input type="number" min="0" max="250" matInput placeholder=">250">
+        </mat-form-field>
+
+      </div>
+
+      <div class="form-row">
+        <p>Almuerzo</p>
+
+        <mat-form-field class="example-full-width">
+          <input type="number" min="0" max="250" matInput placeholder="<80">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <input type="number" min="0" max="250" matInput placeholder="81-160">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <input type="number" min="0" max="250" matInput placeholder="161-250">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <input type="number" min="0" max="250" matInput placeholder=">250">
+        </mat-form-field>
+
+      </div>
+
+      <div class="form-row">
+        <p>Cena</p>
+
+        <mat-form-field class="example-full-width">
+          <input type="number" min="0" max="250" matInput placeholder="<80">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <input type="number" min="0" max="250" matInput placeholder="81-160">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <input type="number" min="0" max="250" matInput placeholder="161-250">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <input type="number" min="0" max="250" matInput placeholder=">250">
+        </mat-form-field>
+
+      </div>
+
+      <mat-form-field class="full-width">
+        <textarea matInput placeholder="Comentarios"></textarea>
+      </mat-form-field>
+    </div>
+
+    <div *ngIf="valueChecked === '2'" class="form-2">
+      <div class="form-row">
+        <p>Ratios</p>
+
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Desayuno">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Almuerzo">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Cena">
+        </mat-form-field>
+
+      </div>
+
+      <mat-form-field class="full-width">
+        <textarea matInput placeholder="Factor de correción"></textarea>
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <textarea matInput placeholder="Comentarios"></textarea>
+      </mat-form-field>
+    </div>
+    <div class="button-row">
+      <button mat-raised-button color="primary">Anterior</button>
+      <button mat-raised-button color="primary">Siguiente</button>
+    </div>
+  </div>

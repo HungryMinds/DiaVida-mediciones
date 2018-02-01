@@ -11,12 +11,14 @@ import {
   MatButtonModule,
   MatFormFieldModule,
   MatSelectModule,
-  MatSlideToggleModule
+  MatSlideToggleModule,
+  MatRadioModule
 } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NavBarComponent } from '../shared/navbar/navbar.component';
 
 // Routing Imports
+import { AddCampistaEsquemaComponent } from './components/add-campista-esquema/add-campista-esquema.component';
 import { AddCamperRoutingModule } from './addcamper.routing';
 
 // Application Imports
@@ -33,13 +35,19 @@ import { AddCampistaComponent, AddCampistaDosisComponent } from './components';
     MatFormFieldModule,
     MatSelectModule,
     MatSlideToggleModule,
+    MatRadioModule,
     AddCamperRoutingModule
   ],
   declarations: [
     NavBarComponent,
     AddCampistaComponent,
-    AddCampistaDosisComponent
+    AddCampistaDosisComponent,
+    AddCampistaEsquemaComponent
   ],
-  exports: [AddCampistaComponent, AddCampistaDosisComponent]
+  exports: [
+    AddCampistaComponent,
+    AddCampistaDosisComponent,
+    AddCampistaEsquemaComponent
+  ]
 })
 export class AddCamperModule {}
