@@ -5,13 +5,13 @@ import { RouterModule } from '@angular/router';
 
 // @Components
 import { NotfoundComponent } from './notfound/notfound.component';
-import { ListadocampistasComponent } from './listadocampistas/listadocampistas.component';
+import { CampersListComponent } from './campers-list/campers-list.component';
 
 const appRoutes = [
   // { path: 'requests', loadChildren: 'app/request/request.module#RequestModule' },
   { path: 'auth', loadChildren: 'app/auth/auth.module#AuthModule' },
   { path: '', redirectTo: '/auth/login', pathMatch: 'full' },
-  { path: 'listado', component: ListadocampistasComponent },
+  { path: 'listado', component: CampersListComponent },
   { path: '**', component: NotfoundComponent }
 ];
 

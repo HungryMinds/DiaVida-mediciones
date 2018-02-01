@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import { MatFormFieldModule, MatTableModule, MatInputModule } from '@angular/material';
 // App Imports
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { AppRoutingModule } from './app.routing';
@@ -16,12 +16,14 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 
 import { NgcFloatButtonModule } from 'ngc-float-button';
 import { CoreModule } from './core/index';
-import { ListadocampistasComponent } from './listadocampistas/listadocampistas.component';
 import { CampersListComponent } from './campers-list/campers-list.component';
 
 @NgModule({
-  declarations: [AppComponent, NotfoundComponent, ListadocampistasComponent, CampersListComponent],
+  declarations: [AppComponent, NotfoundComponent, CampersListComponent],
   imports: [
+    MatFormFieldModule,
+    MatTableModule,
+    MatInputModule,
     BrowserModule,
     ServiceWorkerModule.register('/ngsw-worker.js', {
       enabled: environment.production

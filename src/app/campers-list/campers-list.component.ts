@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { MatTableDataSource } from '@angular/material';
+import { Team } from '../core/services/models/team.enum';
 
 @Component({
   selector: 'app-campers-list',
@@ -7,7 +8,7 @@ import { MatTableDataSource } from '@angular/material';
   styleUrls: ['./campers-list.component.scss']
 })
 export class CampersListComponent {
-  displayedColumns = ['', 'Nombre', 'Edad'];
+  displayedColumns = ['group', 'name', 'age'];
   dataSource = new MatTableDataSource(ELEMENT_DATA);
 
   applyFilter(filterValue: string) {
@@ -25,15 +26,15 @@ export interface CamperTable {
 }
 
 const ELEMENT_DATA: CamperTable[] = [
-  {group: 'morado', name: 'Manuel Antonio', age: 13},
-  {group: 'morado', name: 'Manuel Antonio', age: 13},
-  {group: 'morado', name: 'Manuel Antonio', age: 13},
-  {group: 'morado', name: 'Manuel Antonio', age: 13},
-  {group: 'morado', name: 'Manuel Antonio', age: 13},
-  {group: 'morado', name: 'Manuel Antonio', age: 13},
-  {group: 'morado', name: 'Manuel Antonio', age: 13},
-  {group: 'morado', name: 'Manuel Antonio', age: 13},
-  {group: 'morado', name: 'Manuel Antonio', age: 13},
-  {group: 'morado', name: 'Manuel Antonio', age: 13},
-  {group: 'morado', name: 'Manuel Antonio', age: 13},
+  {group: Team['morado'], name: 'Manuel Antonio', age: 13},
+  {group: Team['morado'], name: 'Manuel Antonio', age: 13},
+  {group: Team['morado'], name: 'Manuel Antonio', age: 13},
+  {group: Team['morado'], name: 'Manuel Antonio', age: 13},
+  {group: Team['morado'], name: 'Manuel Antonio', age: 13},
+  {group: Team['morado'], name: 'Manuel Antonio', age: 13},
+  {group: Team['morado'], name: 'Manuel Antonio', age: 13},
+  {group: Team['morado'], name: 'Manuel Antonio', age: 13},
+  {group: Team['morado'], name: 'Manuel Antonio', age: 13},
+  {group: Team['morado'], name: 'Manuel Antonio', age: 13},
+  {group: Team['morado'], name: 'Manuel Antonio', age: 13},
 ];
