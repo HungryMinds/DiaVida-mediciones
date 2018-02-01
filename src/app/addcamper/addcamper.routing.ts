@@ -7,13 +7,15 @@ import { RouterModule, Routes } from '@angular/router';
 import {
   AddCampistaComponent,
   AddCampistaDosisComponent,
-  AddCampistaEsquemaComponent
+  AddCampistaEsquemaComponent,
+  AddCampistaFoodComponent
 } from './components';
 
 const addCamperRoutes = [
   { path: 'add-camper', component: AddCampistaComponent },
   { path: 'add-camper/dosis', component: AddCampistaDosisComponent },
-  { path: 'add-camper/esquema', component: AddCampistaEsquemaComponent }
+  { path: 'add-camper/esquema', component: AddCampistaEsquemaComponent },
+  { path: 'add-camper/food', component: AddCampistaFoodComponent }
 ];
 
 @NgModule({
