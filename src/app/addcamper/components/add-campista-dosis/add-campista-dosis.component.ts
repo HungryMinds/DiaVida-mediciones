@@ -8,6 +8,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 export class AddCampistaDosisComponent implements OnInit {
   title: string;
   subtitle: string;
+  color: '#24a99b';
   isChecked: Boolean = false;
   @Input() checked;
   @Output() change: EventEmitter<boolean> = new EventEmitter<boolean>();
