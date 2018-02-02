@@ -25,10 +25,16 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 import { NgcFloatButtonModule } from 'ngc-float-button';
 import { CoreModule } from './core/index';
 import { CampersListComponent } from './campers-list/campers-list.component';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
-  declarations: [AppComponent, NotfoundComponent, CampersListComponent],
+  declarations: [
+    AppComponent,
+    NotfoundComponent,
+    CampersListComponent
+  ],
   imports: [
+    SharedModule,
     MatFormFieldModule,
     MatTableModule,
     MatInputModule,

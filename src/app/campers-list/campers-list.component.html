@@ -1,50 +1,36 @@
-<div class="example-container mat-elevation-z8">
-  <div class="example-header">
-    <mat-form-field>
-      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
-    </mat-form-field>
+<div class="background-app">
+  <app-navbar></app-navbar>
+  <div class="campers-list mat-elevation-z9">
+    <div class="header-search-field">
+      <mat-form-field>
+        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+      </mat-form-field>
+    </div>
+    <mat-table #table [dataSource]="dataSource" [ngClass]="'campers-table'">
+      <ng-container matColumnDef="group">
+        <mat-header-cell *matHeaderCellDef [ngClass]="'first-col-header'"></mat-header-cell>
+        <mat-cell [ngStyle]="{backgroundColor: element.group}" [ngClass]="'first-col'" *matCellDef="let element">&nbsp;</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef>
+          Nombre
+        </mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          {{element.name}}
+        </mat-cell>
+      </ng-container>
+      <!-- Weight Column -->
+      <ng-container matColumnDef="age">
+        <mat-header-cell *matHeaderCellDef>
+          Edad
+        </mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          {{element.age}}
+        </mat-cell>
+      </ng-container>
+      <mat-header-row *matHeaderRowDef="displayedColumns">
+      </mat-header-row>
+      <mat-row [ngStyle]="{paddingLeft: 0}" *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
   </div>
-
-  <mat-table
-    #table
-    [dataSource]="dataSource"
-    [ngClass]="'campers-table'"
-  >
-    <ng-container matColumnDef="group">
-      <mat-header-cell
-        *matHeaderCellDef
-        [ngClass]="'first-col-header'"
-      ></mat-header-cell>
-      <mat-cell
-        [ngStyle]="{backgroundColor: element.group}"
-        [ngClass]="'first-col'"
-        *matCellDef="let element"
-      >&nbsp;</mat-cell>
-    </ng-container>
-    <ng-container matColumnDef="name">
-      <mat-header-cell *matHeaderCellDef>
-        Nombre
-      </mat-header-cell>
-      <mat-cell *matCellDef="let element">
-        {{element.name}}
-      </mat-cell>
-    </ng-container>
-
-    <!-- Weight Column -->
-    <ng-container matColumnDef="age">
-      <mat-header-cell *matHeaderCellDef>
-        Edad
-      </mat-header-cell>
-      <mat-cell *matCellDef="let element">
-        {{element.age}}
-      </mat-cell>
-    </ng-container>
-
-    <mat-header-row
-    *matHeaderRowDef="displayedColumns">
-    </mat-header-row>
-    <mat-row
-    [ngStyle]="{paddingLeft: 0}"
-    *matRowDef="let row; columns: displayedColumns;"></mat-row>
-  </mat-table>
 </div>
