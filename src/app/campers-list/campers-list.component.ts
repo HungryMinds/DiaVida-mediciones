@@ -1,3 +1,4 @@
+// import { NgClass } from '@angular/common';
 import { Component } from '@angular/core';
 import { MatTableDataSource } from '@angular/material';
 import { Team } from '../core/services/models/team.enum';
@@ -26,15 +27,15 @@ export interface CamperTable {
 }
 
 const ELEMENT_DATA: CamperTable[] = [
-  {group: Team['morado'], name: 'Manuel Antonio', age: 13},
-  {group: Team['morado'], name: 'Manuel Antonio', age: 13},
-  {group: Team['morado'], name: 'Manuel Antonio', age: 13},
-  {group: Team['morado'], name: 'Manuel Antonio', age: 13},
-  {group: Team['morado'], name: 'Manuel Antonio', age: 13},
-  {group: Team['morado'], name: 'Manuel Antonio', age: 13},
-  {group: Team['morado'], name: 'Manuel Antonio', age: 13},
-  {group: Team['morado'], name: 'Manuel Antonio', age: 13},
-  {group: Team['morado'], name: 'Manuel Antonio', age: 13},
-  {group: Team['morado'], name: 'Manuel Antonio', age: 13},
-  {group: Team['morado'], name: 'Manuel Antonio', age: 13},
+  { group: Team['morado'], name: 'Manuel Antonio1', age: 13 },
+  { group: Team['morado'], name: 'Manuel Antonio2', age: 13 },
+  { group: Team['morado'], name: 'Manuel Antonio3', age: 13 },
+  { group: Team['morado'], name: 'Manuel Antonio4', age: 13 },
+  { group: Team['morado'], name: 'Manuel Antonio5', age: 13 },
+  { group: Team['morado'], name: 'Manuel Antonio6', age: 13 },
+  { group: Team['morado'], name: 'Manuel Antonio7', age: 13 },
+  { group: Team['morado'], name: 'Manuel Antonio8', age: 13 },
+  { group: Team['morado'], name: 'Manuel Antonio9', age: 13 },
+  { group: Team['morado'], name: 'Manuel Antonio0', age: 13 },
+  { group: Team['morado'], name: 'Manuel Antonio1', age: 13 }
 ];

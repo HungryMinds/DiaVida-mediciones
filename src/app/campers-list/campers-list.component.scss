@@ -14,7 +14,17 @@
   width: 100%;
 }
 
-.mat-table {
-  overflow: auto;
-  max-height: 500px;
+.campers-table {
+  margin: 0 14px;
+  .first-col-header {
+    max-width: 10px;
+    min-width: 10px;
+    margin-right: 20px;
+  }
+  .first-col {
+    max-width: 10px;
+    min-width: 10px;
+    margin-right: 20px;
+    height: 48px
+  }
 }

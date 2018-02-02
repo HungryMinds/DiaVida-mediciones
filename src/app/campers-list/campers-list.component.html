@@ -5,33 +5,46 @@
     </mat-form-field>
   </div>
 
-  <mat-table #table [dataSource]="dataSource">
-
-    <!-- Position Column -->
-    <ng-container matColumnDef="position">
-      <mat-header-cell *matHeaderCellDef> No. </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.position}} </mat-cell>
+  <mat-table
+    #table
+    [dataSource]="dataSource"
+    [ngClass]="'campers-table'"
+  >
+    <ng-container matColumnDef="group">
+      <mat-header-cell
+        *matHeaderCellDef
+        [ngClass]="'first-col-header'"
+      ></mat-header-cell>
+      <mat-cell
+        [ngStyle]="{backgroundColor: element.group}"
+        [ngClass]="'first-col'"
+        *matCellDef="let element"
+      >&nbsp;</mat-cell>
     </ng-container>
-
-    <!-- Name Column -->
     <ng-container matColumnDef="name">
-      <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+      <mat-header-cell *matHeaderCellDef>
+        Nombre
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        {{element.name}}
+      </mat-cell>
     </ng-container>
 
     <!-- Weight Column -->
-    <ng-container matColumnDef="weight">
-      <mat-header-cell *matHeaderCellDef> Weight </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.weight}} </mat-cell>
+    <ng-container matColumnDef="age">
+      <mat-header-cell *matHeaderCellDef>
+        Edad
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        {{element.age}}
+      </mat-cell>
     </ng-container>
 
-    <!-- Symbol Column -->
-    <ng-container matColumnDef="symbol">
-      <mat-header-cell *matHeaderCellDef> Symbol </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.symbol}} </mat-cell>
-    </ng-container>
-
-    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    <mat-header-row
+    *matHeaderRowDef="displayedColumns">
+    </mat-header-row>
+    <mat-row
+    [ngStyle]="{paddingLeft: 0}"
+    *matRowDef="let row; columns: displayedColumns;"></mat-row>
   </mat-table>
 </div>
