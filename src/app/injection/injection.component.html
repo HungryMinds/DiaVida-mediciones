@@ -1,0 +1,19 @@
+<app-navbar [title]="title" [subtitle]="subtitle"></app-navbar>
+
+
+<form class="form-container" [formGroup]="form" (ngSubmit)="onSubmit()">
+  <mat-form-field>
+    <input type='number' matInput placeholder="Dosis" formControlName="weight">
+  </mat-form-field>
+
+  <mat-form-field>
+    <input type='datetime-local' matInput placeholder="Fecha y Hora" formControlName="datetime">
+  </mat-form-field>
+
+  <div class="footer-buttons">
+    <button mat-raised-button>Cancelar</button>
+    <button [disabled]="!form.valid" mat-raised-button>Agregar</button>
+  </div>
+
+</form>
+

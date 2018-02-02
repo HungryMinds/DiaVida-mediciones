@@ -6,21 +6,21 @@ import { RouterModule } from '@angular/router';
 // @Components
 import { NotfoundComponent } from './notfound/notfound.component';
 import { ListadocampistasComponent } from './listadocampistas/listadocampistas.component';
+import { InjectionComponent } from './injection/injection.component';
+
 
 const appRoutes = [
   // { path: 'requests', loadChildren: 'app/request/request.module#RequestModule' },
   { path: '', redirectTo: '/auth/login', pathMatch: 'full' },
   { path: 'auth', loadChildren: 'app/auth/auth.module#AuthModule' },
-  {
-    path: 'camper',
-    loadChildren: 'app/addcamper/addcamper.module#AddCamperModule'
-  },
+  { path: 'camper', loadChildren: 'app/addcamper/addcamper.module#AddCamperModule' },
   { path: 'listado', component: ListadocampistasComponent },
-  { path: '**', component: NotfoundComponent }
+  { path: 'tempInjection', component: InjectionComponent },
+  { path: '**', component: NotfoundComponent },
 ];
 
 @NgModule({
   imports: [FormsModule, ReactiveFormsModule, RouterModule.forRoot(appRoutes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

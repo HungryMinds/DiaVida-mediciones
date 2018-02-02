@@ -25,9 +25,12 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 import { NgcFloatButtonModule } from 'ngc-float-button';
 import { CoreModule } from './core/index';
 import { ListadocampistasComponent } from './listadocampistas/listadocampistas.component';
+import { InjectionComponent } from './injection/injection.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 
 @NgModule({
-  declarations: [AppComponent, NotfoundComponent, ListadocampistasComponent],
+  declarations: [AppComponent, NotfoundComponent, ListadocampistasComponent, InjectionComponent, NavBarComponent],
   imports: [
     BrowserModule,
     ServiceWorkerModule.register('/ngsw-worker.js', {
@@ -44,7 +47,9 @@ import { ListadocampistasComponent } from './listadocampistas/listadocampistas.c
     MatFormFieldModule,
     MatSelectModule,
     MatButtonModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
