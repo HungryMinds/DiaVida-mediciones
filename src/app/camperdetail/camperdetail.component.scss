@@ -29,4 +29,17 @@
             }
         }
     }
+    .bottomData {
+        padding: 3% 2% 3% 2%;
+        .camperCard{
+            margin-bottom: 1em;
+            .dropTitle {
+                font-weight: bold;
+            }
+        }
+        .acceptButton {
+            background-color: #009688;
+            color: #fff;
+        }
+    }
 }

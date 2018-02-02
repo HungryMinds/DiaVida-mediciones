@@ -11,7 +11,9 @@ import {
   MatIconModule,
   MatFormFieldModule,
   MatSelectModule,
-  MatButtonModule
+  MatButtonModule,
+  MatCardModule,
+  MatExpansionModule
 } from '@angular/material';
 
 import { environment } from '../environments/environment';
@@ -45,6 +47,8 @@ import { CamperdetailComponent } from './camperdetail/camperdetail.component';
     MatFormFieldModule,
     MatSelectModule,
     MatButtonModule,
+    MatCardModule,
+    MatExpansionModule,
     AppRoutingModule
   ],
   providers: [],
