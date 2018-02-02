@@ -10,7 +10,9 @@ import {
   MatIconModule,
   MatButtonModule,
   MatFormFieldModule,
-  MatSelectModule
+  MatSelectModule,
+  MatSlideToggleModule,
+  MatRadioModule
 } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NavBarComponent } from '../shared/navbar/navbar.component';
@@ -19,7 +21,12 @@ import { NavBarComponent } from '../shared/navbar/navbar.component';
 import { AddCamperRoutingModule } from './addcamper.routing';
 
 // Application Imports
-import { AddCampistaComponent } from './components';
+import {
+  AddCampistaComponent,
+  AddCampistaDosisComponent,
+  AddCampistaFoodComponent,
+  AddCampistaEsquemaComponent
+} from './components';
 
 @NgModule({
   imports: [
@@ -31,9 +38,22 @@ import { AddCampistaComponent } from './components';
     MatButtonModule,
     MatFormFieldModule,
     MatSelectModule,
+    MatSlideToggleModule,
+    MatRadioModule,
     AddCamperRoutingModule
   ],
-  declarations: [NavBarComponent, AddCampistaComponent],
-  exports: [AddCampistaComponent]
+  declarations: [
+    NavBarComponent,
+    AddCampistaComponent,
+    AddCampistaDosisComponent,
+    AddCampistaEsquemaComponent,
+    AddCampistaFoodComponent
+  ],
+  exports: [
+    AddCampistaComponent,
+    AddCampistaDosisComponent,
+    AddCampistaEsquemaComponent,
+    AddCampistaFoodComponent
+  ]
 })
 export class AddCamperModule {}

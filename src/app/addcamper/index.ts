@@ -2,4 +2,9 @@
 export * from './addcamper.module';
 
 // Exports public components.
-export { AddCampistaComponent } from './components';
+export {
+  AddCampistaComponent,
+  AddCampistaDosisComponent,
+  AddCampistaEsquemaComponent,
+  AddCampistaFoodComponent
+} from './components';
