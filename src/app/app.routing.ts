@@ -6,6 +6,7 @@ import { RouterModule } from '@angular/router';
 // @Components
 import { NotfoundComponent } from './notfound/notfound.component';
 import { ListadocampistasComponent } from './listadocampistas/listadocampistas.component';
+import { CamperdetailComponent } from './camperdetail/camperdetail.component';
 
 const appRoutes = [
   // { path: 'requests', loadChildren: 'app/request/request.module#RequestModule' },
@@ -16,6 +17,7 @@ const appRoutes = [
     loadChildren: 'app/addcamper/addcamper.module#AddCamperModule'
   },
   { path: 'listado', component: ListadocampistasComponent },
+  { path: 'camperDetail', component: CamperdetailComponent },
   { path: '**', component: NotfoundComponent }
 ];
 

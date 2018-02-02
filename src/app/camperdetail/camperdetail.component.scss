@@ -1,0 +1,32 @@
+.camperDetail {
+    background-color: #E8F0F0;
+    //background-color: #38a297;
+    height: 100vh;
+    // padding: 3% 2% 3% 2%;
+    .fakeHeader {
+        height: 3em;
+        width: 100%;
+        background-color: #009688;
+    }
+    .topData {
+        display: flex;
+        flex-direction: row;
+        align-items: stretch;
+        justify-content: center;
+        border-bottom: 1px solid #000;
+        .topDataColumn {
+            text-align: center;
+            width: 33%;
+            padding: 4%;
+            .topDataColumValue {
+                font-weight: bold;
+                font-size: 1.1em;
+                margin-bottom: 0.2em;
+            }
+            .topDataColumLabel {
+                font-size: 0.8em;
+                color: rgba(0, 0, 0, 0.6);
+            }
+        }
+    }
+}
