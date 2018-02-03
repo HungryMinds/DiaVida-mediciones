@@ -1,32 +1,43 @@
-.campers-list {
-  display: flex;
-  flex-direction: column;
-  .header-search-field {
-    min-height: 64px;
-    padding: 8px 24px 0;
-    background-color: #fafafa;
-    margin: 14px 14px 0 14px;
-  }
-  .mat-form-field {
-    font-size: 14px;
-    width: 100%;
-  }
-  .campers-table {
-    margin: 0 14px;
-    .mat-header-row,
-    .mat-row {
-      padding: initial;
+.app-campers-list {
+  .campers-list {
+    padding-top: 90px;
+    display: flex;
+    flex-direction: column;
+    .navbar {
+      position: fixed;
+      z-index: 1;
+      h1.navbar-title {
+        color: #ffffffd6;
+      }
     }
-    .first-col-header {
-      max-width: 10px;
-      min-width: 10px;
-      margin-right: 20px;
+    .header-search-field {
+      min-height: 64px;
+      padding: 8px 24px 0;
+      background-color: #fafafa;
+      margin: 14px 14px 0 14px;
     }
-    .first-col {
-      max-width: 10px;
-      min-width: 10px;
-      margin-right: 20px;
-      height: 48px
+    .filter-field {
+      font-size: 18px;
+      width: 100%;
+      margin-top: 20px;
+    }
+    .campers-table {
+      margin: 0 14px;
+      .mat-header-row,
+      .mat-row {
+        padding: initial;
+      }
+      .first-col-header {
+        max-width: 10px;
+        min-width: 10px;
+        margin-right: 20px;
+      }
+      .first-col {
+        max-width: 10px;
+        min-width: 10px;
+        margin-right: 20px;
+        height: 48px;
+      }
     }
   }
 }
