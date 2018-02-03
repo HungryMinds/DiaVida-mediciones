@@ -3,7 +3,8 @@
   <div class="campers-list mat-elevation-z9">
     <div class="header-search-field">
       <mat-form-field>
-        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Encuentre un campista">
+        <mat-icon matSuffix>search</mat-icon>
       </mat-form-field>
     </div>
     <mat-table #table [dataSource]="dataSource" [ngClass]="'campers-table'">
