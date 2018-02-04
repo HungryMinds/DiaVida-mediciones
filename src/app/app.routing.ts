@@ -14,7 +14,7 @@ const appRoutes = [
   { path: 'listado', component: CampersListComponent },
   { path: 'auth', loadChildren: 'app/auth/auth.module#AuthModule' },
   { path: 'camper', loadChildren: 'app/addcamper/addcamper.module#AddCamperModule' },
-  { path: 'tempInjection', component: InjectionComponent },
+  { path: 'injection', component: InjectionComponent },
   { path: '**', component: NotfoundComponent },
 ];
 

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
-
+import { LogService } from '../core'
 
 @Component({
   selector: 'app-injection',
@@ -14,7 +14,7 @@ export class InjectionComponent implements OnInit {
   title: string;
   subtitle: string;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private ls: LogService) {
     this.title = 'Agregar Inyección';
     this.subtitle = 'Detalles';
     this.createForm()
@@ -31,6 +31,7 @@ export class InjectionComponent implements OnInit {
   }
 
   onSubmit() {
+    console.log (this.form.value)
     
   }
 
