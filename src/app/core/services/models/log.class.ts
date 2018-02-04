@@ -1,4 +1,5 @@
 class Log {
+  id: string; // id en firestore
   date: Date; // momento de la prueba
   description: string; // descripción que se agrega en caso de necesitarlo
   value: number; // resultado o cantidad en caso de prueba
