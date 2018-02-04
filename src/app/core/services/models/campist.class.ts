@@ -69,8 +69,7 @@ const campist = {
   basalInsulin: [
     {
       dosage: '[number]',
-      timestamp: '[hour]',
-      comment: '[string]'
+      timestamp: '[hour]'
     }
   ],
   foodTable: [
