@@ -1,34 +1,39 @@
-<app-navbar [title]="title" [subtitle]="subtitle"></app-navbar>
+<div class="injection-container">
+  <app-navbar [title]="title" [subtitle]="subtitle"></app-navbar>
 
 
-<form class="form-container" [formGroup]="form" (ngSubmit)="onSubmit()">
-  <mat-form-field>
-    <input type='number' matInput placeholder="Dosis" formControlName="value">
-  </mat-form-field>
+  <form class="form-container" [formGroup]="form" (ngSubmit)="onSubmit()">
+    <mat-form-field>
+      <input type='number' matInput placeholder="Dosis" formControlName="value">
+    </mat-form-field>
 
 
-  <mat-form-field>
-    <input type='time' matInput placeholder="Hora" formControlName="time">
-  </mat-form-field>
+    <mat-form-field>
+      <input type='time' matInput placeholder="Hora" formControlName="time">
+    </mat-form-field>
 
-  <mat-form-field>
-    <input type='date' matInput placeholder="Fecha" formControlName="date">
-  </mat-form-field>
+    <mat-form-field>
+      <input type='date' matInput placeholder="Fecha" formControlName="date">
+    </mat-form-field>
 
-  <mat-radio-group formControlName="injectionType">
-    <mat-radio-button  value="basal ">Basal</mat-radio-button>
-    <mat-radio-button  value="quick">Rapida</mat-radio-button>
-  </mat-radio-group>
+    <mat-radio-group formControlName="injectionType">
+      <mat-radio-button value="basal ">Basal</mat-radio-button>
+      <mat-radio-button value="quick">Rapida</mat-radio-button>
+    </mat-radio-group>
 
-  <mat-form-field>
+    <mat-form-field>
 
-    <textarea matInput placeholder="Descripción (opcional)" formControlName="description"> </textarea>
-  </mat-form-field>
+      <textarea matInput placeholder="Descripción (opcional)" formControlName="description"> </textarea>
+    </mat-form-field>
 
 
-  <div class="footer-buttons">
-    <button mat-raised-button>Cancelar</button>
-    <button [disabled]="!form.valid" mat-raised-button>Agregar</button>
-  </div>
+    <div class="footer-buttons">
+      <div class="footer-buttons-subcontainer">
+        <button mat-raised-button>Cancelar</button>
+        <button [disabled]="!form.valid" mat-raised-button>Agregar</button>
+      </div>
+    </div>
 
-</form>
+  </form>
+
+</div>
