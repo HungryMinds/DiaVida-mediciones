@@ -1,15 +1,14 @@
 .app-campers-list {
+  app-navbar {
+    position: fixed;
+    z-index: 1;
+  }
   .campers-list {
-    padding-top: 90px;
+    padding-top: 74px;
+    padding-bottom: 14px;
     display: flex;
     flex-direction: column;
-    .navbar {
-      position: fixed;
-      z-index: 1;
-      h1.navbar-title {
-        color: #ffffffd6;
-      }
-    }
+    min-height: 100vh;
     .header-search-field {
       min-height: 64px;
       padding: 8px 24px 0;
@@ -22,6 +21,8 @@
       margin-top: 20px;
     }
     .campers-table {
+      overflow: auto;
+      max-height: 68vh;
       margin: 0 14px;
       .mat-header-row,
       .mat-row {
