@@ -1,7 +1,3 @@
-/* ••••••••••••••••••••••••••••••••••••••••••• */
-/* ••               IMPORTS                 •• */
-/* ••••••••••••••••••••••••••••••••••••••••••• */
-
 // Platform Imports
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -15,7 +11,6 @@ import {
   MatRadioModule
 } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { NavBarComponent } from '../shared/navbar/navbar.component';
 
 // Routing Imports
 import { AddCamperRoutingModule } from './addcamper.routing';
@@ -27,6 +22,7 @@ import {
   AddCampistaFoodComponent,
   AddCampistaEsquemaComponent
 } from './components';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   imports: [
@@ -40,10 +36,10 @@ import {
     MatSelectModule,
     MatSlideToggleModule,
     MatRadioModule,
+    SharedModule,
     AddCamperRoutingModule
   ],
   declarations: [
-    NavBarComponent,
     AddCampistaComponent,
     AddCampistaDosisComponent,
     AddCampistaEsquemaComponent,
