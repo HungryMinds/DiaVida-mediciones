@@ -11,7 +11,8 @@ import {
   MatFormFieldModule,
   MatSelectModule,
   MatButtonModule,
-  MatTableModule
+  MatTableModule,
+  MatRadioModule
 } from '@angular/material';
 
 import { environment } from '../environments/environment';
@@ -41,6 +42,7 @@ import { SharedModule } from './shared/shared.module';
     MatTableModule,
     MatInputModule,
     BrowserModule,
+    MatRadioModule,
     ServiceWorkerModule.register('/ngsw-worker.js', {
       enabled: environment.production
     }),

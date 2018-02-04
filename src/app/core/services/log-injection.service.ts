@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Campist } from './models/campist.class';
 import {
   AngularFirestore,
   AngularFirestoreCollection,
@@ -7,30 +8,37 @@ import {
 
 import { Observable } from 'rxjs/Observable';
 
-import { LogInjection } from './models/log.class';
+import { LogInjection } from './models';
+
+
 
 @Injectable()
 export class LogInjectionService {
   logInjectionCollection: AngularFirestoreCollection<LogInjection>;
+
   logInjection: Observable<LogInjection[]>;
 
   constructor(public afs: AngularFirestore) {
-    this.logInjectionCollection = this.afs.collection('logInjection');
-    this.logInjection = this.logInjectionCollection.snapshotChanges().map(changes => {
-      return changes.map(a => {
-        const data = a.payload.doc.data() as LogInjection;
-        data.id = a.payload.doc.id;
-        return data;
-      });
-    });
+    this.logInjectionCollection = this.afs.collection('log');
   }
 
   getLogInjections() {
     return this.logInjection;
   }
 
-  addLogInjection(_campist: LogInjection) {
-    this.logInjectionCollection.add(_campist);
+  addLogInjection(_injection: LogInjection, _campist: string, ) {
+    var campistsLogsCollection = this.afs.collection('campists/'+_campist+'/logs');
+    this.logInjectionCollection.add(JSON.parse(JSON.stringify(_injection))).then(
+      (x) => {
+        campistsLogsCollection.add({ log: x }).then((x) => {
+          return x
+        }).catch((x) => {
+          return x
+        })
+      }
+    ).catch(function (x) {
+      return x
+    })
   }
 
   deleteLogInjection(_campist: LogInjection) {

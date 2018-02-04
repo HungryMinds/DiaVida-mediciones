@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { LogInjectionService } from '../core'
+import { LogInjectionService, inyectionType } from '../core'
+import { LogInjection } from '../core'
+import { Campist } from '../core'
 
 @Component({
   selector: 'app-injection',
@@ -24,15 +26,39 @@ export class InjectionComponent implements OnInit {
   }
 
   createForm() {
+    var d = new Date()
     this.form = this.fb.group({
-      weight: ['', [Validators.required]],
-      datetime: ['', Validators.required]
+      value: ['', [Validators.required]],
+      date: [this.currentDate(), Validators.required],
+      time: [this.currenTime(), Validators.required],
+      injectionType: ['quick'],
+      description: ['']
     });
   }
 
   onSubmit() {
-    console.log (this.form.value)
-    
+    var objToSend = {
+      id: null,
+      date: new Date(this.form.value.date + ' ' + this.form.value.time),
+      value: this.form.value.value,
+      description: this.form.value.description,
+      type: this.form.value.injectionType
+    }
+    console.log(objToSend)
+    //TODO  Use current campist id
+    this.LogIS.addLogInjection(new LogInjection(objToSend), 'B9BpyzwCwL4KEXVmRPi4')
+
   }
+
+  currentDate() {
+    const currentDate = new Date();
+    return currentDate.toISOString().substring(0, 10);
+  }
+
+  currenTime() {
+    const currentDate = new Date();
+    return currentDate.toTimeString().substring(0, 5)
+  }
+
 
 }

@@ -3,16 +3,26 @@
 
 <form class="form-container" [formGroup]="form" (ngSubmit)="onSubmit()">
   <mat-form-field>
-    <input type='number' matInput placeholder="Dosis" formControlName="weight">
+    <input type='number' matInput placeholder="Dosis" formControlName="value">
   </mat-form-field>
 
 
   <mat-form-field>
-    <input type='time' matInput placeholder="Hora" formControlName="datetime">
+    <input type='time' matInput placeholder="Hora" formControlName="time">
   </mat-form-field>
 
   <mat-form-field>
-    <input type='date' matInput placeholder="Fecha" formControlName="datetime">
+    <input type='date' matInput placeholder="Fecha" formControlName="date">
+  </mat-form-field>
+
+  <mat-radio-group formControlName="injectionType">
+    <mat-radio-button  value="basal ">Basal</mat-radio-button>
+    <mat-radio-button  value="quick">Rapida</mat-radio-button>
+  </mat-radio-group>
+
+  <mat-form-field>
+
+    <textarea matInput placeholder="Descripción (opcional)" formControlName="description"> </textarea>
   </mat-form-field>
 
 
@@ -22,4 +32,3 @@
   </div>
 
 </form>
-
