@@ -30,4 +30,8 @@ export class InjectionComponent implements OnInit {
     });
   }
 
+  onSubmit() {
+    
+  }
+
 }
