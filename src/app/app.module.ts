@@ -16,7 +16,6 @@ import {
 
 import { environment } from '../environments/environment';
 import { NotfoundComponent } from './notfound/notfound.component';
-import { NavBarComponent } from './shared/navbar/navbar.component';
 
 import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
