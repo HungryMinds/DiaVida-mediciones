@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-add-campista',
@@ -12,8 +13,9 @@ export class AddCampistaDosisComponent implements OnInit {
   isChecked: Boolean = false;
   @Input() checked;
   @Output() change: EventEmitter<boolean> = new EventEmitter<boolean>();
+  camper: any;
 
-  constructor() {
+  constructor(private route: ActivatedRoute, private router: Router) {
     this.title = 'Agregar Campista';
     this.subtitle = 'Dosis Basal';
   }
@@ -22,5 +24,10 @@ export class AddCampistaDosisComponent implements OnInit {
     this.isChecked = event.checked;
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.route.params.subscribe(params => {
+      this.camper = params;
+      console.log('CAMPER', this.camper);
+    });
+  }
 }
