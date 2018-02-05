@@ -3,6 +3,8 @@ import { FormControl, FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { LogInjectionService, inyectionType } from '../core'
 import { LogInjection } from '../core'
 import { Campist } from '../core'
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-injection',
@@ -16,7 +18,7 @@ export class InjectionComponent implements OnInit {
   title: string;
   subtitle: string;
 
-  constructor(private fb: FormBuilder, private LogIS: LogInjectionService) {
+  constructor(private fb: FormBuilder, private LogIS: LogInjectionService, private router: Router) {
     this.title = 'Agregar Inyección';
     this.subtitle = 'Detalles';
     this.createForm()
@@ -47,7 +49,8 @@ export class InjectionComponent implements OnInit {
     console.log(objToSend)
     //TODO  Use current campist id
     this.LogIS.addLogInjection(new LogInjection(objToSend), 'B9BpyzwCwL4KEXVmRPi4')
-
+    //TODO  Redirect to current campist id
+    this.router.navigate(['/listado']);
   }
 
   currentDate() {

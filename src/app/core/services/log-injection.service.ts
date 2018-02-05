@@ -5,12 +5,8 @@ import {
   AngularFirestoreCollection,
   AngularFirestoreDocument
 } from 'angularfire2/firestore';
-
 import { Observable } from 'rxjs/Observable';
-
 import { LogInjection } from './models';
-
-
 
 @Injectable()
 export class LogInjectionService {
@@ -27,7 +23,7 @@ export class LogInjectionService {
   }
 
   addLogInjection(_injection: LogInjection, _campist: string, ) {
-    var campistsLogsCollection = this.afs.collection('campists/'+_campist+'/logs');
+    var campistsLogsCollection = this.afs.collection('campists/' + _campist + '/logs');
     this.logInjectionCollection.add(JSON.parse(JSON.stringify(_injection))).then(
       (x) => {
         campistsLogsCollection.add({ log: x }).then((x) => {
