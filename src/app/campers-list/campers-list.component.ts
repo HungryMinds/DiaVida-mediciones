@@ -3,7 +3,6 @@ import { Component } from '@angular/core';
 import { MatTableDataSource } from '@angular/material';
 import { Team } from '../core/services/models/team.enum';
 import { CampistService } from '../core/services/campist.service';
-import { Campist } from '../core/services/models/campist.class';
 import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
 
 @Component({
