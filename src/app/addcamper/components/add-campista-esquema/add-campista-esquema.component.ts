@@ -48,7 +48,7 @@ export class AddCampistaEsquemaComponent implements OnInit {
       cenaOption2: ['', Validators.required],
       cenaOption3: ['', Validators.required],
       cenaOption4: ['', Validators.required],
-      comments: ['']
+      comments: ['', Validators.required]
     });
   }
 
@@ -56,5 +56,21 @@ export class AddCampistaEsquemaComponent implements OnInit {
     this.valueChecked = event.value;
   }
 
-  ngOnInit() {}
+  next(event) {
+    event.preventDefault();
+    this.camper = { ...this.camper, ...this.esquemaForm.value };
+    console.table(this.camper);
+    // Navigate to the next view
+    this.router.navigate([this.url + this.nextUrl, this.camper]);
+  }
+
+  goBack(event) {
+    event.preventDefault();
+  }
+
+  ngOnInit() {
+    this.route.params.subscribe(params => {
+      this.camper = params;
+    });
+  }
 }
