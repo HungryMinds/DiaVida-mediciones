@@ -31,11 +31,17 @@
     }
     .bottomData {
         padding: 3% 2% 3% 2%;
-        .camperCard{
+        .camperAcordeon{
             margin-bottom: 1em;
+            background-color: #ffffff;
+            display: block;
             .dropTitle {
                 font-weight: bold;
             }
+        }
+        .mat-expansion-panel:not([class*=mat-elevation-z]) {
+            box-shadow: none !important;
+            border-bottom: 1px solid black;
         }
         .acceptButton {
             background-color: #009688;
