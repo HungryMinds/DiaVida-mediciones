@@ -1,40 +1,42 @@
 <div class="add-camper">
   <app-navbar [title]="title" [subtitle]="subtitle"></app-navbar>
   <div class="add-camper-form">
-    <mat-form-field class="full-width">
-      <input matInput placeholder="Nombre">
-    </mat-form-field>
-
-    <mat-form-field class="full-width">
-      <input matInput placeholder="Apellido">
-    </mat-form-field>
-
-    <div class="full-width">
-      <mat-form-field class="half-width">
-        <input matInput placeholder="Edad">
+    <form [formGroup]="basicsForm" novalidate>
+      <mat-form-field class="full-width">
+        <input formControlName="name" matInput placeholder="Nombre">
       </mat-form-field>
 
-      <mat-form-field class="half-width">
-        <input matInput placeholder="Peso">
+      <mat-form-field class="full-width">
+        <input formControlName="lastname" matInput placeholder="Apellido">
       </mat-form-field>
-    </div>
 
-    <mat-form-field class="full-width">
-      <mat-select placeholder="Seleccione el equipo">
-        <mat-option value="option">Option</mat-option>
-      </mat-select>
-    </mat-form-field>
+      <div class="full-width">
+        <mat-form-field class="half-width">
+          <input formControlName="age" matInput placeholder="Edad">
+        </mat-form-field>
 
-    <mat-form-field class="full-width">
-      <textarea matInput placeholder="Medicamentos"></textarea>
-    </mat-form-field>
+        <mat-form-field class="half-width">
+          <input formControlName="weight" matInput placeholder="Peso">
+        </mat-form-field>
+      </div>
 
-    <mat-form-field class="full-width">
-      <textarea matInput placeholder="Alergias"></textarea>
-    </mat-form-field>
-  </div>
-  <div class="button-row">
-    <button mat-raised-button color="primary">Cancelar</button>
-    <button mat-raised-button color="primary">Siguiente</button>
+      <mat-form-field class="full-width">
+        <mat-select placeholder="Seleccione el equipo">
+          <mat-option value="option">Option</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <textarea formControlName="meds" matInput placeholder="Medicamentos"></textarea>
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <textarea formControlName="allergies" matInput placeholder="Alergias"></textarea>
+      </mat-form-field>
+      <div class="button-row">
+        <button (click)="goBack($event)" mat-raised-button color="primary">Cancelar</button>
+        <button [disabled]="!basicsForm.valid" (click)="next($event)" mat-raised-button color="primary">Siguiente</button>
+      </div>
+    </form>
   </div>
 </div>

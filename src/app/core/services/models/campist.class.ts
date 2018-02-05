@@ -36,3 +36,47 @@ export class Campist {
     this.foodTable = campRO.foodTable.map(ft => new FoodTable(ft));
   }
 }
+
+/*
+const campist = {
+  id: '[id en caso de edicion]',
+  names: '[nombres]',
+  lastNames: '[apellidos]',
+  age: '[edad]',
+  team: '[grupo]',
+  allergies: '[texto]',
+  medications: '[texto]',
+  insulinSchemeInterval: {
+    comment: '[texto]',
+    scheme: [
+      {
+        foodTime:
+          '[string del tiempo de comida en ingles (Breakfast) como se ve en el enum]',
+        quantity: '[numero]'
+      }
+    ]
+  },
+  insulinSchemeRatio: {
+    scheme: [
+      {
+        foodTime: '[Breakfast, ...etc]',
+        quantity: '[numero]'
+      }
+    ],
+    fC: '[numero]',
+    comment: '[string]'
+  },
+  basalInsulin: [
+    {
+      dosage: '[number]',
+      timestamp: '[hour]'
+    }
+  ],
+  foodTable: [
+    {
+      foodTime: '[breakfast...etc]',
+      foodType: '[proteins, dairy, etc]'
+    }
+  ]
+};
+*/

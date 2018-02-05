@@ -1,0 +1,42 @@
+.app-campers-list {
+  app-navbar {
+    position: fixed;
+    z-index: 1;
+  }
+  .campers-list {
+    padding-top: 74px;
+    padding-bottom: 14px;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    .header-search-field {
+      min-height: 64px;
+      padding: 8px 24px 0;
+      background-color: #fafafa;
+      margin: 14px 14px 0 14px;
+    }
+    .filter-field {
+      font-size: 18px;
+      width: 100%;
+      margin-top: 20px;
+    }
+    .campers-table {
+      margin: 0 14px 60px 14px;
+      .mat-header-row,
+      .mat-row {
+        padding: initial;
+      }
+      .first-col-header {
+        max-width: 10px;
+        min-width: 10px;
+        margin-right: 20px;
+      }
+      .first-col {
+        max-width: 10px;
+        min-width: 10px;
+        margin-right: 20px;
+        height: 48px;
+      }
+    }
+  }
+}

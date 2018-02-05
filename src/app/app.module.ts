@@ -1,7 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
 // App Imports
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { AppRoutingModule } from './app.routing';
@@ -14,26 +13,42 @@ import {
   MatButtonModule,
   MatCardModule,
   MatTabsModule,
-  MatExpansionModule
+  MatExpansionModule,
+  MatTableModule,
+  MatRadioModule
 } from '@angular/material';
 
 import { environment } from '../environments/environment';
 import { NotfoundComponent } from './notfound/notfound.component';
-import { NavBarComponent } from './shared/navbar/navbar.component';
-
 import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { AngularFireAuthModule } from 'angularfire2/auth';
-
 import { NgcFloatButtonModule } from 'ngc-float-button';
-import { CoreModule } from './core/index';
-import { ListadocampistasComponent } from './listadocampistas/listadocampistas.component';
 import { CamperdetailComponent } from './camperdetail/camperdetail.component';
 
+import { CoreModule } from './core';
+import { InjectionComponent } from './injection/injection.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CampersListComponent } from './campers-list/campers-list.component';
+import { SharedModule } from './shared/shared.module';
+
+
 @NgModule({
-  declarations: [AppComponent, NotfoundComponent, ListadocampistasComponent, CamperdetailComponent],
+  declarations: [
+    AppComponent,
+    NotfoundComponent,
+    InjectionComponent,
+    CampersListComponent,
+    CamperdetailComponent
+  ],
+
   imports: [
+    SharedModule,
+    MatFormFieldModule,
+    MatTableModule,
+    MatInputModule,
     BrowserModule,
+    MatRadioModule,
     ServiceWorkerModule.register('/ngsw-worker.js', {
       enabled: environment.production
     }),
@@ -51,9 +66,11 @@ import { CamperdetailComponent } from './camperdetail/camperdetail.component';
     MatCardModule,
     MatExpansionModule,
     MatTabsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }
