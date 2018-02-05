@@ -16,7 +16,7 @@ export enum FoodType {
   dairy = 'Leche'
 }
 
-export var Snack = {
+export const Snack = {
   'Tablets': 'Pastillas de glucosa',
   'Juice': 'Jugo',
   'Cookies': 'Galletas',
