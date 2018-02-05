@@ -36,19 +36,24 @@ export class AddCampistaEsquemaComponent implements OnInit {
 
   createForm() {
     this.esquemaForm = this.fb.group({
-      desayudoOption1: ['', Validators.required],
-      desayudoOption2: ['', Validators.required],
-      desayudoOption3: ['', Validators.required],
-      desayudoOption4: ['', Validators.required],
-      almuerzoOption1: ['', Validators.required],
-      almuerzoOption2: ['', Validators.required],
-      almuerzoOption3: ['', Validators.required],
-      almuerzoOption4: ['', Validators.required],
-      cenaOption1: ['', Validators.required],
-      cenaOption2: ['', Validators.required],
-      cenaOption3: ['', Validators.required],
-      cenaOption4: ['', Validators.required],
-      comments: ['', Validators.required]
+      eDesayudoOption1: [''],
+      eDesayudoOption2: [''],
+      eDesayudoOption3: [''],
+      eDesayudoOption4: [''],
+      eAlmuerzoOption1: [''],
+      eAlmuerzoOption2: [''],
+      eAlmuerzoOption3: [''],
+      eAlmuerzoOption4: [''],
+      eCenaOption1: [''],
+      eCenaOption2: [''],
+      eCenaOption3: [''],
+      eCenaOption4: [''],
+      eComments: [''],
+      rDesayunoOption: [''],
+      rAlmuerzoOption: [''],
+      rCenaOption: [''],
+      rFactor: [''],
+      rComments: ['']
     });
   }
 
@@ -59,7 +64,6 @@ export class AddCampistaEsquemaComponent implements OnInit {
   next(event) {
     event.preventDefault();
     this.camper = { ...this.camper, ...this.esquemaForm.value };
-    console.table(this.camper);
     // Navigate to the next view
     this.router.navigate([this.url + this.nextUrl, this.camper]);
   }

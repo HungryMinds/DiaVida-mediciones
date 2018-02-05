@@ -16,6 +16,7 @@ import {
 } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NavBarComponent } from '../shared/navbar/navbar.component';
+import { CampistService } from '../core/services/campist.service';
 
 // Routing Imports
 import { AddCamperRoutingModule } from './addcamper.routing';
@@ -49,6 +50,7 @@ import {
     AddCampistaEsquemaComponent,
     AddCampistaFoodComponent
   ],
+  providers: [CampistService],
   exports: [
     AddCampistaComponent,
     AddCampistaDosisComponent,

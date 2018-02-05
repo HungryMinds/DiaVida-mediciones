@@ -37,8 +37,8 @@ export class AddCampistaDosisComponent implements OnInit {
 
   createForm() {
     this.dosisForm = this.fb.group({
-      time: ['', Validators.required],
-      dosis: ['', Validators.required],
+      time: [''],
+      dosis: [''],
       'second-time': [''],
       'second-dosis': ['']
     });
@@ -51,7 +51,6 @@ export class AddCampistaDosisComponent implements OnInit {
   next(event) {
     event.preventDefault();
     this.camper = { ...this.camper, ...this.dosisForm.value };
-    console.table(this.camper);
     // Navigate to the next view
     this.router.navigate([this.url + this.nextUrl, this.camper]);
   }

@@ -31,10 +31,11 @@ export class AddCampistaComponent implements OnInit {
     this.basicsForm = this.fb.group({
       name: ['', Validators.required],
       lastname: ['', Validators.required],
-      age: ['', Validators.required],
-      weight: ['', Validators.required],
-      meds: ['', Validators.required],
-      allergies: ['', Validators.required]
+      age: [''],
+      weight: [''],
+      equipo: [''],
+      meds: [''],
+      allergies: ['']
     });
   }
 
