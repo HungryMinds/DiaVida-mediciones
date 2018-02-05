@@ -4,6 +4,7 @@ import { MatTableDataSource } from '@angular/material';
 import { Team } from '../core/services/models/team.enum';
 import { CampistService } from '../core/services/campist.service';
 import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-campers-list',
@@ -14,9 +15,13 @@ export class CampersListComponent implements OnInit {
   displayedColumns = ['group', 'name', 'age'];
   dataSource;
 
-  constructor(private cL: CampistService) {}
+  constructor(
+    private cL: CampistService,
+    private router: Router
+  ) {}
 
   ngOnInit() {
+    debugger;
     let campists = [];
     this.cL.getCampists()
     .forEach((_campists) => {
@@ -27,8 +32,19 @@ export class CampersListComponent implements OnInit {
           age: campist.age
         };
       });
+      // PRUEBA
+      for (let i = 0; i < 20; i++) {
+        campists.push(campists[0]);
+      }
+      // FIN PRUEBA
       this.dataSource = new MatTableDataSource(campists);
     });
+  }
+
+  open(e) {
+    if (e.display) {
+      this.router.navigate(['camper/add-camper/']);
+    }
   }
 
   applyFilter(filterValue: string) {
@@ -38,23 +54,3 @@ export class CampersListComponent implements OnInit {
     this.dataSource.filter = filterValue;
   }
 }
-
-export interface CamperTable {
-  group: string;
-  name: string;
-  age: number;
-}
-
-const ELEMENT_DATA: CamperTable[] = [
-  { group: Team['morado'], name: 'Manuel Antonio1', age: 13 },
-  { group: Team['morado'], name: 'Manuel Antonio2', age: 13 },
-  { group: Team['morado'], name: 'Manuel Antonio3', age: 13 },
-  { group: Team['morado'], name: 'Manuel Antonio4', age: 13 },
-  { group: Team['morado'], name: 'Manuel Antonio5', age: 13 },
-  { group: Team['morado'], name: 'Manuel Antonio6', age: 13 },
-  { group: Team['morado'], name: 'Manuel Antonio7', age: 13 },
-  { group: Team['morado'], name: 'Manuel Antonio8', age: 13 },
-  { group: Team['morado'], name: 'Manuel Antonio9', age: 13 },
-  { group: Team['morado'], name: 'Manuel Antonio0', age: 13 },
-  { group: Team['morado'], name: 'Manuel Antonio1', age: 13 }
-];
