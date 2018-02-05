@@ -13,6 +13,7 @@ import {
   MatSelectModule,
   MatButtonModule,
   MatCardModule,
+  MatTabsModule,
   MatExpansionModule
 } from '@angular/material';
 
@@ -49,6 +50,7 @@ import { CamperdetailComponent } from './camperdetail/camperdetail.component';
     MatButtonModule,
     MatCardModule,
     MatExpansionModule,
+    MatTabsModule,
     AppRoutingModule
   ],
   providers: [],

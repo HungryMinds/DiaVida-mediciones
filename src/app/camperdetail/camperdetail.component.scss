@@ -7,13 +7,13 @@
         height: 3em;
         width: 100%;
         background-color: #009688;
-    }
+    }      
     .topData {
         display: flex;
         flex-direction: row;
         align-items: stretch;
         justify-content: center;
-        border-bottom: 1px solid #000;
+        border-bottom: 3px solid #979797;
         .topDataColumn {
             text-align: center;
             width: 33%;
@@ -33,19 +33,32 @@
         padding: 3% 2% 3% 2%;
         .camperAcordeon{
             margin-bottom: 1em;
-            background-color: #ffffff;
+            /*background-color: #ffffff;*/
             display: block;
             .dropTitle {
                 font-weight: bold;
             }
         }
-        .mat-expansion-panel:not([class*=mat-elevation-z]) {
+        /*.mat-expansion-panel:not([class*=mat-elevation-z]) {
             box-shadow: none !important;
             border-bottom: 1px solid black;
         }
+        .lastExpansion {
+            border-bottom: none !important;
+        }*/
         .acceptButton {
             background-color: #009688;
             color: #fff;
         }
     }
+    .tl {
+        width: 50% !important;
+    }
 }
+#tabs .mat-tab-label {
+    min-width : 0px; // added
+     width: 167px;
+     height: 42px;
+     border-radius: 3px;
+     background-color: #e0e0e0;
+} 
