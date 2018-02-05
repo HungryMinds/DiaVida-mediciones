@@ -1,4 +1,11 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
+import {
+  FormControl,
+  FormBuilder,
+  FormGroup,
+  Validators
+} from '@angular/forms';
 
 @Component({
   selector: 'app-add-campista-esquema',
@@ -11,10 +18,38 @@ export class AddCampistaEsquemaComponent implements OnInit {
   valueChecked = '1';
   @Input() checked;
   @Output() change: EventEmitter<boolean> = new EventEmitter<boolean>();
+  url = 'camper/add-camper/';
+  nextUrl = 'food';
+  public esquemaForm: FormGroup;
+  camper: any;
 
-  constructor() {
+  constructor(
+    private fb: FormBuilder,
+    private route: ActivatedRoute,
+    private router: Router
+  ) {
     this.title = 'Agregar Campista';
     this.subtitle = 'Esquema De Insulina';
+
+    this.createForm();
+  }
+
+  createForm() {
+    this.esquemaForm = this.fb.group({
+      desayudoOption1: ['', Validators.required],
+      desayudoOption2: ['', Validators.required],
+      desayudoOption3: ['', Validators.required],
+      desayudoOption4: ['', Validators.required],
+      almuerzoOption1: ['', Validators.required],
+      almuerzoOption2: ['', Validators.required],
+      almuerzoOption3: ['', Validators.required],
+      almuerzoOption4: ['', Validators.required],
+      cenaOption1: ['', Validators.required],
+      cenaOption2: ['', Validators.required],
+      cenaOption3: ['', Validators.required],
+      cenaOption4: ['', Validators.required],
+      comments: ['']
+    });
   }
 
   toogleView(event) {
