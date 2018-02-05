@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
-import { CampistService } from './services/campist.service';
-import { LogFoodService } from './services/log-food.service';
-import { LogInjectionService } from './services/log-injection.service';
-import { LogMeditionService } from './services/log-medition.service';
+import { CampistService } from './services';
+import { LogFoodService } from './services';
+import { LogInjectionService } from './services';
+import { LogMeditionService } from './services';
 
 @NgModule({
   providers: [
@@ -12,4 +12,4 @@ import { LogMeditionService } from './services/log-medition.service';
     LogMeditionService
   ]
 })
-export class CoreModule {}
+export class CoreModule { }

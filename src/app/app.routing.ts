@@ -5,21 +5,21 @@ import { RouterModule } from '@angular/router';
 
 // @Components
 import { NotfoundComponent } from './notfound/notfound.component';
+import { InjectionComponent } from './injection/injection.component';
+
 import { CampersListComponent } from './campers-list/campers-list.component';
 
 const appRoutes = [
   { path: '', redirectTo: '/auth/login', pathMatch: 'full' },
   { path: 'listado', component: CampersListComponent },
   { path: 'auth', loadChildren: 'app/auth/auth.module#AuthModule' },
-  {
-    path: 'camper',
-    loadChildren: 'app/addcamper/addcamper.module#AddCamperModule'
-  },
-  { path: '**', component: NotfoundComponent }
+  { path: 'camper', loadChildren: 'app/addcamper/addcamper.module#AddCamperModule' },
+  { path: 'injection', component: InjectionComponent },
+  { path: '**', component: NotfoundComponent },
 ];
 
 @NgModule({
   imports: [FormsModule, ReactiveFormsModule, RouterModule.forRoot(appRoutes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }
