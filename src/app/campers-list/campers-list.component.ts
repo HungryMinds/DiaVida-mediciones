@@ -15,20 +15,17 @@ export class CampersListComponent implements OnInit, OnDestroy {
   dataSource;
   subscriptionCampers;
 
-  constructor(
-    private cL: CampistService,
-    private router: Router
-  ) {}
+  constructor(private cL: CampistService, private router: Router) {}
 
   ngOnInit() {
     let campists = [];
-    this.subscriptionCampers = this.cL.getCampists()
-    .subscribe((_campists) => {
-      campists = _campists.map((campist) => {
+    this.subscriptionCampers = this.cL.getCampists().subscribe(_campists => {
+      campists = _campists.map(campist => {
         return {
           group: Team[campist.team],
           name: `${campist.names} ${campist.lastNames}`,
-          age: campist.age
+          age: campist.age,
+          id: campist.id
         };
       });
       // PRUEBA
@@ -46,7 +43,7 @@ export class CampersListComponent implements OnInit, OnDestroy {
 
   open(e) {
     if (e.display) {
-      this.router.navigate(['camper/add-camper/']);
+      this.router.navigate(['/camper/add-camper']);
     }
   }
 
@@ -55,5 +52,9 @@ export class CampersListComponent implements OnInit, OnDestroy {
       .trim() // Remove whitespace
       .toLowerCase(); // MatTableDataSource defaults to lowercase matches
     this.dataSource.filter = filterValue;
+  }
+
+  goToCamper(id) {
+    this.router.navigate(['/camper/', id]);
   }
 }

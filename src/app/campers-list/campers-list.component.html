@@ -31,7 +31,11 @@
       </ng-container>
       <mat-header-row *matHeaderRowDef="displayedColumns">
       </mat-header-row>
-      <mat-row [ngStyle]="{paddingLeft: 0}" *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      <mat-row
+        [ngStyle]="{paddingLeft: 0}"
+        *matRowDef="let row; columns: displayedColumns;"
+        (click)="goToCamper(row.id)"
+      ></mat-row>
     </mat-table>
     <ngc-float-button
       icon="add"
