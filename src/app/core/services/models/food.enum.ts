@@ -13,3 +13,10 @@ export enum FoodType {
   fruits = 'Frutas',
   dairy = 'Leche'
 }
+
+export enum Snack {
+  Tablets = 'Pastillas de glucosa',
+  Juice = 'Jugo',
+  Cookies = 'Galletas',
+  Milk = 'Leche'
+}
