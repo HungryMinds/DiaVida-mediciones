@@ -59,7 +59,7 @@
                   <p>Content</p>
                 </mat-expansion-panel>
             </mat-accordion>
-            <button mat-raised-button color="warn">ELIMINAR</button>
+            <button mat-raised-button id="deleteCamperButton" color="warn" (click)="deleteCamper()">{{errorButtonMessage}}</button>
             <button mat-raised-button class="acceptButton">EDITAR</button>
         </div>
     </mat-tab>

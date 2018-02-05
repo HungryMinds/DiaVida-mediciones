@@ -56,13 +56,16 @@
             background-color: #009688;
             color: #fff;
         }
+        #deleteCamperButton {
+            transition: all 0.5s ease;
+        }
     }
     .tl {
         width: 50% !important;
     }
 }
 
-/deep/ .mat-tab-label {
+::ng-deep .mat-tab-label {
     min-width : 0px; // added
      width: 50%;
      height: 42px;
@@ -70,7 +73,7 @@
      color: white;
 } 
 
-/deep/ .mat-tab-labels {
+::ng-deep .mat-tab-labels {
     display: flex;
     background-color: #009688;
     border-top: initial;
