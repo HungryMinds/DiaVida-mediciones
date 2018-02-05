@@ -2,12 +2,11 @@
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-
 // @Components
 import { NotfoundComponent } from './notfound/notfound.component';
 import { InjectionComponent } from './injection/injection.component';
-
 import { CampersListComponent } from './campers-list/campers-list.component';
+import { FoodComponent } from './food/food.component'
 
 const appRoutes = [
   { path: '', redirectTo: '/auth/login', pathMatch: 'full' },
@@ -15,6 +14,8 @@ const appRoutes = [
   { path: 'auth', loadChildren: 'app/auth/auth.module#AuthModule' },
   { path: 'camper', loadChildren: 'app/addcamper/addcamper.module#AddCamperModule' },
   { path: 'injection', component: InjectionComponent },
+  { path: 'food', component: FoodComponent },
+
   { path: '**', component: NotfoundComponent },
 ];
 

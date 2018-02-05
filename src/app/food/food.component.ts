@@ -1,0 +1,68 @@
+import { Component, OnInit } from '@angular/core';
+import { FormControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { LogFoodService, inyectionType } from '../core'
+import { LogFood, Campist, Snack } from '../core'
+import { Router } from '@angular/router';
+
+
+@Component({
+  selector: 'app-food',
+  templateUrl: './food.component.html',
+  styleUrls: ['./food.component.scss']
+})
+export class FoodComponent implements OnInit {
+
+  foods = Object.entries(Snack)
+
+  public form: FormGroup;
+
+  title: string;
+  subtitle: string;
+
+  constructor(private fb: FormBuilder, private LogIS: LogFoodService, private router: Router) {
+    this.title = 'Agregar Comida Extra';
+    this.subtitle = 'Detalles';
+    this.createForm()
+  }
+
+  ngOnInit() {
+  }
+
+  createForm() {
+    var d = new Date()
+    this.form = this.fb.group({
+      foodType: ['', [Validators.required]],
+      value: ['', [Validators.required]],
+      date: [this.currentDate(), Validators.required],
+      time: [this.currenTime(), Validators.required],
+      description: ['']
+    });
+  }
+
+  onSubmit() {
+    var objToSend = {
+      id: null,
+      date: new Date(this.form.value.date + ' ' + this.form.value.time),
+      value: this.form.value.value,
+      description: this.form.value.description,
+      type: this.form.value.foodType
+    }
+    console.log(objToSend)
+    //TODO  Use current campist id
+    this.LogIS.addLogFood(new LogFood(objToSend), 'B9BpyzwCwL4KEXVmRPi4')
+    //TODO  Redirect to current campist id
+    this.router.navigate(['/listado']);
+  }
+
+  currentDate() {
+    const currentDate = new Date();
+    return currentDate.toISOString().substring(0, 10);
+  }
+
+  currenTime() {
+    const currentDate = new Date();
+    return currentDate.toTimeString().substring(0, 5)
+  }
+
+
+}

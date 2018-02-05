@@ -26,6 +26,7 @@ import { InjectionComponent } from './injection/injection.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CampersListComponent } from './campers-list/campers-list.component';
 import { SharedModule } from './shared/shared.module';
+import { FoodComponent } from './food/food.component';
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import { SharedModule } from './shared/shared.module';
     AppComponent,
     NotfoundComponent,
     InjectionComponent,
-    CampersListComponent
+    CampersListComponent,
+    FoodComponent
   ],
 
   imports: [
