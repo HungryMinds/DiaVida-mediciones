@@ -6,38 +6,41 @@
     </mat-slide-toggle>
   </div>
   <div class="add-camper-form">
-    <div *ngIf="!isChecked" class="form-1">
-      <p>Aplicación</p>
-      <mat-form-field class="full-width">
-        <input type="time" matInput placeholder="Hora">
-      </mat-form-field>
+    <form [formGroup]="dosisForm" novalidate>
+      <div *ngIf="!isChecked" class="form-1">
+        <p>Aplicación</p>
+        <mat-form-field class="full-width">
+          <input formControlName="time" type="time" matInput placeholder="Hora">
+        </mat-form-field>
 
-      <mat-form-field class="full-width">
-        <input type="number" matInput placeholder="Dosis">
-      </mat-form-field>
-    </div>
+        <mat-form-field class="full-width">
+          <input formControlName="dosis" type="number" matInput placeholder="Dosis">
+        </mat-form-field>
+      </div>
 
-    <div *ngIf="isChecked" class="form-2">
-      <p>Primera aplicación</p>
-      <mat-form-field class="full-width">
-        <input type="time" matInput placeholder="Hora">
-      </mat-form-field>
+      <div *ngIf="isChecked" class="form-2">
+        <p>Primera aplicación</p>
+        <mat-form-field class="full-width">
+          <input formControlName="time" type="time" matInput placeholder="Hora">
+        </mat-form-field>
 
-      <mat-form-field class="full-width">
-        <input type="number" matInput placeholder="Dosis">
-      </mat-form-field>
-      <p>Segunda aplicación</p>
-      <mat-form-field class="full-width">
-        <input type="time" matInput placeholder="Hora">
-      </mat-form-field>
+        <mat-form-field class="full-width">
+          <input formControlName="dosis" type="number" matInput placeholder="Dosis">
+        </mat-form-field>
+        <p>Segunda aplicación</p>
+        <mat-form-field class="full-width">
+          <input formControlName="second-dosis" type="time" matInput placeholder="Hora">
+        </mat-form-field>
 
-      <mat-form-field class="full-width">
-        <input type="number" matInput placeholder="Dosis">
-      </mat-form-field>
-    </div>
-  </div>
-  <div class="button-row">
-    <button mat-raised-button color="primary">Anterior</button>
-    <button mat-raised-button color="primary">Siguiente</button>
+        <mat-form-field class="full-width">
+          <input formControlName="second-dosis" type="number" matInput placeholder="Dosis">
+        </mat-form-field>
+      </div>
+
+      <div class="button-row">
+        <button (click)="goBack($event)" mat-raised-button color="primary">Anterior</button>
+        <button [disabled]="!dosisForm.valid" (click)="next($event)" mat-raised-button color="primary">Siguiente</button>
+      </div>
+    </form>
   </div>
 </div>
