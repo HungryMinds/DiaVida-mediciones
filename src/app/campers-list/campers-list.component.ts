@@ -28,11 +28,6 @@ export class CampersListComponent implements OnInit, OnDestroy {
           id: campist.id
         };
       });
-      // PRUEBA
-      for (let i = 0; i < 20; i++) {
-        campists.push(campists[1]);
-      }
-      // FIN PRUEBA
       this.dataSource = new MatTableDataSource(campists);
     });
   }
