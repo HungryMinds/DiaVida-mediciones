@@ -1,19 +1,14 @@
 .camperDetail {
-    background-color: #E8F0F0;
-    //background-color: #38a297;
-    height: 100vh;
-    // padding: 3% 2% 3% 2%;
-    .mat-tab-label
-    .mat-ripple
-    .mat-tab-label-active
-    .ng-star-inserted {
+    background-color: #E8F0F0; //background-color: #38a297;
+    height: 100vh; // padding: 3% 2% 3% 2%;
+    .mat-tab-label .mat-ripple .mat-tab-label-active .ng-star-inserted {
         background: black;
     }
     .fakeHeader {
         height: 3em;
         width: 100%;
         background-color: #009688;
-    }      
+    }
     .topData {
         display: flex;
         flex-direction: row;
@@ -37,15 +32,13 @@
     }
     .bottomData {
         padding: 3% 2% 3% 2%;
-        .camperAcordeon{
-            margin-bottom: 1em;
-            // background-color: #ffffff;
+        .camperAcordeon {
+            margin-bottom: 1em; // background-color: #ffffff;
             display: block;
             .dropTitle {
                 font-weight: bold;
             }
-        }
-        // .mat-expansion-panel:not([class*=mat-elevation-z]) {
+        } // .mat-expansion-panel:not([class*=mat-elevation-z]) {
         //     box-shadow: none !important;
         //     border-bottom: 1px solid black;
         // }
@@ -66,16 +59,42 @@
 }
 
 ::ng-deep .mat-tab-label {
-    min-width : 0px; // added
-     width: 50%;
-     height: 42px;
-     border-radius: 3px;
-     color: white;
-} 
+    min-width: 0px; // added
+    width: 50%;
+    height: 42px;
+    border-radius: 3px;
+    color: white;
+}
 
 ::ng-deep .mat-tab-labels {
     display: flex;
     background-color: #009688;
     border-top: initial;
     margin-top: -2px;
+}
+
+// Tables style 
+table {
+    width: 100%
+}
+
+th {
+    text-align: right;
+    font-size: 14px;
+    font-weight: 700;
+    color: #000000;
+}
+
+td {
+    text-align: right;
+    font-size: 14px;
+    font-weight: 300;
+}
+
+.first-colum {
+    width: 30px;
+}
+
+.table-container {
+    padding-right: 10px;
 }
