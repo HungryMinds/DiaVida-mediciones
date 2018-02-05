@@ -10,7 +10,7 @@ import { Observable } from 'rxjs/Observable';
 import { LogMedition } from './models/log.class';
 
 @Injectable()
-export class LogService {
+export class LogMeditionService {
   logMeditionCollection: AngularFirestoreCollection<LogMedition>;
   logMedition: Observable<LogMedition[]>;
 

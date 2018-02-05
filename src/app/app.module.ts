@@ -21,7 +21,7 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { NgcFloatButtonModule } from 'ngc-float-button';
-import { CoreModule } from './core/index';
+import { CoreModule } from './core';
 import { InjectionComponent } from './injection/injection.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CampersListComponent } from './campers-list/campers-list.component';
@@ -30,9 +30,9 @@ import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
-    AppComponent, 
-    NotfoundComponent, 
-    InjectionComponent, 
+    AppComponent,
+    NotfoundComponent,
+    InjectionComponent,
     CampersListComponent
   ],
 
@@ -42,7 +42,7 @@ import { SharedModule } from './shared/shared.module';
     MatTableModule,
     MatInputModule,
     BrowserModule,
-    MatRadioModule, 
+    MatRadioModule,
     ServiceWorkerModule.register('/ngsw-worker.js', {
       enabled: environment.production
     }),
@@ -64,4 +64,4 @@ import { SharedModule } from './shared/shared.module';
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }
