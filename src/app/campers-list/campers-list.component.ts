@@ -1,9 +1,8 @@
-// import { NgClass } from '@angular/common';
 import { Component } from '@angular/core';
 import { MatTableDataSource } from '@angular/material';
 import { Team } from '../core/services/models/team.enum';
 import { CampistService } from '../core/services/campist.service';
-import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
+import { OnInit, OnDestroy } from '@angular/core/src/metadata/lifecycle_hooks';
 import { Router } from '@angular/router';
 
 @Component({
@@ -11,9 +10,10 @@ import { Router } from '@angular/router';
   templateUrl: './campers-list.component.html',
   styleUrls: ['./campers-list.component.scss']
 })
-export class CampersListComponent implements OnInit {
+export class CampersListComponent implements OnInit, OnDestroy {
   displayedColumns = ['group', 'name', 'age'];
   dataSource;
+  subscriptionCampers;
 
   constructor(
     private cL: CampistService,
@@ -21,10 +21,9 @@ export class CampersListComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    debugger;
     let campists = [];
-    this.cL.getCampists()
-    .forEach((_campists) => {
+    this.subscriptionCampers = this.cL.getCampists()
+    .subscribe((_campists) => {
       campists = _campists.map((campist) => {
         return {
           group: Team[campist.team],
@@ -34,11 +33,15 @@ export class CampersListComponent implements OnInit {
       });
       // PRUEBA
       for (let i = 0; i < 20; i++) {
-        campists.push(campists[0]);
+        campists.push(campists[1]);
       }
       // FIN PRUEBA
       this.dataSource = new MatTableDataSource(campists);
     });
+  }
+
+  ngOnDestroy() {
+    this.subscriptionCampers.unsubscribe();
   }
 
   open(e) {
