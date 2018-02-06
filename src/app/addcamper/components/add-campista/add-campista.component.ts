@@ -1,11 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import {
-  FormControl,
-  FormBuilder,
-  FormGroup,
-  Validators
-} from '@angular/forms';
+import { FormControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-add-campista',
@@ -29,12 +24,13 @@ export class AddCampistaComponent implements OnInit {
 
   createForm() {
     this.basicsForm = this.fb.group({
-      name: ['', Validators.required],
-      lastname: ['', Validators.required],
-      age: ['', Validators.required],
-      weight: ['', Validators.required],
-      meds: ['', Validators.required],
-      allergies: ['', Validators.required]
+      names: ['', Validators.required],
+      lastnames: ['', Validators.required],
+      age: [''],
+      weight: [''],
+      team: [''],
+      allergies: [''],
+      medications: ['']
     });
   }
 

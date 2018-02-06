@@ -11,6 +11,8 @@ import {
   MatRadioModule
 } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NavBarComponent } from '../shared/navbar/navbar.component';
+import { CampistService } from '../core/services/campist.service';
 
 // Routing Imports
 import { AddCamperRoutingModule } from './addcamper.routing';
@@ -45,11 +47,7 @@ import { SharedModule } from '../shared/shared.module';
     AddCampistaEsquemaComponent,
     AddCampistaFoodComponent
   ],
-  exports: [
-    AddCampistaComponent,
-    AddCampistaDosisComponent,
-    AddCampistaEsquemaComponent,
-    AddCampistaFoodComponent
-  ]
+  providers: [CampistService],
+  exports: [AddCampistaComponent, AddCampistaDosisComponent, AddCampistaEsquemaComponent, AddCampistaFoodComponent]
 })
 export class AddCamperModule {}

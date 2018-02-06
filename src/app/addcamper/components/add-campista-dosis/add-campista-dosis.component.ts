@@ -1,5 +1,7 @@
+import { BasalInsulin } from './../../../core/services/models/basal-insulin.class';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { FormControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-add-campista',
@@ -13,21 +15,58 @@ export class AddCampistaDosisComponent implements OnInit {
   isChecked: Boolean = false;
   @Input() checked;
   @Output() change: EventEmitter<boolean> = new EventEmitter<boolean>();
+  url = 'camper/add-camper/';
+  nextUrl = 'esquema';
+  public dosisForm: FormGroup;
   camper: any;
 
-  constructor(private route: ActivatedRoute, private router: Router) {
+  constructor(private fb: FormBuilder, private route: ActivatedRoute, private router: Router) {
     this.title = 'Agregar Campista';
     this.subtitle = 'Dosis Basal';
+
+    this.createForm();
+  }
+
+  createForm() {
+    this.dosisForm = this.fb.group({
+      time: [''],
+      dosage: [''],
+      'second-time': [''],
+      'second-dosis': ['']
+    });
   }
 
   toogleView(event) {
     this.isChecked = event.checked;
   }
 
+  next(event) {
+    event.preventDefault();
+    this.camper = {
+      ...this.camper,
+      basalInsulin: {
+        'first-application': {
+          dosage: this.dosisForm.value.dosis,
+          time: '2018-02-06T01:30:00.000Z'
+        },
+        'second-application': {
+          dosage: this.dosisForm.value['second-time'],
+          date: this.dosisForm.value['second-dosis']
+        }
+      }
+    };
+    this.camper = { ...this.camper, ...this.dosisForm.value };
+    // Navigate to the next view
+    this.router.navigate([this.url + this.nextUrl, this.camper]);
+  }
+
+  goBack(event) {
+    event.preventDefault();
+  }
+
   ngOnInit() {
     this.route.params.subscribe(params => {
       this.camper = params;
-      console.log('CAMPER', this.camper);
     });
   }
 }
