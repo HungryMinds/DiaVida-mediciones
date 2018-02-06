@@ -60,33 +60,61 @@ export class AddCampistaEsquemaComponent implements OnInit {
 
   next(event) {
     event.preventDefault();
+    const {
+      eDesayudoOption1,
+      eDesayudoOption2,
+      eDesayudoOption3,
+      eDesayudoOption4,
+      eAlmuerzoOption1,
+      eAlmuerzoOption2,
+      eAlmuerzoOption3,
+      eAlmuerzoOption4,
+      eCenaOption1,
+      eCenaOption2,
+      eCenaOption3,
+      eCenaOption4,
+      eComments,
+      rDesayunoOption,
+      rAlmuerzoOption,
+      rCenaOption,
+      rFactor,
+      rComments
+    } = this.esquemaForm.value;
+
     this.camper = {
       ...this.camper,
+      insulinSchemeRatio: {
+        Breakfast: rDesayunoOption,
+        Lunch: rAlmuerzoOption,
+        Diner: rCenaOption,
+        correctionFactor: rFactor,
+        comment: rComments
+      },
       insulinSchemeInterval: {
-        comments: this.esquemaForm.value.rComments || this.esquemaForm.value.eComments,
+        comments: eComments,
         '<80': {
-          Breakfast: this.esquemaForm.value.eDesayudoOption1 || this.esquemaForm.value.rDesayunoOption,
-          Lunch: this.esquemaForm.value.eAlmuerzoOption1,
-          Diner: this.esquemaForm.value.eCenaOption1
+          Breakfast: eDesayudoOption1,
+          Lunch: eAlmuerzoOption1,
+          Diner: eCenaOption1
         },
         '81-160': {
-          Breakfast: this.esquemaForm.value.eDesayudoOption2,
-          Lunch: this.esquemaForm.value.eAlmuerzoOption2 || this.esquemaForm.value.rAlmuerzoOption,
-          Diner: this.esquemaForm.value.eCenaOption2
+          Breakfast: eDesayudoOption2,
+          Lunch: eAlmuerzoOption2,
+          Diner: eCenaOption2
         },
         '161-250': {
-          Breakfast: this.esquemaForm.value.eDesayudoOption3,
-          Lunch: this.esquemaForm.value.eAlmuerzoOption3,
-          Diner: this.esquemaForm.value.eCenaOption3 || this.esquemaForm.value.rCenaOption
+          Breakfast: eDesayudoOption3,
+          Lunch: eAlmuerzoOption3,
+          Diner: eCenaOption3
         },
         '>250': {
-          Breakfast: this.esquemaForm.value.eDesayudoOption4,
-          Lunch: this.esquemaForm.value.eAlmuerzoOption4,
-          Diner: this.esquemaForm.value.eCenaOption4
+          Breakfast: eDesayudoOption4,
+          Lunch: eAlmuerzoOption4,
+          Diner: eCenaOption4
         }
       }
     };
-    this.camper = { ...this.camper, ...this.esquemaForm.value };
+    this.camper = { ...this.camper };
     // Navigate to the next view
     this.router.navigate([this.url + this.nextUrl, this.camper]);
   }

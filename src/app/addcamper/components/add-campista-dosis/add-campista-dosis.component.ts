@@ -2,6 +2,7 @@ import { BasalInsulin } from './../../../core/services/models/basal-insulin.clas
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-add-campista',
@@ -20,7 +21,12 @@ export class AddCampistaDosisComponent implements OnInit {
   public dosisForm: FormGroup;
   camper: any;
 
-  constructor(private fb: FormBuilder, private route: ActivatedRoute, private router: Router) {
+  constructor(
+    private fb: FormBuilder,
+    private route: ActivatedRoute,
+    private router: Router,
+    private _location: Location
+  ) {
     this.title = 'Agregar Campista';
     this.subtitle = 'Dosis Basal';
 
@@ -42,6 +48,7 @@ export class AddCampistaDosisComponent implements OnInit {
 
   next(event) {
     event.preventDefault();
+
     this.camper = {
       ...this.camper,
       basalInsulin: {
@@ -50,18 +57,20 @@ export class AddCampistaDosisComponent implements OnInit {
           time: '2018-02-06T01:30:00.000Z'
         },
         'second-application': {
-          dosage: this.dosisForm.value['second-time'],
-          date: this.dosisForm.value['second-dosis']
+          dosage: this.dosisForm.value['second-dosis'],
+          time: this.dosisForm.value['second-time']
         }
       }
     };
-    this.camper = { ...this.camper, ...this.dosisForm.value };
+    this.camper = { ...this.camper };
+    console.log(this.camper);
     // Navigate to the next view
     this.router.navigate([this.url + this.nextUrl, this.camper]);
   }
 
   goBack(event) {
     event.preventDefault();
+    this._location.back();
   }
 
   ngOnInit() {
