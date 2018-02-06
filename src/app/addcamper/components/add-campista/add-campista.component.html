@@ -3,11 +3,11 @@
   <div class="add-camper-form">
     <form [formGroup]="basicsForm" novalidate>
       <mat-form-field class="full-width">
-        <input formControlName="name" matInput placeholder="Nombre">
+        <input formControlName="names" matInput placeholder="Nombre">
       </mat-form-field>
 
       <mat-form-field class="full-width">
-        <input formControlName="lastname" matInput placeholder="Apellido">
+        <input formControlName="lastnames" matInput placeholder="Apellido">
       </mat-form-field>
 
       <div class="full-width">
@@ -21,13 +21,13 @@
       </div>
 
       <mat-form-field class="full-width">
-        <mat-select formControlName="equipo" placeholder="Seleccione el equipo">
+        <mat-select formControlName="team" placeholder="Seleccione el equipo">
           <mat-option value="option">Option</mat-option>
         </mat-select>
       </mat-form-field>
 
       <mat-form-field class="full-width">
-        <textarea formControlName="meds" matInput placeholder="Medicamentos"></textarea>
+        <textarea formControlName="medications" matInput placeholder="Medicamentos"></textarea>
       </mat-form-field>
 
       <mat-form-field class="full-width">
