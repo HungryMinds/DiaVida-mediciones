@@ -15,7 +15,7 @@ const TESTOBJ = {
       Diner: 10,
       BeforeSleep: 10
     },
-    lac: {
+    prot: {
       Breakfast: 10,
       MorningSnack: 10,
       Lunch: 10,
