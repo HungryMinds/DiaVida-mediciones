@@ -58,29 +58,36 @@
                     </tr>
                   </table>
                 </div>
-                <div *ngIf="insulinScheme2" style="border-bottom: 1px solid #979797;padding-bottom: 2em;">
-                  <table style="width:100%;border-bottom: 1px solid #979797;">
-                    <tr style="text-align:right">
-                      <th></th>
-                      <th>Desayuno</th>
-                      <th>Almuerzo</th> 
-                      <th>Cena</th>
-                    </tr>
-                    <tr style="text-align:right">
-                      <td>Ratio</td>
-                      <td>10</td>
-                      <td>10</td> 
-                      <td>10</td>
-                    </tr>
-                  </table>
+                <div *ngIf="insulinScheme2">
+                  <div class="insulinScheme">
+                    <table>
+                        <tr style="text-align:right">
+                          <th></th>
+                          <th>Desayuno</th>
+                          <th>Almuerzo</th> 
+                          <th>Cena</th>
+                        </tr>
+                        <tr style="text-align:right">
+                          <td>Ratio</td>
+                          <td>10</td>
+                          <td>10</td> 
+                          <td>10</td>
+                        </tr>
+                      </table>
+                  </div>
                   <div>
                     <p>Factor de correción</p>
                     <p>10</p>
                   </div>
                 </div>
                 <div>
+<<<<<<< HEAD
                   <p>Comentarios</p>
                   <p>{{camper.insulinSchemeInterval.comment}}</p>
+=======
+                  <p class="schemeCommentLabel">Comentarios</p>
+                  <p>{{insulinComment}}</p>
+>>>>>>> Added clases to scss and added on init and destroy
                 </div>
               </mat-expansion-panel>
               <mat-expansion-panel>
@@ -106,7 +113,7 @@
                   </mat-panel-title>
                 </mat-expansion-panel-header>
                 <div *ngIf="needsBasalInsulin">
-                  <table style="width:100%;">
+                  <table>
                     <tr style="text-align:right">
                       <th></th>
                       <th>Desayuno</th>
@@ -114,7 +121,7 @@
                       <th>Cena</th>
                     </tr>
                     <tr style="text-align:right">
-                      <td>Ratio</td>
+                      <th>Ratio</th>
                       <td>10</td>
                       <td>10</td> 
                       <td>10</td>

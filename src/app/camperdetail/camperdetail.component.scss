@@ -38,13 +38,21 @@
             .dropTitle {
                 font-weight: bold;
             }
-        } // .mat-expansion-panel:not([class*=mat-elevation-z]) {
-        //     box-shadow: none !important;
-        //     border-bottom: 1px solid black;
-        // }
-        // .lastExpansion {
-        //     border-bottom: none !important;
-        // }
+        }
+        table {
+            width: 100%;
+        }
+        .insulinScheme {
+            border-bottom: 1px solid #979797;
+            padding-bottom: 2em;
+            margin-bottom: 0.5em;
+        }
+        .schemeCommentLabel {
+            margin-bottom: 1em;
+        }
+        .schemeCommentText {
+            color: rgba(0, 0, 0, .8);
+        }
         .acceptButton {
             background-color: #009688;
             color: #fff;
@@ -52,6 +60,7 @@
         #deleteCamperButton {
             transition: all 0.5s ease;
         }
+
     }
     .tl {
         width: 50% !important;

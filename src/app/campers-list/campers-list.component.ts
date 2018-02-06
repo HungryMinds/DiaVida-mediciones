@@ -50,6 +50,7 @@ export class CampersListComponent implements OnInit, OnDestroy {
   }
 
   goToCamper(id) {
+    console.log(id)
     this.router.navigate(['/camperDetail/', id]);
   }
 }
