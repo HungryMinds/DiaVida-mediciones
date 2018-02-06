@@ -1,10 +1,10 @@
 <div class="camperDetail">
   <div class="fakeHeader"></div>
-  <mat-tab-group class="camperDetailTabs">
+  <mat-tab-group *ngIf="camper" class="camperDetailTabs">
     <mat-tab label="Información General">
       <div class="topData">
         <div class="topDataColumn">
-          <p class="topDataColumValue">10</p>
+          <p class="topDataColumValue">{{camper.age}}</p>
           <p class="topDataColumLabel">años</p>
         </div>
         <div class="topDataColumn">
@@ -12,7 +12,7 @@
           <p class="topDataColumLabel">kilos</p>
         </div>        
         <div class="topDataColumn">
-          <p class="topDataColumValue">Morado</p>
+          <p class="topDataColumValue">{{camper.team}}</p>
           <p class="topDataColumLabel">Equipo</p>
         </div>
       </div>
@@ -24,7 +24,7 @@
                     Esquema de insulina
                   </mat-panel-title>
                 </mat-expansion-panel-header>
-                <div *ngIf="insulinScheme1" style="border-bottom: 1px solid #979797;padding-bottom: 2em;">
+                <div *ngIf="camper.insulinSchemeInterval != null" style="border-bottom: 1px solid #979797;padding-bottom: 2em;">
                   <table style="width:100%;">
                     <tr style="text-align:right">
                       <th></th>
@@ -33,28 +33,28 @@
                       <th>Cena</th>
                     </tr>
                     <tr style="text-align:right">
-                      <td><80</td>
-                      <td>10</td>
-                      <td>10</td> 
-                      <td>10</td>
+                      <th><80</th>
+                      <td>{{this.camper.insulinSchemeInterval["<80"].Breakfast}}</td>
+                      <td>{{this.camper.insulinSchemeInterval["<80"].Diner}}</td> 
+                      <td>{{this.camper.insulinSchemeInterval["<80"].Lunch}}</td>
                     </tr>
                     <tr style="text-align:right">
-                      <td>81-160</td>
-                      <td>10</td>
-                      <td>10</td> 
-                      <td>10</td>
+                      <th>81-160</th>
+                      <td>{{this.camper.insulinSchemeInterval["81-160"].Breakfast}}</td>
+                      <td>{{this.camper.insulinSchemeInterval["81-160"].Diner}}</td> 
+                      <td>{{this.camper.insulinSchemeInterval["81-160"].Lunch}}</td>
                     </tr>
                     <tr style="text-align:right">
-                      <td>161-250</td>
-                      <td>10</td>
-                      <td>10</td> 
-                      <td>10</td>
+                      <th>161-250</th>
+                      <td>{{this.camper.insulinSchemeInterval["161-250"].Breakfast}}</td>
+                      <td>{{this.camper.insulinSchemeInterval["161-250"].Diner}}</td> 
+                      <td>{{this.camper.insulinSchemeInterval["161-250"].Lunch}}</td>
                     </tr>
                     <tr style="text-align:right">
-                      <td>>250</td>
-                      <td>10</td>
-                      <td>10</td> 
-                      <td>10</td>
+                      <th>>250</th>
+                      <td>{{this.camper.insulinSchemeInterval[">250"].Breakfast}}</td>
+                      <td>{{this.camper.insulinSchemeInterval[">250"].Diner}}</td> 
+                      <td>{{this.camper.insulinSchemeInterval[">250"].Lunch}}</td>
                     </tr>
                   </table>
                 </div>
@@ -80,7 +80,7 @@
                 </div>
                 <div>
                   <p>Comentarios</p>
-                  <p>{{insulinComment}}</p>
+                  <p>{{camper.insulinSchemeInterval.comment}}</p>
                 </div>
               </mat-expansion-panel>
               <mat-expansion-panel>
@@ -89,7 +89,7 @@
                     Medicamentos Adicionales
                   </mat-panel-title>
                 </mat-expansion-panel-header>
-                <p>{{aditionalMedication}}</p>
+                <p>{{camper.medications}}</p>
               </mat-expansion-panel>
               <mat-expansion-panel>
                 <mat-expansion-panel-header>
@@ -97,7 +97,7 @@
                     Alergias
                   </mat-panel-title>
                 </mat-expansion-panel-header>
-                <p>{{allergies}}</p>
+                <p>{{camper.allergies}}</p>
               </mat-expansion-panel>
               <mat-expansion-panel>
                 <mat-expansion-panel-header>
