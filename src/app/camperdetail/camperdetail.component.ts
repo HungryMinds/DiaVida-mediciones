@@ -10,7 +10,12 @@ export class CamperdetailComponent implements OnInit {
   allergies: string
   basalInsulin: string
   errorButtonMessage: string
+  insulinMessage: string
   errorButtonCheck: boolean
+  insulinScheme1: boolean = true
+  insulinScheme2: boolean = false
+  needsBasalInsulin: boolean = true
+  insulinComment: string
 
   constructor() { 
     this.aditionalMedication = 'Beclometasona en inhalador';
@@ -18,6 +23,7 @@ export class CamperdetailComponent implements OnInit {
     this.basalInsulin = 'No necesita insulina basal';
     this.errorButtonMessage = 'ELIMINAR';
     this.errorButtonCheck = false;
+    this.insulinComment = 'tarde 2-3 unidades si es necesario'
   }
 
   deleteCamper(id) {

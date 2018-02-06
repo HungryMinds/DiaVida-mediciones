@@ -10,82 +10,154 @@
         <div class="topDataColumn">
           <p class="topDataColumValue">70</p>
           <p class="topDataColumLabel">kilos</p>
-        </div>
+        </div>        
         <div class="topDataColumn">
           <p class="topDataColumValue">Morado</p>
           <p class="topDataColumLabel">Equipo</p>
         </div>
       </div>
       <div class="bottomData">
-        <mat-accordion class="camperAcordeon">
-          <mat-expansion-panel>
-            <mat-expansion-panel-header>
-              <mat-panel-title class="dropTitle">
-                Esquema de insulina
-              </mat-panel-title>
-            </mat-expansion-panel-header>
-            <p>Content</p>
-          </mat-expansion-panel>
-          <mat-expansion-panel>
-            <mat-expansion-panel-header>
-              <mat-panel-title class="dropTitle">
-                Medicamentos Adicionales
-              </mat-panel-title>
-            </mat-expansion-panel-header>
-            <p>{{aditionalMedication}}</p>
-          </mat-expansion-panel>
-          <mat-expansion-panel>
-            <mat-expansion-panel-header>
-              <mat-panel-title class="dropTitle">
-                Alergias
-              </mat-panel-title>
-            </mat-expansion-panel-header>
-            <p>{{allergies}}</p>
-          </mat-expansion-panel>
-          <mat-expansion-panel>
-            <mat-expansion-panel-header>
-              <mat-panel-title class="dropTitle">
-                Insulina Basal
-              </mat-panel-title>
-            </mat-expansion-panel-header>
-            <p>{{basalInsulin}}</p>
-          </mat-expansion-panel>
-          <mat-expansion-panel class="lastExpansion">
-            <mat-expansion-panel-header>
-              <mat-panel-title class="dropTitle">
-                Porciones de alimentos
-              </mat-panel-title>
-            </mat-expansion-panel-header>
-            <div class="table-container ">
-              <table >
-                <tr>
-                  <th class="first-colum"> </th>
-                  <th>Carbs</th>
-                  <th>Prot</th>
-                  <th>Fruta</th>
-                  <th>Láct</th>
-                </tr>
-                <tr>
-                  <th class="first-colum">Desayuno</th>
-                  <td>10</td>
-                  <td>10</td>
-                  <td>10</td>
-                  <td>10</td>
-                </tr>
-                <tr>
-                  <th class="first-colum">Merienda</th>
-                  <td>10</td>
-                  <td>10</td>
-                  <td>10</td>
-                  <td>10</td>
-                </tr>
-              </table>
-
-            </div>
-          </mat-expansion-panel>
-        </mat-accordion>
-        <button mat-raised-button id="deleteCamperButton" color="warn" (click)="deleteCamper()">{{errorButtonMessage}}</button>
-        <button mat-raised-button class="acceptButton">EDITAR</button>
+          <mat-accordion class="camperAcordeon">
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                  <mat-panel-title class="dropTitle">
+                    Esquema de insulina
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                <div *ngIf="insulinScheme1" style="border-bottom: 1px solid #979797;padding-bottom: 2em;">
+                  <table style="width:100%;">
+                    <tr style="text-align:right">
+                      <th></th>
+                      <th>Desayuno</th>
+                      <th>Almuerzo</th> 
+                      <th>Cena</th>
+                    </tr>
+                    <tr style="text-align:right">
+                      <td><80</td>
+                      <td>10</td>
+                      <td>10</td> 
+                      <td>10</td>
+                    </tr>
+                    <tr style="text-align:right">
+                      <td>81-160</td>
+                      <td>10</td>
+                      <td>10</td> 
+                      <td>10</td>
+                    </tr>
+                    <tr style="text-align:right">
+                      <td>161-250</td>
+                      <td>10</td>
+                      <td>10</td> 
+                      <td>10</td>
+                    </tr>
+                    <tr style="text-align:right">
+                      <td>>250</td>
+                      <td>10</td>
+                      <td>10</td> 
+                      <td>10</td>
+                    </tr>
+                  </table>
+                </div>
+                <div *ngIf="insulinScheme2" style="border-bottom: 1px solid #979797;padding-bottom: 2em;">
+                  <table style="width:100%;border-bottom: 1px solid #979797;">
+                    <tr style="text-align:right">
+                      <th></th>
+                      <th>Desayuno</th>
+                      <th>Almuerzo</th> 
+                      <th>Cena</th>
+                    </tr>
+                    <tr style="text-align:right">
+                      <td>Ratio</td>
+                      <td>10</td>
+                      <td>10</td> 
+                      <td>10</td>
+                    </tr>
+                  </table>
+                  <div>
+                    <p>Factor de correción</p>
+                    <p>10</p>
+                  </div>
+                </div>
+                <div>
+                  <p>Comentarios</p>
+                  <p>{{insulinComment}}</p>
+                </div>
+              </mat-expansion-panel>
+              <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                  <mat-panel-title class="dropTitle">
+                    Medicamentos Adicionales
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                <p>{{aditionalMedication}}</p>
+              </mat-expansion-panel>
+              <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                  <mat-panel-title class="dropTitle">
+                    Alergias
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                <p>{{allergies}}</p>
+              </mat-expansion-panel>
+              <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                  <mat-panel-title class="dropTitle">
+                    Insulina Basal
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                <div *ngIf="needsBasalInsulin">
+                  <table style="width:100%;">
+                    <tr style="text-align:right">
+                      <th></th>
+                      <th>Desayuno</th>
+                      <th>Almuerzo</th> 
+                      <th>Cena</th>
+                    </tr>
+                    <tr style="text-align:right">
+                      <td>Ratio</td>
+                      <td>10</td>
+                      <td>10</td> 
+                      <td>10</td>
+                    </tr>
+                  </table>
+                </div>
+                <div *ngIf="!needsBasalInsulin">
+                  <p>{{basalInsulin}}</p>
+                </div>
+              </mat-expansion-panel>
+              <mat-expansion-panel class="lastExpansion">
+                <mat-expansion-panel-header>
+                  <mat-panel-title class="dropTitle">
+                    Porciones de alimentos
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                <table >
+                    <tr>
+                      <th class="first-colum"> </th>
+                      <th>Carbs</th>
+                      <th>Prot</th>
+                      <th>Fruta</th>
+                      <th>Láct</th>
+                    </tr>
+                    <tr>
+                      <th class="first-colum">Desayuno</th>
+                      <td>10</td>
+                      <td>10</td>
+                      <td>10</td>
+                      <td>10</td>
+                    </tr>
+                    <tr>
+                      <th class="first-colum">Merienda</th>
+                      <td>10</td>
+                      <td>10</td>
+                      <td>10</td>
+                      <td>10</td>
+                    </tr>
+                  </table>
+              </mat-expansion-panel>
+          </mat-accordion>
+          <button mat-raised-button id="deleteCamperButton" color="warn" (click)="deleteCamper()">{{errorButtonMessage}}</button>
+          <button mat-raised-button class="acceptButton">EDITAR</button>
       </div>
     </mat-tab>
     <mat-tab label="Diario">Content 2</mat-tab>
