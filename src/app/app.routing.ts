@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 
 // @Components
 import { NotfoundComponent } from './notfound/notfound.component';
+import { CamperdetailComponent } from './camperdetail/camperdetail.component';
 import { InjectionComponent } from './injection/injection.component';
 
 import { CampersListComponent } from './campers-list/campers-list.component';
@@ -15,7 +16,9 @@ const appRoutes = [
   { path: 'auth', loadChildren: 'app/auth/auth.module#AuthModule' },
   { path: 'camper', loadChildren: 'app/addcamper/addcamper.module#AddCamperModule' },
   { path: 'injection', component: InjectionComponent },
+  { path: 'camperDetail', component: CamperdetailComponent },
   { path: '**', component: NotfoundComponent },
+  
 ];
 
 @NgModule({

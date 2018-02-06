@@ -1,11 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import {
-  FormControl,
-  FormBuilder,
-  FormGroup,
-  Validators
-} from '@angular/forms';
+import { FormControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-add-campista-esquema',
@@ -26,7 +22,8 @@ export class AddCampistaEsquemaComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private _location: Location
   ) {
     this.title = 'Agregar Campista';
     this.subtitle = 'Esquema De Insulina';
@@ -63,13 +60,81 @@ export class AddCampistaEsquemaComponent implements OnInit {
 
   next(event) {
     event.preventDefault();
-    this.camper = { ...this.camper, ...this.esquemaForm.value };
+    const {
+      eDesayudoOption1,
+      eDesayudoOption2,
+      eDesayudoOption3,
+      eDesayudoOption4,
+      eAlmuerzoOption1,
+      eAlmuerzoOption2,
+      eAlmuerzoOption3,
+      eAlmuerzoOption4,
+      eCenaOption1,
+      eCenaOption2,
+      eCenaOption3,
+      eCenaOption4,
+      eComments,
+      rDesayunoOption,
+      rAlmuerzoOption,
+      rCenaOption,
+      rFactor,
+      rComments
+    } = this.esquemaForm.value;
+
+    const insulinSchemeI = {
+      comments: eComments,
+      '<80': {
+        Breakfast: eDesayudoOption1,
+        Lunch: eAlmuerzoOption1,
+        Diner: eCenaOption1
+      },
+      '81-160': {
+        Breakfast: eDesayudoOption2,
+        Lunch: eAlmuerzoOption2,
+        Diner: eCenaOption2
+      },
+      '161-250': {
+        Breakfast: eDesayudoOption3,
+        Lunch: eAlmuerzoOption3,
+        Diner: eCenaOption3
+      },
+      '>250': {
+        Breakfast: eDesayudoOption4,
+        Lunch: eAlmuerzoOption4,
+        Diner: eCenaOption4
+      }
+    };
+
+    const insulinSchemeR = {
+      Breakfast: rDesayunoOption,
+      Lunch: rAlmuerzoOption,
+      Diner: rCenaOption,
+      correctionFactor: rFactor,
+      comment: rComments
+    };
+
+    if (this.valueChecked === '1') {
+      const insulinSchemeInterval = JSON.stringify(insulinSchemeI);
+      this.camper = {
+        ...this.camper,
+        insulinSchemeInterval
+      };
+    } else {
+      const insulinSchemeRatio = JSON.stringify(insulinSchemeR);
+      this.camper = {
+        ...this.camper,
+        insulinSchemeRatio
+      };
+    }
+
+    this.camper = { ...this.camper };
     // Navigate to the next view
     this.router.navigate([this.url + this.nextUrl, this.camper]);
   }
 
   goBack(event) {
     event.preventDefault();
+    this._location.back();
   }
 
   ngOnInit() {

@@ -19,11 +19,7 @@ const addCamperRoutes = [
 ];
 
 @NgModule({
-  imports: [
-    FormsModule,
-    ReactiveFormsModule,
-    RouterModule.forChild(addCamperRoutes)
-  ],
+  imports: [FormsModule, ReactiveFormsModule, RouterModule.forChild(addCamperRoutes)],
   exports: [RouterModule]
 })
 export class AddCamperRoutingModule {}
