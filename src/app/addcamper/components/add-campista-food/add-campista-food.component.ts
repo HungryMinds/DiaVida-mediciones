@@ -12,8 +12,8 @@ import { Location } from '@angular/common';
 export class AddCampistaFoodComponent implements OnInit {
   title: string;
   subtitle: string;
-  url = 'camper/add-camper/';
-  nextUrl = 'food';
+  url = '/';
+  nextUrl = 'listado';
   public foodForm: FormGroup;
   camper: any;
 
@@ -139,7 +139,7 @@ export class AddCampistaFoodComponent implements OnInit {
     console.log(newCamper);
     this.campistService.addCampist(newCamper);
     // Navigate to the next view
-    // this.router.navigate([this.url + this.nextUrl, this.camper]);
+    this.router.navigate([this.url + this.nextUrl]);
   }
 
   goBack(event) {

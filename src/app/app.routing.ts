@@ -17,12 +17,11 @@ const appRoutes = [
   { path: 'camper', loadChildren: 'app/addcamper/addcamper.module#AddCamperModule' },
   { path: 'injection', component: InjectionComponent },
   { path: 'camperDetail', component: CamperdetailComponent },
-  { path: '**', component: NotfoundComponent },
-  
+  { path: '**', component: NotfoundComponent }
 ];
 
 @NgModule({
   imports: [FormsModule, ReactiveFormsModule, RouterModule.forRoot(appRoutes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
