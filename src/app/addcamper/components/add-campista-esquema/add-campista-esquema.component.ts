@@ -81,48 +81,52 @@ export class AddCampistaEsquemaComponent implements OnInit {
       rComments
     } = this.esquemaForm.value;
 
-    const schemeInterval = {
-      insulinSchemeInterval: {
-        comments: eComments,
-        '<80': {
-          Breakfast: eDesayudoOption1,
-          Lunch: eAlmuerzoOption1,
-          Diner: eCenaOption1
-        },
-        '81-160': {
-          Breakfast: eDesayudoOption2,
-          Lunch: eAlmuerzoOption2,
-          Diner: eCenaOption2
-        },
-        '161-250': {
-          Breakfast: eDesayudoOption3,
-          Lunch: eAlmuerzoOption3,
-          Diner: eCenaOption3
-        },
-        '>250': {
-          Breakfast: eDesayudoOption4,
-          Lunch: eAlmuerzoOption4,
-          Diner: eCenaOption4
-        }
+    const insulinSchemeI = {
+      comments: eComments,
+      '<80': {
+        Breakfast: eDesayudoOption1,
+        Lunch: eAlmuerzoOption1,
+        Diner: eCenaOption1
+      },
+      '81-160': {
+        Breakfast: eDesayudoOption2,
+        Lunch: eAlmuerzoOption2,
+        Diner: eCenaOption2
+      },
+      '161-250': {
+        Breakfast: eDesayudoOption3,
+        Lunch: eAlmuerzoOption3,
+        Diner: eCenaOption3
+      },
+      '>250': {
+        Breakfast: eDesayudoOption4,
+        Lunch: eAlmuerzoOption4,
+        Diner: eCenaOption4
       }
     };
 
-    const schemeRatio = {
-      insulinSchemeRatio: {
-        Breakfast: rDesayunoOption,
-        Lunch: rAlmuerzoOption,
-        Diner: rCenaOption,
-        correctionFactor: rFactor,
-        comment: rComments
-      }
+    const insulinSchemeR = {
+      Breakfast: rDesayunoOption,
+      Lunch: rAlmuerzoOption,
+      Diner: rCenaOption,
+      correctionFactor: rFactor,
+      comment: rComments
     };
 
-    const schema = this.valueChecked === '1' ? schemeInterval : schemeRatio;
+    if (this.valueChecked === '1') {
+      const insulinSchemeInterval = JSON.stringify(insulinSchemeI);
+      this.camper = {
+        ...this.camper,
+        insulinSchemeInterval
+      };
+    } else {
+      const insulinSchemeRatio = JSON.stringify(insulinSchemeR);
+      this.camper = {
+        ...this.camper,
+        insulinSchemeRatio
+      };
+    }
 
-    this.camper = {
-      ...this.camper,
-      ...schema
-    };
     this.camper = { ...this.camper };
     // Navigate to the next view
     this.router.navigate([this.url + this.nextUrl, this.camper]);

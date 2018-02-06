@@ -88,49 +88,58 @@ export class AddCampistaFoodComponent implements OnInit {
       meriendaThirdLact
     } = this.foodForm.value;
 
+    const foodTable = JSON.stringify({
+      fruta: {
+        Breakfast: desayunoFrut,
+        MorningSnack: meriendaFirstFrut,
+        Lunch: almuerzoFrut,
+        AfternoonSnack: meriendaSecondFrut,
+        Diner: cenaFrut,
+        BeforeSleep: meriendaThirdFrut
+      },
+      prot: {
+        Breakfast: desayunoProt,
+        MorningSnack: meriendaFirstProt,
+        Lunch: almuerzoProt,
+        AfternoonSnack: meriendaSecondProt,
+        Diner: cenaProt,
+        BeforeSleep: meriendaThirdProt
+      },
+      carb: {
+        Breakfast: desayunoCarbs,
+        MorningSnack: meriendaFirstCarbs,
+        Lunch: almuerzoCarbs,
+        AfternoonSnack: meriendaSecondCarbs,
+        Diner: cenaCarbs,
+        BeforeSleep: meriendaThirdCarbs
+      },
+      lact: {
+        Breakfast: desayunoLact,
+        MorningSnack: meriendaFirstLact,
+        Lunch: almuerzoLact,
+        AfternoonSnack: meriendaSecondLact,
+        Diner: cenaLact,
+        BeforeSleep: meriendaThirdLact
+      }
+    });
+
     this.camper = {
       ...this.camper,
-      foodTable: {
-        fruta: {
-          Breakfast: desayunoFrut,
-          MorningSnack: meriendaFirstFrut,
-          Lunch: almuerzoFrut,
-          AfternoonSnack: meriendaSecondFrut,
-          Diner: cenaFrut,
-          BeforeSleep: meriendaThirdFrut
-        },
-        prot: {
-          Breakfast: desayunoProt,
-          MorningSnack: meriendaFirstProt,
-          Lunch: almuerzoProt,
-          AfternoonSnack: meriendaSecondProt,
-          Diner: cenaProt,
-          BeforeSleep: meriendaThirdProt
-        },
-        carb: {
-          Breakfast: desayunoCarbs,
-          MorningSnack: meriendaFirstCarbs,
-          Lunch: almuerzoCarbs,
-          AfternoonSnack: meriendaSecondCarbs,
-          Diner: cenaCarbs,
-          BeforeSleep: meriendaThirdCarbs
-        },
-        lact: {
-          Breakfast: desayunoLact,
-          MorningSnack: meriendaFirstLact,
-          Lunch: almuerzoLact,
-          AfternoonSnack: meriendaSecondLact,
-          Diner: cenaLact,
-          BeforeSleep: meriendaThirdLact
-        }
-      }
+      foodTable
     };
     this.camper = { ...this.camper };
 
     // Save the data to database
-    this.campistService.addCampist(this.camper);
+    const newCamper = this.camper;
+    Object.keys(newCamper).forEach(item => {
+      if (newCamper[item].includes('{')) {
+        newCamper[item] = JSON.parse(newCamper[item]);
+      }
+    });
+    console.log(newCamper);
+    this.campistService.addCampist(newCamper);
     // Navigate to the next view
-    this.router.navigate([this.url + this.nextUrl, this.camper]);
+    // this.router.navigate([this.url + this.nextUrl, this.camper]);
   }
 
   goBack(event) {

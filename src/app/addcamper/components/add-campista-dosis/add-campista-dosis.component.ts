@@ -37,8 +37,10 @@ export class AddCampistaDosisComponent implements OnInit {
     this.dosisForm = this.fb.group({
       time: [''],
       dosage: [''],
-      'second-time': [''],
-      'second-dosis': ['']
+      'second-ftime': [''],
+      'second-fdosage': [''],
+      'second-stime': [''],
+      'second-sdosage': ['']
     });
   }
 
@@ -49,23 +51,31 @@ export class AddCampistaDosisComponent implements OnInit {
   next(event) {
     event.preventDefault();
 
-    this.camper = {
-      ...this.camper,
-      basalInsulin: {
-        'first-application': {
-          dosage: this.dosisForm.value.dosage,
-          time: '2018-02-06T01:30:00.000Z'
-        },
-        'second-application': {
-          dosage: this.dosisForm.value['second-dosis'],
-          time: this.dosisForm.value['second-time']
-        }
+    const fBasal = {
+      'first-application': {
+        dosage: this.dosisForm.value.dosage,
+        time: this.dosisForm.value.time
       }
     };
+
+    const sBasal = {
+      'first-application': {
+        dosage: this.dosisForm.value['second-fdosage'],
+        time: this.dosisForm.value['second-ftime']
+      },
+      'second-application': {
+        dosage: this.dosisForm.value['second-sdosage'],
+        time: this.dosisForm.value['second-stime']
+      }
+    };
+
+    const basalInsulin = !this.isChecked ? JSON.stringify(fBasal) : JSON.stringify(sBasal);
+
+    this.camper = { ...this.camper, basalInsulin };
     this.camper = { ...this.camper };
-    console.log(this.camper);
+
     // Navigate to the next view
-    this.router.navigate([this.url + this.nextUrl, this.camper]);
+    this.router.navigate([this.url + this.nextUrl, ...this.camper]);
   }
 
   goBack(event) {
