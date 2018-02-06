@@ -1,12 +1,12 @@
 import { variable } from "@angular/compiler/src/output/output_ast";
 
-export enum FoodTime {
-  Breakfast = 'Desayuno',
-  MorningSnack = 'Merienda mañana',
-  Lunch = 'Almuerzo',
-  AfternoonSnack = 'Merienda tarde',
-  Dinner = 'Cena',
-  BeforeSleep = 'Antes de dormir'
+export const FoodTime = {
+  Breakfast : 'Desayuno',
+  MorningSnack : 'Merienda mañana',
+  Lunch : 'Almuerzo',
+  AfternoonSnack : 'Merienda tarde',
+  Dinner : 'Cena',
+  BeforeSleep : 'Antes de dormir'
 }
 
 export enum FoodType {

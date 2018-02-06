@@ -32,6 +32,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CampersListComponent } from './campers-list/campers-list.component';
 import { SharedModule } from './shared/shared.module';
 import { FoodComponent } from './food/food.component';
+import { MeasurementComponent } from './measurement/measurement.component';
 
 
 @NgModule({
@@ -41,7 +42,8 @@ import { FoodComponent } from './food/food.component';
     InjectionComponent,
     CampersListComponent,
     FoodComponent,
-    CamperdetailComponent
+    CamperdetailComponent,
+    MeasurementComponent
   ],
 
   imports: [

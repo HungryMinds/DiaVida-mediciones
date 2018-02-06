@@ -1,0 +1,43 @@
+<div class="injection-container">
+  <app-navbar [title]="title" [subtitle]="subtitle"></app-navbar>
+
+
+  <form class="form-container" [formGroup]="form" (ngSubmit)="onSubmit()">
+
+    <mat-form-field>
+      <mat-select placeholder="Tipo de Comida" formControlName="foodTime">
+        <mat-option *ngFor="let food of foods" [value]="food[0]">
+          {{ food[1]}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input type='number' matInput placeholder="Resultado" formControlName="value">
+    </mat-form-field>
+
+
+    <mat-form-field>
+      <input type='time' matInput placeholder="Hora" formControlName="time">
+    </mat-form-field>
+
+    <mat-form-field>
+      <input type='date' matInput placeholder="Fecha" formControlName="date">
+    </mat-form-field>
+
+
+    <mat-form-field>
+      <textarea matInput placeholder="Descripción (opcional)" formControlName="description"> </textarea>
+    </mat-form-field>
+
+
+    <div class="footer-buttons">
+      <div class="footer-buttons-subcontainer">
+        <button routerLink="/listado" type="button" mat-raised-button>Cancelar</button>
+        <button [disabled]="!form.valid" mat-raised-button>Agregar</button>
+      </div>
+    </div>
+
+  </form>
+
+</div>

@@ -8,6 +8,8 @@ import { CamperdetailComponent } from './camperdetail/camperdetail.component';
 import { InjectionComponent } from './injection/injection.component';
 import { CampersListComponent } from './campers-list/campers-list.component';
 import { FoodComponent } from './food/food.component'
+import { MeasurementComponent } from './measurement/measurement.component';
+
 
 const appRoutes = [
   { path: '', redirectTo: '/auth/login', pathMatch: 'full' },
@@ -17,8 +19,11 @@ const appRoutes = [
   { path: 'injection', component: InjectionComponent },
   { path: 'food', component: FoodComponent },
   { path: 'camperDetail', component: CamperdetailComponent },
+  { path: 'measurement', component: MeasurementComponent },
+
   { path: '**', component: NotfoundComponent },
-  
+
+
 ];
 
 @NgModule({
