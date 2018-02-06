@@ -22,7 +22,8 @@ import {
   AddCampistaComponent,
   AddCampistaDosisComponent,
   AddCampistaFoodComponent,
-  AddCampistaEsquemaComponent
+  AddCampistaEsquemaComponent,
+  EditCampistaComponent
 } from './components';
 import { SharedModule } from '../shared/shared.module';
 
@@ -45,9 +46,16 @@ import { SharedModule } from '../shared/shared.module';
     AddCampistaComponent,
     AddCampistaDosisComponent,
     AddCampistaEsquemaComponent,
-    AddCampistaFoodComponent
+    AddCampistaFoodComponent,
+    EditCampistaComponent
   ],
   providers: [CampistService],
-  exports: [AddCampistaComponent, AddCampistaDosisComponent, AddCampistaEsquemaComponent, AddCampistaFoodComponent]
+  exports: [
+    AddCampistaComponent,
+    AddCampistaDosisComponent,
+    AddCampistaEsquemaComponent,
+    AddCampistaFoodComponent,
+    EditCampistaComponent
+  ]
 })
 export class AddCamperModule {}

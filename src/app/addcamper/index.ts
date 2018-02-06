@@ -6,5 +6,6 @@ export {
   AddCampistaComponent,
   AddCampistaDosisComponent,
   AddCampistaEsquemaComponent,
-  AddCampistaFoodComponent
+  AddCampistaFoodComponent,
+  EditCampistaComponent
 } from './components';
