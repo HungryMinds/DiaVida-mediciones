@@ -7,103 +7,105 @@
     </mat-radio-group>
   </div>
   <div class="add-camper-form">
-    <div *ngIf="valueChecked === '1'" class="form-1">
-      <div class="form-row">
-        <p>Desayuno</p>
+    <form [formGroup]="esquemaForm" novalidate>
+      <div *ngIf="valueChecked === '1'" class="form-1">
+        <div class="form-row">
+          <p>Desayuno</p>
 
-        <mat-form-field class="example-full-width">
-          <input type="number" min="0" max="250" matInput placeholder="<80">
+          <mat-form-field class="full-width">
+            <input formControlName="eDesayudoOption1" type="number" min="0" max="250" matInput placeholder="<80">
+          </mat-form-field>
+
+          <mat-form-field class="full-width">
+            <input formControlName="eDesayudoOption2" type="number" min="0" max="250" matInput placeholder="81-160">
+          </mat-form-field>
+
+          <mat-form-field class="full-width">
+            <input formControlName="eDesayudoOption3" type="number" min="0" max="250" matInput placeholder="161-250">
+          </mat-form-field>
+
+          <mat-form-field class="full-width">
+            <input formControlName="eDesayudoOption4" type="number" min="0" max="250" matInput placeholder=">250">
+          </mat-form-field>
+
+        </div>
+
+        <div class="form-row">
+          <p>Almuerzo</p>
+
+          <mat-form-field class="full-width">
+            <input formControlName="eAlmuerzoOption1" type="number" min="0" max="250" matInput placeholder="<80">
+          </mat-form-field>
+
+          <mat-form-field class="full-width">
+            <input formControlName="eAlmuerzoOption2" type="number" min="0" max="250" matInput placeholder="81-160">
+          </mat-form-field>
+
+          <mat-form-field class="full-width">
+            <input formControlName="eAlmuerzoOption3" type="number" min="0" max="250" matInput placeholder="161-250">
+          </mat-form-field>
+
+          <mat-form-field class="full-width">
+            <input formControlName="eAlmuerzoOption4" type="number" min="0" max="250" matInput placeholder=">250">
+          </mat-form-field>
+
+        </div>
+
+        <div class="form-row">
+          <p>Cena</p>
+
+          <mat-form-field class="full-width">
+            <input formControlName="eCenaOption1" type="number" min="0" max="250" matInput placeholder="<80">
+          </mat-form-field>
+
+          <mat-form-field class="full-width">
+            <input formControlName="eCenaOption2" type="number" min="0" max="250" matInput placeholder="81-160">
+          </mat-form-field>
+
+          <mat-form-field class="full-width">
+            <input formControlName="eCenaOption3" type="number" min="0" max="250" matInput placeholder="161-250">
+          </mat-form-field>
+
+          <mat-form-field class="full-width">
+            <input formControlName="eCenaOption4" type="number" min="0" max="250" matInput placeholder=">250">
+          </mat-form-field>
+
+        </div>
+
+        <mat-form-field class="full-width">
+          <textarea formControlName="eComments" matInput placeholder="Comentarios"></textarea>
         </mat-form-field>
-
-        <mat-form-field class="example-full-width">
-          <input type="number" min="0" max="250" matInput placeholder="81-160">
-        </mat-form-field>
-
-        <mat-form-field class="example-full-width">
-          <input type="number" min="0" max="250" matInput placeholder="161-250">
-        </mat-form-field>
-
-        <mat-form-field class="example-full-width">
-          <input type="number" min="0" max="250" matInput placeholder=">250">
-        </mat-form-field>
-
       </div>
 
-      <div class="form-row">
-        <p>Almuerzo</p>
+      <div *ngIf="valueChecked === '2'" class="form-2">
+        <div class="form-row">
+          <p>Ratios</p>
 
-        <mat-form-field class="example-full-width">
-          <input type="number" min="0" max="250" matInput placeholder="<80">
+          <mat-form-field class="full-width">
+            <input formControlName="rDesayunoOption" matInput placeholder="Desayuno">
+          </mat-form-field>
+
+          <mat-form-field class="full-width">
+            <input formControlName="rAlmuerzoOption" matInput placeholder="Almuerzo">
+          </mat-form-field>
+
+          <mat-form-field class="full-width">
+            <input formControlName="rCenaOption" matInput placeholder="Cena">
+          </mat-form-field>
+
+        </div>
+
+        <mat-form-field class="full-width">
+          <textarea formControlName="rFactor" matInput placeholder="Factor de correción"></textarea>
         </mat-form-field>
 
-        <mat-form-field class="example-full-width">
-          <input type="number" min="0" max="250" matInput placeholder="81-160">
+        <mat-form-field class="full-width">
+          <textarea formControlName="rComments" matInput placeholder="Comentarios"></textarea>
         </mat-form-field>
-
-        <mat-form-field class="example-full-width">
-          <input type="number" min="0" max="250" matInput placeholder="161-250">
-        </mat-form-field>
-
-        <mat-form-field class="example-full-width">
-          <input type="number" min="0" max="250" matInput placeholder=">250">
-        </mat-form-field>
-
       </div>
-
-      <div class="form-row">
-        <p>Cena</p>
-
-        <mat-form-field class="example-full-width">
-          <input type="number" min="0" max="250" matInput placeholder="<80">
-        </mat-form-field>
-
-        <mat-form-field class="example-full-width">
-          <input type="number" min="0" max="250" matInput placeholder="81-160">
-        </mat-form-field>
-
-        <mat-form-field class="example-full-width">
-          <input type="number" min="0" max="250" matInput placeholder="161-250">
-        </mat-form-field>
-
-        <mat-form-field class="example-full-width">
-          <input type="number" min="0" max="250" matInput placeholder=">250">
-        </mat-form-field>
-
+      <div class="button-row">
+        <button (click)="goBack($event)" mat-raised-button color="primary">Anterior</button>
+        <button [disabled]="!esquemaForm.valid" (click)="next($event)" mat-raised-button color="primary">Siguiente</button>
       </div>
-
-      <mat-form-field class="full-width">
-        <textarea matInput placeholder="Comentarios"></textarea>
-      </mat-form-field>
-    </div>
-
-    <div *ngIf="valueChecked === '2'" class="form-2">
-      <div class="form-row">
-        <p>Ratios</p>
-
-        <mat-form-field class="example-full-width">
-          <input matInput placeholder="Desayuno">
-        </mat-form-field>
-
-        <mat-form-field class="example-full-width">
-          <input matInput placeholder="Almuerzo">
-        </mat-form-field>
-
-        <mat-form-field class="example-full-width">
-          <input matInput placeholder="Cena">
-        </mat-form-field>
-
-      </div>
-
-      <mat-form-field class="full-width">
-        <textarea matInput placeholder="Factor de correción"></textarea>
-      </mat-form-field>
-
-      <mat-form-field class="full-width">
-        <textarea matInput placeholder="Comentarios"></textarea>
-      </mat-form-field>
-    </div>
-    <div class="button-row">
-      <button mat-raised-button color="primary">Anterior</button>
-      <button mat-raised-button color="primary">Siguiente</button>
-    </div>
+    </form>
   </div>
