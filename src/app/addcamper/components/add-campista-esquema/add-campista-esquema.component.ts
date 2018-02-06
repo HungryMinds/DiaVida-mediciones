@@ -1,11 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import {
-  FormControl,
-  FormBuilder,
-  FormGroup,
-  Validators
-} from '@angular/forms';
+import { FormControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-add-campista-esquema',
@@ -26,7 +22,8 @@ export class AddCampistaEsquemaComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private _location: Location
   ) {
     this.title = 'Agregar Campista';
     this.subtitle = 'Esquema De Insulina';
@@ -63,6 +60,32 @@ export class AddCampistaEsquemaComponent implements OnInit {
 
   next(event) {
     event.preventDefault();
+    this.camper = {
+      ...this.camper,
+      insulinSchemeInterval: {
+        comments: this.esquemaForm.value.rComments || this.esquemaForm.value.eComments,
+        '<80': {
+          Breakfast: this.esquemaForm.value.eDesayudoOption1 || this.esquemaForm.value.rDesayunoOption,
+          Lunch: this.esquemaForm.value.eAlmuerzoOption1,
+          Diner: this.esquemaForm.value.eCenaOption1
+        },
+        '81-160': {
+          Breakfast: this.esquemaForm.value.eDesayudoOption2,
+          Lunch: this.esquemaForm.value.eAlmuerzoOption2 || this.esquemaForm.value.rAlmuerzoOption,
+          Diner: this.esquemaForm.value.eCenaOption2
+        },
+        '161-250': {
+          Breakfast: this.esquemaForm.value.eDesayudoOption3,
+          Lunch: this.esquemaForm.value.eAlmuerzoOption3,
+          Diner: this.esquemaForm.value.eCenaOption3 || this.esquemaForm.value.rCenaOption
+        },
+        '>250': {
+          Breakfast: this.esquemaForm.value.eDesayudoOption4,
+          Lunch: this.esquemaForm.value.eAlmuerzoOption4,
+          Diner: this.esquemaForm.value.eCenaOption4
+        }
+      }
+    };
     this.camper = { ...this.camper, ...this.esquemaForm.value };
     // Navigate to the next view
     this.router.navigate([this.url + this.nextUrl, this.camper]);
@@ -70,6 +93,7 @@ export class AddCampistaEsquemaComponent implements OnInit {
 
   goBack(event) {
     event.preventDefault();
+    this._location.back();
   }
 
   ngOnInit() {

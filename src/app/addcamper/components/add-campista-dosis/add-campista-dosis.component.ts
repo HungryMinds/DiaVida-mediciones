@@ -46,7 +46,7 @@ export class AddCampistaDosisComponent implements OnInit {
       ...this.camper,
       basalInsulin: {
         'first-application': {
-          dosage: this.dosisForm.value.dosis,
+          dosage: this.dosisForm.value.dosage,
           time: '2018-02-06T01:30:00.000Z'
         },
         'second-application': {
