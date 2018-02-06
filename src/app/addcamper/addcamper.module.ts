@@ -1,7 +1,3 @@
-/* ••••••••••••••••••••••••••••••••••••••••••• */
-/* ••               IMPORTS                 •• */
-/* ••••••••••••••••••••••••••••••••••••••••••• */
-
 // Platform Imports
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -28,6 +24,7 @@ import {
   AddCampistaFoodComponent,
   AddCampistaEsquemaComponent
 } from './components';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   imports: [
@@ -41,21 +38,16 @@ import {
     MatSelectModule,
     MatSlideToggleModule,
     MatRadioModule,
+    SharedModule,
     AddCamperRoutingModule
   ],
   declarations: [
-    NavBarComponent,
     AddCampistaComponent,
     AddCampistaDosisComponent,
     AddCampistaEsquemaComponent,
     AddCampistaFoodComponent
   ],
   providers: [CampistService],
-  exports: [
-    AddCampistaComponent,
-    AddCampistaDosisComponent,
-    AddCampistaEsquemaComponent,
-    AddCampistaFoodComponent
-  ]
+  exports: [AddCampistaComponent, AddCampistaDosisComponent, AddCampistaEsquemaComponent, AddCampistaFoodComponent]
 })
 export class AddCamperModule {}
