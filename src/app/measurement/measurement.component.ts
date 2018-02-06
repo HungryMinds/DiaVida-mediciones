@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LogMeditionService, LogMedition, FoodTime } from '../core'
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-measurement',
@@ -11,19 +11,23 @@ import { Router } from '@angular/router';
 export class MeasurementComponent implements OnInit {
 
   foods = Object.entries(FoodTime)
+  id
 
   public form: FormGroup;
 
   title: string;
   subtitle: string;
 
-  constructor(private fb: FormBuilder, private LogMS: LogMeditionService, private router: Router) {
+  constructor(private fb: FormBuilder, private LogMS: LogMeditionService, private router: Router, private route: ActivatedRoute) {
     this.title = 'Agregar Inyección';
     this.subtitle = 'Detalles';
     this.createForm()
   }
 
   ngOnInit() {
+    this.route.params.subscribe(params => {
+      this.id = params['id'];
+    });
   }
 
   createForm() {

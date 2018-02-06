@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LogFoodService, inyectionType } from '../core'
 import { LogFood, Campist, Snack } from '../core'
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 
 @Component({
@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
 })
 export class FoodComponent implements OnInit {
 
+  id
   foods = Object.entries(Snack)
 
   public form: FormGroup;
@@ -19,13 +20,16 @@ export class FoodComponent implements OnInit {
   title: string;
   subtitle: string;
 
-  constructor(private fb: FormBuilder, private LogIS: LogFoodService, private router: Router) {
+  constructor(private fb: FormBuilder, private LogIS: LogFoodService, private router: Router, private route: ActivatedRoute) {
     this.title = 'Agregar Comida Extra';
     this.subtitle = 'Detalles';
     this.createForm()
   }
 
   ngOnInit() {
+    this.route.params.subscribe(params => {
+      this.id = params['id'];
+    });
   }
 
   createForm() {
@@ -49,7 +53,7 @@ export class FoodComponent implements OnInit {
     }
     console.log(objToSend)
     //TODO  Use current campist id
-    this.LogIS.addLogFood(new LogFood(objToSend), 'B9BpyzwCwL4KEXVmRPi4')
+    this.LogIS.addLogFood(new LogFood(objToSend), this.id)
     //TODO  Redirect to current campist id
     this.router.navigate(['/listado']);
   }

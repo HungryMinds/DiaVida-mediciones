@@ -3,7 +3,7 @@ import { FormControl, FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { LogInjectionService, inyectionType } from '../core'
 import { LogInjection } from '../core'
 import { Campist } from '../core'
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute} from '@angular/router';
 
 
 @Component({
@@ -14,17 +14,21 @@ import { Router } from '@angular/router';
 export class InjectionComponent implements OnInit {
 
   public form: FormGroup;
+  id
 
   title: string;
   subtitle: string;
 
-  constructor(private fb: FormBuilder, private LogIS: LogInjectionService, private router: Router) {
+  constructor(private fb: FormBuilder, private LogIS: LogInjectionService, private router: Router, private route : ActivatedRoute) {
     this.title = 'Agregar Inyección';
     this.subtitle = 'Detalles';
     this.createForm()
   }
 
   ngOnInit() {
+    this.route.params.subscribe(params => {
+      this.id = params['id'];
+    });
   }
 
   createForm() {
@@ -44,11 +48,12 @@ export class InjectionComponent implements OnInit {
       date: new Date(this.form.value.date + ' ' + this.form.value.time),
       value: this.form.value.value,
       description: this.form.value.description,
-      type: this.form.value.injectionType
+      type: this.form.value.injectionType,
+      moment : this.form.value
     }
     console.log(objToSend)
     //TODO  Use current campist id
-    this.LogIS.addLogInjection(new LogInjection(objToSend), 'B9BpyzwCwL4KEXVmRPi4')
+    this.LogIS.addLogInjection(new LogInjection(objToSend), this.id)
     //TODO  Redirect to current campist id
     this.router.navigate(['/listado']);
   }

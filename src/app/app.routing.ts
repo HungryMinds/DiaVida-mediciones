@@ -17,9 +17,9 @@ const appRoutes = [
   { path: 'auth', loadChildren: 'app/auth/auth.module#AuthModule' },
   { path: 'camper', loadChildren: 'app/addcamper/addcamper.module#AddCamperModule' },
   { path: 'injection', component: InjectionComponent },
-  { path: 'food', component: FoodComponent },
-  { path: 'camperDetail', component: CamperdetailComponent },
-  { path: 'measurement', component: MeasurementComponent },
+  { path: 'food/:id', component: FoodComponent },
+  { path: 'camperDetail/:id', component: CamperdetailComponent },
+  { path: 'measurement/:id', component: MeasurementComponent },
 
   { path: '**', component: NotfoundComponent },
 
