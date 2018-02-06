@@ -136,7 +136,7 @@ export class AddCampistaFoodComponent implements OnInit {
         newCamper[item] = JSON.parse(newCamper[item]);
       }
     });
-    console.log(newCamper);
+
     this.campistService.addCampist(newCamper);
     // Navigate to the next view
     this.router.navigate([this.url + this.nextUrl]);
