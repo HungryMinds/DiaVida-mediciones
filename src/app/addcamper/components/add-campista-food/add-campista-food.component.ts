@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CampistService } from '../../../core/services/campist.service';
-import { Campist } from '../../../core/services/models/campist.class';
 import { Location } from '@angular/common';
 
 @Component({
@@ -127,10 +126,9 @@ export class AddCampistaFoodComponent implements OnInit {
       }
     };
     this.camper = { ...this.camper };
+
     // Save the data to database
-    const newCamper = new Campist(this.camper);
-    debugger;
-    this.campistService.addCampist(newCamper);
+    this.campistService.addCampist(this.camper);
     // Navigate to the next view
     this.router.navigate([this.url + this.nextUrl, this.camper]);
   }

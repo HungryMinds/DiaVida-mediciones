@@ -81,15 +81,7 @@ export class AddCampistaEsquemaComponent implements OnInit {
       rComments
     } = this.esquemaForm.value;
 
-    this.camper = {
-      ...this.camper,
-      insulinSchemeRatio: {
-        Breakfast: rDesayunoOption,
-        Lunch: rAlmuerzoOption,
-        Diner: rCenaOption,
-        correctionFactor: rFactor,
-        comment: rComments
-      },
+    const schemeInterval = {
       insulinSchemeInterval: {
         comments: eComments,
         '<80': {
@@ -113,6 +105,23 @@ export class AddCampistaEsquemaComponent implements OnInit {
           Diner: eCenaOption4
         }
       }
+    };
+
+    const schemeRatio = {
+      insulinSchemeRatio: {
+        Breakfast: rDesayunoOption,
+        Lunch: rAlmuerzoOption,
+        Diner: rCenaOption,
+        correctionFactor: rFactor,
+        comment: rComments
+      }
+    };
+
+    const schema = this.valueChecked === '1' ? schemeInterval : schemeRatio;
+
+    this.camper = {
+      ...this.camper,
+      ...schema
     };
     this.camper = { ...this.camper };
     // Navigate to the next view
