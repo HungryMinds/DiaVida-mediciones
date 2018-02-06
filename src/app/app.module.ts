@@ -11,6 +11,9 @@ import {
   MatFormFieldModule,
   MatSelectModule,
   MatButtonModule,
+  MatCardModule,
+  MatTabsModule,
+  MatExpansionModule,
   MatTableModule,
   MatRadioModule
 } from '@angular/material';
@@ -21,6 +24,8 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { NgcFloatButtonModule } from 'ngc-float-button';
+import { CamperdetailComponent } from './camperdetail/camperdetail.component';
+
 import { CoreModule } from './core';
 import { InjectionComponent } from './injection/injection.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -35,7 +40,8 @@ import { FoodComponent } from './food/food.component';
     NotfoundComponent,
     InjectionComponent,
     CampersListComponent,
-    FoodComponent
+    FoodComponent,
+    CamperdetailComponent
   ],
 
   imports: [
@@ -59,6 +65,9 @@ import { FoodComponent } from './food/food.component';
     MatFormFieldModule,
     MatSelectModule,
     MatButtonModule,
+    MatCardModule,
+    MatExpansionModule,
+    MatTabsModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule

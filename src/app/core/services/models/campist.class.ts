@@ -1,9 +1,92 @@
-import {
-  InsulinSchemeInterval,
-  InsulinSchemeRatio
-} from './insulin-scheme.types';
-import { BasalInsulin } from './basal-insulin.class';
-import { FoodTable } from './food.class';
+const TESTOBJ = {
+  names: 'test',
+  lastNames: 'lastName',
+  age: 22,
+  team: 'Morado',
+  allergies: 'test',
+  medications: 'test',
+
+  foodTable: {
+    fruta: {
+      Breakfast: 10,
+      MorningSnack: 10,
+      Lunch: 10,
+      AfternoonSnack: 10,
+      Diner: 10,
+      BeforeSleep: 10
+    },
+    lac: {
+      Breakfast: 10,
+      MorningSnack: 10,
+      Lunch: 10,
+      AfternoonSnack: 10,
+      Diner: 10,
+      BeforeSleep: 10
+    },
+    carb: {
+      Breakfast: 10,
+      MorningSnack: 10,
+      Lunch: 10,
+      AfternoonSnack: 10,
+      Diner: 10,
+      BeforeSleep: 10
+    },
+    lact: {
+      Breakfast: 10,
+      MorningSnack: 10,
+      Lunch: 10,
+      AfternoonSnack: 10,
+      Diner: 10,
+      BeforeSleep: 10
+    }
+  },
+
+  basalInsulin: {
+    // This value cold be null
+    'first-application': {
+      doses: '10',
+      date: '2018-02-06T01:30:00.000Z'
+    },
+    // This value cold be null
+    'second-application': {
+      doses: '10',
+      date: '2018-02-06T01:30:00.000Z'
+    }
+  },
+
+  insulinSchemeRatio: {
+    Breakfast: 10,
+    Lunch: 10,
+    Diner: 10,
+    correctionFactor: '',
+    comment: ''
+  },
+
+  insulinSchemeInterval: {
+    comment: 'Coment Test',
+
+    '<80': {
+      Breakfast: 10,
+      Lunch: 10,
+      Diner: 10
+    },
+    '81-160': {
+      Breakfast: 10,
+      Lunch: 10,
+      Diner: 10
+    },
+    '161-250': {
+      Breakfast: 10,
+      Lunch: 10,
+      Diner: 10
+    },
+    '>250': {
+      Breakfast: 10,
+      Lunch: 10,
+      Diner: 10
+    }
+  }
+};
 
 export class Campist {
   id: string;
@@ -13,27 +96,22 @@ export class Campist {
   team: string;
   allergies: string;
   medications: string;
-  insulinSchemeInterval: InsulinSchemeInterval;
-  insulinSchemeRatio: InsulinSchemeRatio;
-  basalInsulin: BasalInsulin[];
-  foodTable: FoodTable[];
+  insulinSchemeInterval: any;
+  insulinSchemeRatio: any;
+  basalInsulin: any;
+  foodTable: any;
 
   constructor(campRO: any) {
-    this.id = campRO.id;
     this.names = campRO.names;
     this.lastNames = campRO.lastNames;
     this.age = campRO.age;
     this.team = campRO.team;
     this.allergies = campRO.allergies;
     this.medications = campRO.medications;
-    this.insulinSchemeInterval = new InsulinSchemeInterval(
-      campRO.insulinSchemeInterval
-    );
-    this.insulinSchemeRatio = new InsulinSchemeRatio(campRO.insulinSchemeRatio);
-    this.basalInsulin = campRO.basalInsulin.map(
-      basal => new BasalInsulin(basal)
-    );
-    this.foodTable = campRO.foodTable.map(ft => new FoodTable(ft));
+    this.insulinSchemeInterval = campRO.insulinSchemeInterval;
+    this.insulinSchemeRatio = campRO.insulinSchemeRatio;
+    this.basalInsulin = campRO.basalInsulin;
+    this.foodTable = campRO.foodTable;
   }
 }
 
