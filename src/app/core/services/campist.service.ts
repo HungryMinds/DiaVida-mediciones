@@ -30,7 +30,7 @@ export class CampistService {
   }
 
   addCampist(_campist: Campist) {
-    this.campistsCollection.add(_campist);
+    this.campistsCollection.add((JSON.parse(JSON.stringify(_campist))))
   }
 
   deleteCampist(_campist: Campist) {

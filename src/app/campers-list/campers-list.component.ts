@@ -4,7 +4,7 @@ import { Team } from '../core/services/models/team.enum';
 import { CampistService } from '../core/services/campist.service';
 import { OnInit, OnDestroy } from '@angular/core/src/metadata/lifecycle_hooks';
 import { Router } from '@angular/router';
-
+import { Campist } from '../core'
 @Component({
   selector: 'app-campers-list',
   templateUrl: './campers-list.component.html',
