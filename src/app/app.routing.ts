@@ -16,10 +16,10 @@ const appRoutes = [
   { path: 'listado', component: CampersListComponent },
   { path: 'auth', loadChildren: 'app/auth/auth.module#AuthModule' },
   { path: 'camper', loadChildren: 'app/addcamper/addcamper.module#AddCamperModule' },
-  { path: 'injection', component: InjectionComponent },
-  { path: 'food/:id', component: FoodComponent },
+  { path: 'camperDetail/:id/injection', component: InjectionComponent },
+  { path: 'camperDetail/:id/food', component: FoodComponent },
   { path: 'camperDetail/:id', component: CamperdetailComponent },
-  { path: 'measurement/:id', component: MeasurementComponent },
+  { path: 'camperDetail/:id/measurement', component: MeasurementComponent },
 
   { path: '**', component: NotfoundComponent },
 

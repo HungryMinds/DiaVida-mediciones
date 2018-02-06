@@ -52,7 +52,7 @@ export class MeasurementComponent implements OnInit {
     //TODO  Use current campist id
     this.LogMS.addLogMedition(new LogMedition(objToSend), 'B9BpyzwCwL4KEXVmRPi4')
     //TODO  Redirect to current campist id
-    this.router.navigate(['/listado']);
+    this.router.navigate(['/camperDetail/'+this.id]);
   }
 
   currentDate() {
