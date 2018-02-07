@@ -38,7 +38,7 @@ export class AddCampistaComponent implements OnInit {
     event.preventDefault();
     this.camper = { ...this.basicsForm.value };
     // Navigate to the next view
-    this.router.navigate([this.url + this.nextUrl, this.camper]);
+    this.router.navigate([this.url + this.nextUrl, ...this.camper]);
   }
 
   goBack(event) {

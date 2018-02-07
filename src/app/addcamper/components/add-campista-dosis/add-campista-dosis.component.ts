@@ -2,6 +2,7 @@ import { BasalInsulin } from './../../../core/services/models/basal-insulin.clas
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-add-campista',
@@ -20,7 +21,12 @@ export class AddCampistaDosisComponent implements OnInit {
   public dosisForm: FormGroup;
   camper: any;
 
-  constructor(private fb: FormBuilder, private route: ActivatedRoute, private router: Router) {
+  constructor(
+    private fb: FormBuilder,
+    private route: ActivatedRoute,
+    private router: Router,
+    private _location: Location
+  ) {
     this.title = 'Agregar Campista';
     this.subtitle = 'Dosis Basal';
 
@@ -31,8 +37,10 @@ export class AddCampistaDosisComponent implements OnInit {
     this.dosisForm = this.fb.group({
       time: [''],
       dosage: [''],
-      'second-time': [''],
-      'second-dosis': ['']
+      'second-ftime': [''],
+      'second-fdosage': [''],
+      'second-stime': [''],
+      'second-sdosage': ['']
     });
   }
 
@@ -42,26 +50,37 @@ export class AddCampistaDosisComponent implements OnInit {
 
   next(event) {
     event.preventDefault();
-    this.camper = {
-      ...this.camper,
-      basalInsulin: {
-        'first-application': {
-          dosage: this.dosisForm.value.dosis,
-          time: '2018-02-06T01:30:00.000Z'
-        },
-        'second-application': {
-          dosage: this.dosisForm.value['second-time'],
-          date: this.dosisForm.value['second-dosis']
-        }
+
+    const fBasal = {
+      'first-application': {
+        dosage: this.dosisForm.value.dosage,
+        time: this.dosisForm.value.time
       }
     };
-    this.camper = { ...this.camper, ...this.dosisForm.value };
+
+    const sBasal = {
+      'first-application': {
+        dosage: this.dosisForm.value['second-fdosage'],
+        time: this.dosisForm.value['second-ftime']
+      },
+      'second-application': {
+        dosage: this.dosisForm.value['second-sdosage'],
+        time: this.dosisForm.value['second-stime']
+      }
+    };
+
+    const basalInsulin = !this.isChecked ? JSON.stringify(fBasal) : JSON.stringify(sBasal);
+
+    this.camper = { ...this.camper, basalInsulin };
+    this.camper = { ...this.camper };
+
     // Navigate to the next view
-    this.router.navigate([this.url + this.nextUrl, this.camper]);
+    this.router.navigate([this.url + this.nextUrl, ...this.camper]);
   }
 
   goBack(event) {
     event.preventDefault();
+    this._location.back();
   }
 
   ngOnInit() {
