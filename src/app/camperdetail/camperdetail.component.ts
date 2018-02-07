@@ -1,15 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 import { CampistService } from '../core';
-import { ActivatedRoute } from '@angular/router';
-import { Router } from '@angular/router';
-import { OnDestroy } from '@angular/core/src/metadata/lifecycle_hooks';
 
 @Component({
   selector: 'app-camperdetail',
   templateUrl: './camperdetail.component.html',
   styleUrls: ['./camperdetail.component.scss']
 })
-export class CamperdetailComponent implements OnInit, OnDestroy {
+  export class CamperdetailComponent implements OnInit, OnDestroy {
   private camperSubscription: any;
   private camper: any;
   id: string;
@@ -19,11 +17,12 @@ export class CamperdetailComponent implements OnInit, OnDestroy {
   errorButtonMessage: string;
   insulinMessage: string;
   errorButtonCheck: boolean;
-  insulinScheme1 = false;
+  insulinScheme1 = true;
   insulinScheme2 = false;
   needsBasalInsulin = true;
   insulinComment: string;
   userName: string;
+  camperId: string;
 
   constructor(
     private cs: CampistService,
@@ -65,5 +64,9 @@ export class CamperdetailComponent implements OnInit, OnDestroy {
       this.errorButtonMessage = 'ELIMINAR';
       this.errorButtonCheck = false;
     }
+  }
+  editCamper() {
+    // Navigate to the next view
+    this.router.navigate(['camper/edit/', this.camperId]);
   }
 }

@@ -25,7 +25,7 @@ export class AddCampistaComponent implements OnInit {
   createForm() {
     this.basicsForm = this.fb.group({
       names: ['', Validators.required],
-      lastnames: ['', Validators.required],
+      lastNames: ['', Validators.required],
       age: [''],
       weight: [''],
       team: [''],

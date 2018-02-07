@@ -8,14 +8,16 @@ import {
   AddCampistaComponent,
   AddCampistaDosisComponent,
   AddCampistaEsquemaComponent,
-  AddCampistaFoodComponent
+  AddCampistaFoodComponent,
+  EditCampistaComponent
 } from './components';
 
 const addCamperRoutes = [
   { path: 'add-camper', component: AddCampistaComponent },
   { path: 'add-camper/dosis', component: AddCampistaDosisComponent },
   { path: 'add-camper/esquema', component: AddCampistaEsquemaComponent },
-  { path: 'add-camper/food', component: AddCampistaFoodComponent }
+  { path: 'add-camper/food', component: AddCampistaFoodComponent },
+  { path: 'edit/:id', component: EditCampistaComponent }
 ];
 
 @NgModule({

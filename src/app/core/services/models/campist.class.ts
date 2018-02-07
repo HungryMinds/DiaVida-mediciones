@@ -1,3 +1,4 @@
+/*
 const TESTOBJ = {
   names: 'Actulizado',
   lastNames: 'Reciente',
@@ -5,7 +6,7 @@ const TESTOBJ = {
   team: 'Morado',
   allergies: 'test',
   medications: 'test',
-  weight: 10, 
+  weight: 10,
 
   foodTable: {
     fruta: {
@@ -88,6 +89,7 @@ const TESTOBJ = {
     }
   }
 };
+*/
 
 export class Campist {
   id: string;

@@ -187,7 +187,7 @@
               </mat-expansion-panel>
           </mat-accordion>
           <button mat-raised-button id="deleteCamperButton" color="warn" (click)="deleteCamper(camper.id)">{{errorButtonMessage}}</button>
-          <button mat-raised-button class="acceptButton">EDITAR</button>
+          <button (click)="editCamper()" mat-raised-button class="acceptButton">EDITAR</button>
       </div>
     </mat-tab>
     <mat-tab label="Diario">
