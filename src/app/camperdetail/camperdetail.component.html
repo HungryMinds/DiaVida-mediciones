@@ -1,5 +1,5 @@
-<div class="camperDetail">
-  <div class="fakeHeader"></div>
+<div class="camperDetail" >
+  <app-navbar class="app-navbar" [title]="userName"></app-navbar>
   <mat-tab-group *ngIf="camper" class="camperDetailTabs">
     <mat-tab label="Información General">
       <div class="topData">
@@ -80,7 +80,7 @@
                     <p class="inlineValue">{{this.camper.insulinSchemeRatio.correctionFactor}}</p>
                   </div>
                 </div>
-                <div>
+                <div *ngIf="camper.insulinSchemeInterval">
                   <p>Comentarios</p>
                   <p>{{camper.insulinSchemeInterval.comment}}</p>
                 </div>
@@ -127,7 +127,7 @@
                   <p>{{basalInsulin}}</p>
                 </div>
               </mat-expansion-panel>
-              <mat-expansion-panel class="lastExpansion">
+              <mat-expansion-panel class="lastExpansion" *ngIf="camper.foodTable && camper.foodTable">
                 <mat-expansion-panel-header>
                   <mat-panel-title class="dropTitle">
                     Porciones de alimentos
@@ -141,7 +141,7 @@
                       <th>Fruta</th>
                       <th>Láct</th>
                     </tr>
-                    <tr>
+                    <tr *ngIf="camper.foodTable.carb">
                       <th class="first-colum">Desayuno</th>
                       <td>{{camper.foodTable.carb.Breakfast}}</td>
                       <td>{{camper.foodTable.prot.Breakfast}}</td>
@@ -186,7 +186,7 @@
                   </table>
               </mat-expansion-panel>
           </mat-accordion>
-          <button mat-raised-button id="deleteCamperButton" color="warn" (click)="deleteCamper()">{{errorButtonMessage}}</button>
+          <button mat-raised-button id="deleteCamperButton" color="warn" (click)="deleteCamper(camper.id)">{{errorButtonMessage}}</button>
           <button mat-raised-button class="acceptButton">EDITAR</button>
       </div>
     </mat-tab>

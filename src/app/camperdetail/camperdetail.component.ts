@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CampistService } from '../core'
 import { ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-camperdetail',
@@ -21,8 +22,9 @@ export class CamperdetailComponent implements OnInit {
   insulinScheme2: boolean = false
   needsBasalInsulin: boolean = true
   insulinComment: string
+  userName: string
 
-  constructor(private cs: CampistService, private route: ActivatedRoute) {
+  constructor(private cs: CampistService, private route: ActivatedRoute,  private router: Router) {
     this.aditionalMedication = 'Beclometasona en inhalador';
     this.allergies = 'Abejas, queso y mariscos';
     this.basalInsulin = 'No necesita insulina basal';
@@ -37,6 +39,7 @@ export class CamperdetailComponent implements OnInit {
 
        this.cs.getSingleCampist(this.id).subscribe(x => {
         this.camper = x;
+        this.userName = x.names + ' ' + x.lastNames
         console.log(this.camper);
       })
     });
@@ -46,17 +49,14 @@ export class CamperdetailComponent implements OnInit {
     this.camperSubscription.unsubscribe();
   }
 
-  getCamper(id) {
-    console.log('camper');
-  }
-
   deleteCamper(id) {
     if (!this.errorButtonCheck) {
       this.errorButtonMessage = 'ELIMINAR EL CAMPISTA';
       // TODO: Por ahora lo quita para probar      
       this.errorButtonCheck = true;
     } else {
-      console.log('Delete camper Function!')
+      this.cs.deleteCampist(id)
+      this.router.navigate(['/listado']);
       // TODO: Por ahora lo quita para probar
       this.errorButtonMessage = 'ELIMINAR';
       this.errorButtonCheck = false;
