@@ -1,10 +1,10 @@
-<div class="camperDetail">
-  <div class="fakeHeader"></div>
-  <mat-tab-group class="camperDetailTabs">
+<div class="camperDetail" >
+  <app-navbar class="app-navbar" [title]="userName"></app-navbar>
+  <mat-tab-group *ngIf="camper" class="camperDetailTabs">
     <mat-tab label="Información General">
       <div class="topData">
         <div class="topDataColumn">
-          <p class="topDataColumValue">10</p>
+          <p class="topDataColumValue">{{camper.age}}</p>
           <p class="topDataColumLabel">años</p>
         </div>
         <div class="topDataColumn">
@@ -12,7 +12,7 @@
           <p class="topDataColumLabel">kilos</p>
         </div>
         <div class="topDataColumn">
-          <p class="topDataColumValue">Morado</p>
+          <p class="topDataColumValue">{{camper.team}}</p>
           <p class="topDataColumLabel">Equipo</p>
         </div>
       </div>
@@ -24,7 +24,7 @@
                     Esquema de insulina
                   </mat-panel-title>
                 </mat-expansion-panel-header>
-                <div *ngIf="insulinScheme1" style="border-bottom: 1px solid #979797;padding-bottom: 2em;">
+                <div *ngIf="camper.insulinSchemeInterval != null" style="border-bottom: 1px solid #979797;padding-bottom: 2em;">
                   <table style="width:100%;">
                     <tr style="text-align:right">
                       <th></th>
@@ -33,54 +33,56 @@
                       <th>Cena</th>
                     </tr>
                     <tr style="text-align:right">
-                      <td><80</td>
-                      <td>10</td>
-                      <td>10</td>
-                      <td>10</td>
+                      <th><80</th>
+                      <td>{{this.camper.insulinSchemeInterval["<80"].Breakfast}}</td>
+                      <td>{{this.camper.insulinSchemeInterval["<80"].Diner}}</td>
+                      <td>{{this.camper.insulinSchemeInterval["<80"].Lunch}}</td>
                     </tr>
                     <tr style="text-align:right">
-                      <td>81-160</td>
-                      <td>10</td>
-                      <td>10</td>
-                      <td>10</td>
+                      <th>81-160</th>
+                      <td>{{this.camper.insulinSchemeInterval["81-160"].Breakfast}}</td>
+                      <td>{{this.camper.insulinSchemeInterval["81-160"].Diner}}</td>
+                      <td>{{this.camper.insulinSchemeInterval["81-160"].Lunch}}</td>
                     </tr>
                     <tr style="text-align:right">
-                      <td>161-250</td>
-                      <td>10</td>
-                      <td>10</td>
-                      <td>10</td>
+                      <th>161-250</th>
+                      <td>{{this.camper.insulinSchemeInterval["161-250"].Breakfast}}</td>
+                      <td>{{this.camper.insulinSchemeInterval["161-250"].Diner}}</td>
+                      <td>{{this.camper.insulinSchemeInterval["161-250"].Lunch}}</td>
                     </tr>
                     <tr style="text-align:right">
-                      <td>>250</td>
-                      <td>10</td>
-                      <td>10</td>
-                      <td>10</td>
+                      <th>>250</th>
+                      <td>{{this.camper.insulinSchemeInterval[">250"].Breakfast}}</td>
+                      <td>{{this.camper.insulinSchemeInterval[">250"].Diner}}</td>
+                      <td>{{this.camper.insulinSchemeInterval[">250"].Lunch}}</td>
                     </tr>
                   </table>
                 </div>
-                <div *ngIf="insulinScheme2" style="border-bottom: 1px solid #979797;padding-bottom: 2em;">
-                  <table style="width:100%;border-bottom: 1px solid #979797;">
-                    <tr style="text-align:right">
-                      <th></th>
-                      <th>Desayuno</th>
-                      <th>Almuerzo</th>
-                      <th>Cena</th>
-                    </tr>
-                    <tr style="text-align:right">
-                      <td>Ratio</td>
-                      <td>10</td>
-                      <td>10</td>
-                      <td>10</td>
-                    </tr>
-                  </table>
+                <div *ngIf="camper.insulinSchemeRatio != null">
+                  <div class="insulinScheme">
+                    <table>
+                        <tr style="text-align:right">
+                          <th></th>
+                          <th>Desayuno</th>
+                          <th>Almuerzo</th>
+                          <th>Cena</th>
+                        </tr>
+                        <tr style="text-align:right">
+                          <th>Ratio</th>
+                          <td>{{this.camper.insulinSchemeRatio.Breakfast}}</td>
+                          <td>{{this.camper.insulinSchemeRatio.Lunch}}</td>
+                          <td>{{this.camper.insulinSchemeRatio.Diner}}</td>
+                        </tr>
+                      </table>
+                  </div>
                   <div>
-                    <p>Factor de correción</p>
-                    <p>10</p>
+                    <p class="inlineLabel">Factor de correción</p>
+                    <p class="inlineValue">{{this.camper.insulinSchemeRatio.correctionFactor}}</p>
                   </div>
                 </div>
-                <div>
+                <div *ngIf="camper.insulinSchemeInterval">
                   <p>Comentarios</p>
-                  <p>{{insulinComment}}</p>
+                  <p>{{camper.insulinSchemeInterval.comment}}</p>
                 </div>
               </mat-expansion-panel>
               <mat-expansion-panel>
@@ -89,7 +91,7 @@
                     Medicamentos Adicionales
                   </mat-panel-title>
                 </mat-expansion-panel-header>
-                <p>{{aditionalMedication}}</p>
+                <p>{{camper.medications}}</p>
               </mat-expansion-panel>
               <mat-expansion-panel>
                 <mat-expansion-panel-header>
@@ -97,7 +99,7 @@
                     Alergias
                   </mat-panel-title>
                 </mat-expansion-panel-header>
-                <p>{{allergies}}</p>
+                <p>{{camper.allergies}}</p>
               </mat-expansion-panel>
               <mat-expansion-panel>
                 <mat-expansion-panel-header>
@@ -105,27 +107,27 @@
                     Insulina Basal
                   </mat-panel-title>
                 </mat-expansion-panel-header>
-                <div *ngIf="needsBasalInsulin">
-                  <table style="width:100%;">
+                <div *ngIf="camper.basalInsulin != null">
+                  <table>
                     <tr style="text-align:right">
-                      <th></th>
-                      <th>Desayuno</th>
-                      <th>Almuerzo</th>
-                      <th>Cena</th>
+                      <th>Hora</th>
+                      <th>Dosis</th>
                     </tr>
-                    <tr style="text-align:right">
-                      <td>Ratio</td>
-                      <td>10</td>
-                      <td>10</td>
-                      <td>10</td>
+                    <tr style="text-align:right" *ngIf="camper.basalInsulin['first-application'] != null">
+                      <td>{{camper.basalInsulin["first-application"].date}}</td>
+                      <td>{{camper.basalInsulin["first-application"].doses}}</td>
+                    </tr>
+                    <tr style="text-align:right" *ngIf="camper.basalInsulin['second-application'] != null">
+                      <td>{{camper.basalInsulin["second-application"].date}}</td>
+                      <td>{{camper.basalInsulin["second-application"].doses}}</td>
                     </tr>
                   </table>
                 </div>
-                <div *ngIf="!needsBasalInsulin">
+                <div *ngIf="camper.basalInsulin == null">
                   <p>{{basalInsulin}}</p>
                 </div>
               </mat-expansion-panel>
-              <mat-expansion-panel class="lastExpansion">
+              <mat-expansion-panel class="lastExpansion" *ngIf="camper.foodTable && camper.foodTable">
                 <mat-expansion-panel-header>
                   <mat-panel-title class="dropTitle">
                     Porciones de alimentos
@@ -139,24 +141,52 @@
                       <th>Fruta</th>
                       <th>Láct</th>
                     </tr>
-                    <tr>
+                    <tr *ngIf="camper.foodTable.carb">
                       <th class="first-colum">Desayuno</th>
-                      <td>10</td>
-                      <td>10</td>
-                      <td>10</td>
-                      <td>10</td>
+                      <td>{{camper.foodTable.carb.Breakfast}}</td>
+                      <td>{{camper.foodTable.prot.Breakfast}}</td>
+                      <td>{{camper.foodTable.fruta.Breakfast}}</td>
+                      <td>{{camper.foodTable.lact.Breakfast}}</td>
                     </tr>
                     <tr>
                       <th class="first-colum">Merienda</th>
-                      <td>10</td>
-                      <td>10</td>
-                      <td>10</td>
-                      <td>10</td>
+                      <td>{{camper.foodTable.carb.MorningSnack}}</td>
+                      <td>{{camper.foodTable.prot.MorningSnack}}</td>
+                      <td>{{camper.foodTable.fruta.MorningSnack}}</td>
+                      <td>{{camper.foodTable.lact.MorningSnack}}</td>
+                    </tr>
+                    <tr>
+                      <th class="first-colum">Almuerzo</th>
+                      <td>{{camper.foodTable.carb.Lunch}}</td>
+                      <td>{{camper.foodTable.prot.Lunch}}</td>
+                      <td>{{camper.foodTable.fruta.Lunch}}</td>
+                      <td>{{camper.foodTable.lact.Lunch}}</td>
+                    </tr>
+                    <tr>
+                      <th class="first-colum">Merienda</th>
+                      <td>{{camper.foodTable.carb.AfternoonSnack}}</td>
+                      <td>{{camper.foodTable.prot.AfternoonSnack}}</td>
+                      <td>{{camper.foodTable.fruta.AfternoonSnack}}</td>
+                      <td>{{camper.foodTable.lact.AfternoonSnack}}</td>
+                    </tr>
+                    <tr>
+                      <th class="first-colum">Cena</th>
+                      <td>{{camper.foodTable.carb.Diner}}</td>
+                      <td>{{camper.foodTable.prot.Diner}}</td>
+                      <td>{{camper.foodTable.fruta.Diner}}</td>
+                      <td>{{camper.foodTable.lact.Diner}}</td>
+                    </tr>
+                    <tr>
+                      <th class="first-colum">Merienda</th>
+                      <td>{{camper.foodTable.carb.BeforeSleep}}</td>
+                      <td>{{camper.foodTable.prot.BeforeSleep}}</td>
+                      <td>{{camper.foodTable.fruta.BeforeSleep}}</td>
+                      <td>{{camper.foodTable.lact.BeforeSleep}}</td>
                     </tr>
                   </table>
               </mat-expansion-panel>
           </mat-accordion>
-          <button mat-raised-button id="deleteCamperButton" color="warn" (click)="deleteCamper()">{{errorButtonMessage}}</button>
+          <button mat-raised-button id="deleteCamperButton" color="warn" (click)="deleteCamper(camper.id)">{{errorButtonMessage}}</button>
           <button mat-raised-button class="acceptButton">EDITAR</button>
       </div>
     </mat-tab>

@@ -29,12 +29,23 @@ export class CampistService {
     return this.campists;
   }
 
-  addCampist(_campist: Campist) {
-    this.campistsCollection.add((JSON.parse(JSON.stringify(_campist))))
+  getSingleCampist(id) {
+    return this.campistsCollection.doc(id).snapshotChanges().map (x => {
+      const data = x.payload.data() as Campist;
+      data.id = x.payload.id;
+      return data;
+    });
   }
 
-  deleteCampist(_campist: Campist) {
-    const campistDoc = this.afs.doc(`campists/${_campist.id}`);
+  addCampist(_campist: Campist) {
+    this.campistsCollection.add((JSON.parse(JSON.stringify(_campist))));
+  }
+
+  deleteCampist(id: string) {
+    console.log('deleting!!!!');
+    console.log(id);
+
+    const campistDoc = this.afs.doc(`campists/${id}`);
     campistDoc.delete();
   }
 

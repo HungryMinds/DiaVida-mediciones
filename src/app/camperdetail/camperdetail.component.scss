@@ -1,5 +1,5 @@
 .camperDetail {
-  background-color: #E8F0F0; //background-color: #38a297;
+  background-color: #e8f0f0; //background-color: #38a297;
   height: 100vh; // padding: 3% 2% 3% 2%;
   .mat-tab-label .mat-ripple .mat-tab-label-active .ng-star-inserted {
     background: black;
@@ -29,25 +29,43 @@
         color: rgba(0, 0, 0, 0.6);
       }
     }
-  }
-  .bottomData {
-    padding: 3% 2% 3% 2%;
-    .camperAcordeon {
-      margin-bottom: 1em; // background-color: #ffffff;
-      display: block;
-      .dropTitle {
-        font-weight: bold;
+    .bottomData {
+      padding: 3% 2% 3% 2%;
+      .camperAcordeon {
+        margin-bottom: 1em; // background-color: #ffffff;
+        display: block;
+        .dropTitle {
+          font-weight: bold;
+        }
       }
-    } // .mat-expansion-panel:not([class*=mat-elevation-z]) {
-    //     box-shadow: none !important;
-    //     border-bottom: 1px solid black;
-    // }
-    // .lastExpansion {
-    //     border-bottom: none !important;
-    // }
-    .acceptButton {
-      background-color: #009688;
-      color: #fff;
+      table {
+        width: 100%;
+      }
+      .insulinScheme {
+        border-bottom: 1px solid #979797;
+        padding-bottom: 2em;
+        margin-bottom: 0.5em;
+      }
+      .inlineLabel {
+        display: inline;
+      }
+      .inlineValue {
+        display: inline;
+        margin-left: 20px;
+      }
+      .schemeCommentLabel {
+        margin-bottom: 1em;
+      }
+      .schemeCommentText {
+        color: rgba(0, 0, 0, 0.8);
+      }
+      .acceptButton {
+        background-color: #009688;
+        color: #fff;
+      }
+      #deleteCamperButton {
+        transition: all 0.5s ease;
+      }
     }
     #deleteCamperButton {
       transition: all 0.5s ease;
@@ -75,7 +93,7 @@
 
 // Tables style
 table {
-  width: 100%
+  width: 100%;
 }
 
 th {
