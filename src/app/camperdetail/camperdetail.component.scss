@@ -1,105 +1,105 @@
 .camperDetail {
-    background-color: #E8F0F0; //background-color: #38a297;
-    height: 100vh; // padding: 3% 2% 3% 2%;
-    .mat-tab-label .mat-ripple .mat-tab-label-active .ng-star-inserted {
-        background: black;
+  background-color: #E8F0F0; //background-color: #38a297;
+  height: 100vh; // padding: 3% 2% 3% 2%;
+  .mat-tab-label .mat-ripple .mat-tab-label-active .ng-star-inserted {
+    background: black;
+  }
+  .fakeHeader {
+    height: 3em;
+    width: 100%;
+    background-color: #009688;
+  }
+  .topData {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    justify-content: center;
+    border-bottom: 3px solid #979797;
+    .topDataColumn {
+      text-align: center;
+      width: 33%;
+      padding: 4%;
+      .topDataColumValue {
+        font-weight: bold;
+        font-size: 1.1em;
+        margin-bottom: 0.2em;
+      }
+      .topDataColumLabel {
+        font-size: 0.8em;
+        color: rgba(0, 0, 0, 0.6);
+      }
     }
-    .fakeHeader {
-        height: 3em;
-        width: 100%;
-        background-color: #009688;
+  }
+  .bottomData {
+    padding: 3% 2% 3% 2%;
+    .camperAcordeon {
+      margin-bottom: 1em; // background-color: #ffffff;
+      display: block;
+      .dropTitle {
+        font-weight: bold;
+      }
+    } // .mat-expansion-panel:not([class*=mat-elevation-z]) {
+    //     box-shadow: none !important;
+    //     border-bottom: 1px solid black;
+    // }
+    // .lastExpansion {
+    //     border-bottom: none !important;
+    // }
+    .acceptButton {
+      background-color: #009688;
+      color: #fff;
     }
-    .topData {
-        display: flex;
-        flex-direction: row;
-        align-items: stretch;
-        justify-content: center;
-        border-bottom: 3px solid #979797;
-        .topDataColumn {
-            text-align: center;
-            width: 33%;
-            padding: 4%;
-            .topDataColumValue {
-                font-weight: bold;
-                font-size: 1.1em;
-                margin-bottom: 0.2em;
-            }
-            .topDataColumLabel {
-                font-size: 0.8em;
-                color: rgba(0, 0, 0, 0.6);
-            }
-        }
+    #deleteCamperButton {
+      transition: all 0.5s ease;
     }
-    .bottomData {
-        padding: 3% 2% 3% 2%;
-        .camperAcordeon {
-            margin-bottom: 1em; // background-color: #ffffff;
-            display: block;
-            .dropTitle {
-                font-weight: bold;
-            }
-        } // .mat-expansion-panel:not([class*=mat-elevation-z]) {
-        //     box-shadow: none !important;
-        //     border-bottom: 1px solid black;
-        // }
-        // .lastExpansion {
-        //     border-bottom: none !important;
-        // }
-        .acceptButton {
-            background-color: #009688;
-            color: #fff;
-        }
-        #deleteCamperButton {
-            transition: all 0.5s ease;
-        }
-    }
-    .tl {
-        width: 50% !important;
-    }
+  }
+  .tl {
+    width: 50% !important;
+  }
 }
 
 ::ng-deep .mat-tab-label {
-    min-width: 0px; // added
-    width: 50%;
-    height: 42px;
-    border-radius: 3px;
-    color: white;
+  min-width: 0px; // added
+  width: 50%;
+  height: 42px;
+  border-radius: 3px;
+  color: white;
 }
 
 ::ng-deep .mat-tab-labels {
-    display: flex;
-    background-color: #009688;
-    border-top: initial;
-    margin-top: -2px;
+  display: flex;
+  background-color: #009688;
+  border-top: initial;
+  margin-top: -2px;
 }
 
 // Tables style
 table {
-    width: 100%
+  width: 100%
 }
 
 th {
-    text-align: right;
-    font-size: 14px;
-    font-weight: 700;
-    color: #000000;
+  text-align: right;
+  font-size: 14px;
+  font-weight: 700;
+  color: #000000;
 }
 
 td {
-    text-align: right;
-    font-size: 14px;
-    font-weight: 300;
+  text-align: right;
+  font-size: 14px;
+  font-weight: 300;
 }
 
 .first-colum {
-    width: 30px;
+  width: 30px;
 }
 
 .table-container {
-    padding-right: 10px;
+  padding-right: 10px;
 }
 
-.cards-day-body{
+.cards-day-body {
   padding: 20px 7px;
 }
 
@@ -114,4 +114,22 @@ td {
   background-color: #b8e3de;
   padding: 4px 20px;
   color: rgba(0, 0, 0, 0.6);
+}
+
+.card-day-log {
+  border: solid 1px rgba(0, 0, 0, 0.35);
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  .log-left {
+    font-weight: 500;
+    color: rgba(0, 0, 0, 0.87);
+    p {
+      font-weight: 300;
+      color: rgba(0, 0, 0, 0.5);
+    }
+  }
+  .log-right {
+    font-size: 1.1em;
+  }
 }
