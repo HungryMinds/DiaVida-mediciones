@@ -1,30 +1,35 @@
 import { Component, OnInit } from '@angular/core';
-import { CampistService } from '../core'
+import { CampistService } from '../core';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
+import { OnDestroy } from '@angular/core/src/metadata/lifecycle_hooks';
 
 @Component({
   selector: 'app-camperdetail',
   templateUrl: './camperdetail.component.html',
   styleUrls: ['./camperdetail.component.scss']
 })
-export class CamperdetailComponent implements OnInit {
+export class CamperdetailComponent implements OnInit, OnDestroy {
   private camperSubscription: any;
-  private camper: any;  
-  id: number;
-  aditionalMedication: string
-  allergies: string
-  basalInsulin: string
-  errorButtonMessage: string
-  insulinMessage: string
-  errorButtonCheck: boolean
-  insulinScheme1: boolean = false
-  insulinScheme2: boolean = false
-  needsBasalInsulin: boolean = true
-  insulinComment: string
-  userName: string
+  private camper: any;
+  id: string;
+  aditionalMedication: string;
+  allergies: string;
+  basalInsulin: string;
+  errorButtonMessage: string;
+  insulinMessage: string;
+  errorButtonCheck: boolean;
+  insulinScheme1 = false;
+  insulinScheme2 = false;
+  needsBasalInsulin = true;
+  insulinComment: string;
+  userName: string;
 
-  constructor(private cs: CampistService, private route: ActivatedRoute,  private router: Router) {
+  constructor(
+    private cs: CampistService,
+    private route: ActivatedRoute,
+    private router: Router
+  ) {
     this.aditionalMedication = 'Beclometasona en inhalador';
     this.allergies = 'Abejas, queso y mariscos';
     this.basalInsulin = 'No necesita insulina basal';
@@ -34,15 +39,14 @@ export class CamperdetailComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.camperSubscription = this.route.params.subscribe(params => {
-       this.id = params['id'];
+    this.id = this.route.snapshot.params.id;
 
-       this.cs.getSingleCampist(this.id).subscribe(x => {
-        this.camper = x;
-        this.userName = x.names + ' ' + x.lastNames
-        console.log(this.camper);
-      })
-    });
+    this.camperSubscription = this.cs
+      .getSingleCampist(this.id)
+      .subscribe(_camper => {
+        this.camper = _camper;
+        this.userName = `${_camper.names} ${_camper.lastNames}`;
+      });
   }
 
   ngOnDestroy() {
@@ -52,10 +56,10 @@ export class CamperdetailComponent implements OnInit {
   deleteCamper(id) {
     if (!this.errorButtonCheck) {
       this.errorButtonMessage = 'ELIMINAR EL CAMPISTA';
-      // TODO: Por ahora lo quita para probar      
+      // TODO: Por ahora lo quita para probar
       this.errorButtonCheck = true;
     } else {
-      this.cs.deleteCampist(id)
+      this.cs.deleteCampist(id);
       this.router.navigate(['/listado']);
       // TODO: Por ahora lo quita para probar
       this.errorButtonMessage = 'ELIMINAR';

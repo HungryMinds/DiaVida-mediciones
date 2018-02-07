@@ -34,27 +34,27 @@
                     </tr>
                     <tr style="text-align:right">
                       <th><80</th>
-                      <td>{{this.camper.insulinSchemeInterval["<80"].Breakfast}}</td>
-                      <td>{{this.camper.insulinSchemeInterval["<80"].Diner}}</td>
-                      <td>{{this.camper.insulinSchemeInterval["<80"].Lunch}}</td>
+                      <td>{{camper.insulinSchemeInterval["<80"].Breakfast}}</td>
+                      <td>{{camper.insulinSchemeInterval["<80"].Diner}}</td>
+                      <td>{{camper.insulinSchemeInterval["<80"].Lunch}}</td>
                     </tr>
                     <tr style="text-align:right">
                       <th>81-160</th>
-                      <td>{{this.camper.insulinSchemeInterval["81-160"].Breakfast}}</td>
-                      <td>{{this.camper.insulinSchemeInterval["81-160"].Diner}}</td>
-                      <td>{{this.camper.insulinSchemeInterval["81-160"].Lunch}}</td>
+                      <td>{{camper.insulinSchemeInterval["81-160"].Breakfast}}</td>
+                      <td>{{camper.insulinSchemeInterval["81-160"].Diner}}</td>
+                      <td>{{camper.insulinSchemeInterval["81-160"].Lunch}}</td>
                     </tr>
                     <tr style="text-align:right">
                       <th>161-250</th>
-                      <td>{{this.camper.insulinSchemeInterval["161-250"].Breakfast}}</td>
-                      <td>{{this.camper.insulinSchemeInterval["161-250"].Diner}}</td>
-                      <td>{{this.camper.insulinSchemeInterval["161-250"].Lunch}}</td>
+                      <td>{{camper.insulinSchemeInterval["161-250"].Breakfast}}</td>
+                      <td>{{camper.insulinSchemeInterval["161-250"].Diner}}</td>
+                      <td>{{camper.insulinSchemeInterval["161-250"].Lunch}}</td>
                     </tr>
                     <tr style="text-align:right">
                       <th>>250</th>
-                      <td>{{this.camper.insulinSchemeInterval[">250"].Breakfast}}</td>
-                      <td>{{this.camper.insulinSchemeInterval[">250"].Diner}}</td>
-                      <td>{{this.camper.insulinSchemeInterval[">250"].Lunch}}</td>
+                      <td>{{camper.insulinSchemeInterval[">250"].Breakfast}}</td>
+                      <td>{{camper.insulinSchemeInterval[">250"].Diner}}</td>
+                      <td>{{camper.insulinSchemeInterval[">250"].Lunch}}</td>
                     </tr>
                   </table>
                 </div>
@@ -69,15 +69,15 @@
                         </tr>
                         <tr style="text-align:right">
                           <th>Ratio</th>
-                          <td>{{this.camper.insulinSchemeRatio.Breakfast}}</td>
-                          <td>{{this.camper.insulinSchemeRatio.Lunch}}</td>
-                          <td>{{this.camper.insulinSchemeRatio.Diner}}</td>
+                          <td>{{camper.insulinSchemeRatio.Breakfast}}</td>
+                          <td>{{camper.insulinSchemeRatio.Lunch}}</td>
+                          <td>{{camper.insulinSchemeRatio.Diner}}</td>
                         </tr>
                       </table>
                   </div>
                   <div>
                     <p class="inlineLabel">Factor de correción</p>
-                    <p class="inlineValue">{{this.camper.insulinSchemeRatio.correctionFactor}}</p>
+                    <p class="inlineValue">{{camper.insulinSchemeRatio.correctionFactor}}</p>
                   </div>
                 </div>
                 <div *ngIf="camper.insulinSchemeInterval">
