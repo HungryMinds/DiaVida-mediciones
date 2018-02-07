@@ -1,4 +1,3 @@
-/*
 const TESTOBJ = {
   names: 'Actulizado',
   lastNames: 'Reciente',
@@ -17,7 +16,7 @@ const TESTOBJ = {
       Diner: 10,
       BeforeSleep: 10
     },
-    prot: {
+    lact: {
       Breakfast: 10,
       MorningSnack: 10,
       Lunch: 10,
@@ -89,7 +88,7 @@ const TESTOBJ = {
     }
   }
 };
-*/
+
 
 export class Campist {
   id: string;
