@@ -1,5 +1,5 @@
 <div class="add-camper">
-  <app-navbar [title]="title" [subtitle]="subtitle"></app-navbar>
+  <app-navbar isGoingBack="true" [title]="title" [subtitle]="subtitle"></app-navbar>
   <div class="choose-option">
     <mat-radio-group>
       <mat-radio-button checked (change)="toogleView($event)" class="option-item" labelPosition="before" value="1">Escalas</mat-radio-button>
@@ -109,3 +109,4 @@
       </div>
     </form>
   </div>
+</div>
