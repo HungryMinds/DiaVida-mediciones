@@ -1,26 +1,27 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { LogInjectionService, inyectionType } from '../core'
-import { LogInjection } from '../core'
-import { Campist } from '../core'
-import { Router, ActivatedRoute} from '@angular/router';
+import { LogFoodService, inyectionType } from '../core'
+import { LogFood, Campist, Snack } from '../core'
+import { Router, ActivatedRoute } from '@angular/router';
 
 
 @Component({
-  selector: 'app-injection',
-  templateUrl: './injection.component.html',
-  styleUrls: ['./injection.component.scss']
+  selector: 'app-food',
+  templateUrl: './food.component.html',
+  styleUrls: ['./food.component.scss']
 })
-export class InjectionComponent implements OnInit {
+export class FoodComponent implements OnInit {
+
+  id
+  foods = Object.entries(Snack)
 
   public form: FormGroup;
-  id
 
   title: string;
   subtitle: string;
 
-  constructor(private fb: FormBuilder, private LogIS: LogInjectionService, private router: Router, private route : ActivatedRoute) {
-    this.title = 'Agregar Inyección';
+  constructor(private fb: FormBuilder, private LogIS: LogFoodService, private router: Router, private route: ActivatedRoute) {
+    this.title = 'Agregar Comida Extra';
     this.subtitle = 'Detalles';
     this.createForm()
   }
@@ -34,10 +35,10 @@ export class InjectionComponent implements OnInit {
   createForm() {
     var d = new Date()
     this.form = this.fb.group({
+      foodType: ['', [Validators.required]],
       value: ['', [Validators.required]],
       date: [this.currentDate(), Validators.required],
       time: [this.currenTime(), Validators.required],
-      injectionType: ['quick'],
       description: ['']
     });
   }
@@ -48,12 +49,11 @@ export class InjectionComponent implements OnInit {
       date: new Date(this.form.value.date + ' ' + this.form.value.time),
       value: this.form.value.value,
       description: this.form.value.description,
-      type: this.form.value.injectionType,
-      moment : this.form.value
+      type: this.form.value.foodType
     }
     console.log(objToSend)
     //TODO  Use current campist id
-    this.LogIS.addLogInjection(new LogInjection(objToSend), this.id)
+    this.LogIS.addLogFood(new LogFood(objToSend), this.id)
     //TODO  Redirect to current campist id
     this.router.navigate(['/camperDetail/'+this.id]);
   }

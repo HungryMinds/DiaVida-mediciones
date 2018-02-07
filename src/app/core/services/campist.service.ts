@@ -29,8 +29,16 @@ export class CampistService {
     return this.campists;
   }
 
+  getSingleCampist(id) {
+    return this.campistsCollection.doc(id).snapshotChanges().map (x => {
+      const data = x.payload.data() as Campist;
+      data.id = x.payload.id;
+      return data
+    })
+  }
+
   addCampist(_campist: Campist) {
-    this.campistsCollection.add(_campist);
+    this.campistsCollection.add((JSON.parse(JSON.stringify(_campist))))
   }
 
   deleteCampist(_campist: Campist) {
