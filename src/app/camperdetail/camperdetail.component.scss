@@ -29,47 +29,47 @@
         color: rgba(0, 0, 0, 0.6);
       }
     }
-    .bottomData {
-      padding: 3% 2% 3% 2%;
-      .camperAcordeon {
-        margin-bottom: 1em; // background-color: #ffffff;
-        display: block;
-        .dropTitle {
-          font-weight: bold;
-        }
+  }
+  .bottomData {
+    padding: 3% 2% 3% 2%;
+    .camperAcordeon {
+      margin-bottom: 1em; // background-color: #ffffff;
+      display: block;
+      .dropTitle {
+        font-weight: bold;
       }
-      table {
-        width: 100%;
-      }
-      .insulinScheme {
-        border-bottom: 1px solid #979797;
-        padding-bottom: 2em;
-        margin-bottom: 0.5em;
-      }
-      .inlineLabel {
-        display: inline;
-      }
-      .inlineValue {
-        display: inline;
-        margin-left: 20px;
-      }
-      .schemeCommentLabel {
-        margin-bottom: 1em;
-      }
-      .schemeCommentText {
-        color: rgba(0, 0, 0, 0.8);
-      }
-      .acceptButton {
-        background-color: #009688;
-        color: #fff;
-      }
-      #deleteCamperButton {
-        transition: all 0.5s ease;
-      }
+    }
+    table {
+      width: 100%;
+    }
+    .insulinScheme {
+      border-bottom: 1px solid #979797;
+      padding-bottom: 2em;
+      margin-bottom: 0.5em;
+    }
+    .inlineLabel {
+      display: inline;
+    }
+    .inlineValue {
+      display: inline;
+      margin-left: 20px;
+    }
+    .schemeCommentLabel {
+      margin-bottom: 1em;
+    }
+    .schemeCommentText {
+      color: rgba(0, 0, 0, 0.8);
+    }
+    .acceptButton {
+      background-color: #009688;
+      color: #fff;
     }
     #deleteCamperButton {
       transition: all 0.5s ease;
     }
+  }
+  #deleteCamperButton {
+    transition: all 0.5s ease;
   }
   .tl {
     width: 50% !important;
@@ -86,9 +86,13 @@
 
 ::ng-deep .mat-tab-labels {
   display: flex;
-  background-color: #009688;
+  background-color: #24a99b;
   border-top: initial;
   margin-top: -2px;
+}
+
+::ng-deep .mat-tab-group.mat-primary .mat-ink-bar, .mat-tab-nav-bar.mat-primary .mat-ink-bar {
+  background-color: #54441a;
 }
 
 // Tables style

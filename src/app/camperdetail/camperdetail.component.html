@@ -1,5 +1,5 @@
 <div class="camperDetail" >
-  <app-navbar class="app-navbar" [title]="userName"></app-navbar>
+  <app-navbar class="app-navbar" [title]="userName" [isGoingBack]="true"></app-navbar>
   <mat-tab-group *ngIf="camper" class="camperDetailTabs">
     <mat-tab label="Información General">
       <div class="topData">
@@ -127,7 +127,7 @@
                   <p>{{basalInsulin}}</p>
                 </div>
               </mat-expansion-panel>
-              <mat-expansion-panel class="lastExpansion" *ngIf="camper.foodTable && camper.foodTable">
+              <mat-expansion-panel class="lastExpansion" *ngIf="camper && camper.foodTable">
                 <mat-expansion-panel-header>
                   <mat-panel-title class="dropTitle">
                     Porciones de alimentos
@@ -141,42 +141,42 @@
                       <th>Fruta</th>
                       <th>Láct</th>
                     </tr>
-                    <tr *ngIf="camper.foodTable.carb">
+                    <tr *ngIf="camper && camper.foodTable && camper.foodTable.carb && camper.foodTable.carb.Breakfast">
                       <th class="first-colum">Desayuno</th>
                       <td>{{camper.foodTable.carb.Breakfast}}</td>
                       <td>{{camper.foodTable.prot.Breakfast}}</td>
                       <td>{{camper.foodTable.fruta.Breakfast}}</td>
                       <td>{{camper.foodTable.lact.Breakfast}}</td>
                     </tr>
-                    <tr>
+                    <tr *ngIf="camper && camper.foodTable && camper.foodTable.carb && camper.foodTable.carb.MorningSnack">
                       <th class="first-colum">Merienda</th>
                       <td>{{camper.foodTable.carb.MorningSnack}}</td>
                       <td>{{camper.foodTable.prot.MorningSnack}}</td>
                       <td>{{camper.foodTable.fruta.MorningSnack}}</td>
                       <td>{{camper.foodTable.lact.MorningSnack}}</td>
                     </tr>
-                    <tr>
+                    <tr *ngIf="camper && camper.foodTable && camper.foodTable.carb && camper.foodTable.carb.Lunch">
                       <th class="first-colum">Almuerzo</th>
                       <td>{{camper.foodTable.carb.Lunch}}</td>
                       <td>{{camper.foodTable.prot.Lunch}}</td>
                       <td>{{camper.foodTable.fruta.Lunch}}</td>
                       <td>{{camper.foodTable.lact.Lunch}}</td>
                     </tr>
-                    <tr>
+                    <tr *ngIf="camper && camper.foodTable && camper.foodTable.carb && camper.foodTable.carb.AfternoonSnack">
                       <th class="first-colum">Merienda</th>
                       <td>{{camper.foodTable.carb.AfternoonSnack}}</td>
                       <td>{{camper.foodTable.prot.AfternoonSnack}}</td>
                       <td>{{camper.foodTable.fruta.AfternoonSnack}}</td>
                       <td>{{camper.foodTable.lact.AfternoonSnack}}</td>
                     </tr>
-                    <tr>
+                    <tr *ngIf="camper && camper.foodTable && camper.foodTable.carb && camper.foodTable.carb.Diner">
                       <th class="first-colum">Cena</th>
                       <td>{{camper.foodTable.carb.Diner}}</td>
                       <td>{{camper.foodTable.prot.Diner}}</td>
                       <td>{{camper.foodTable.fruta.Diner}}</td>
                       <td>{{camper.foodTable.lact.Diner}}</td>
                     </tr>
-                    <tr>
+                    <tr *ngIf="camper && camper.foodTable && camper.foodTable.carb && camper.foodTable.carb.BeforeSleep">
                       <th class="first-colum">Merienda</th>
                       <td>{{camper.foodTable.carb.BeforeSleep}}</td>
                       <td>{{camper.foodTable.prot.BeforeSleep}}</td>
