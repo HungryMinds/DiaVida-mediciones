@@ -1,10 +1,11 @@
 const TESTOBJ = {
-  names: 'test',
-  lastNames: 'lastName',
+  names: 'Actulizado',
+  lastNames: 'Reciente',
   age: 22,
   team: 'Morado',
   allergies: 'test',
   medications: 'test',
+  weight: 10, 
 
   foodTable: {
     fruta: {
@@ -31,7 +32,7 @@ const TESTOBJ = {
       Diner: 10,
       BeforeSleep: 10
     },
-    lact: {
+    prot: {
       Breakfast: 10,
       MorningSnack: 10,
       Lunch: 10,
