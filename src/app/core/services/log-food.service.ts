@@ -15,22 +15,26 @@ export class LogFoodService {
   logFood: Observable<LogFood[]>;
 
   constructor(public afs: AngularFirestore) {
-    this.logFoodCollection = this.afs.collection('logFood');
-    this.logFood = this.logFoodCollection.snapshotChanges().map(changes => {
-      return changes.map(a => {
-        const data = a.payload.doc.data() as LogFood;
-        data.id = a.payload.doc.id;
-        return data;
-      });
-    });
+    this.logFoodCollection = this.afs.collection('log');
   }
 
   getLogFoods() {
     return this.logFood;
   }
 
-  addLogFood(_campist: LogFood) {
-    this.logFoodCollection.add(_campist);
+  addLogFood(_food: LogFood, _campist: string) {
+    var campistsLogsCollection = this.afs.collection('campists/' + _campist + '/logs');
+    this.logFoodCollection.add(JSON.parse(JSON.stringify(_food))).then(
+      (x) => {
+        campistsLogsCollection.add({ log: x }).then((x) => {
+          return x
+        }).catch((x) => {
+          return x
+        })
+      }
+    ).catch(function (x) {
+      return x
+    })
   }
 
   deleteLogFood(_campist: LogFood) {

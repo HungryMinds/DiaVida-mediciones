@@ -1,25 +1,24 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { LogInjectionService, inyectionType } from '../core'
-import { LogInjection } from '../core'
-import { Campist } from '../core'
-import { Router, ActivatedRoute} from '@angular/router';
-
+import { LogMeditionService, LogMedition, FoodTime } from '../core'
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'app-injection',
-  templateUrl: './injection.component.html',
-  styleUrls: ['./injection.component.scss']
+  selector: 'app-measurement',
+  templateUrl: './measurement.component.html',
+  styleUrls: ['./measurement.component.scss']
 })
-export class InjectionComponent implements OnInit {
+export class MeasurementComponent implements OnInit {
+
+  foods = Object.entries(FoodTime)
+  id
 
   public form: FormGroup;
-  id
 
   title: string;
   subtitle: string;
 
-  constructor(private fb: FormBuilder, private LogIS: LogInjectionService, private router: Router, private route : ActivatedRoute) {
+  constructor(private fb: FormBuilder, private LogMS: LogMeditionService, private router: Router, private route: ActivatedRoute) {
     this.title = 'Agregar Inyección';
     this.subtitle = 'Detalles';
     this.createForm()
@@ -37,8 +36,8 @@ export class InjectionComponent implements OnInit {
       value: ['', [Validators.required]],
       date: [this.currentDate(), Validators.required],
       time: [this.currenTime(), Validators.required],
-      injectionType: ['quick'],
-      description: ['']
+      description: [''],
+      foodTime: [this.currenTime(), Validators.required]
     });
   }
 
@@ -48,12 +47,10 @@ export class InjectionComponent implements OnInit {
       date: new Date(this.form.value.date + ' ' + this.form.value.time),
       value: this.form.value.value,
       description: this.form.value.description,
-      type: this.form.value.injectionType,
-      moment : this.form.value
     }
     console.log(objToSend)
     //TODO  Use current campist id
-    this.LogIS.addLogInjection(new LogInjection(objToSend), this.id)
+    this.LogMS.addLogMedition(new LogMedition(objToSend), 'B9BpyzwCwL4KEXVmRPi4')
     //TODO  Redirect to current campist id
     this.router.navigate(['/camperDetail/'+this.id]);
   }
@@ -67,6 +64,5 @@ export class InjectionComponent implements OnInit {
     const currentDate = new Date();
     return currentDate.toTimeString().substring(0, 5)
   }
-
 
 }

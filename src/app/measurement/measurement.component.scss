@@ -1,0 +1,38 @@
+.form-container {
+    display: flex;
+    flex-direction: column;
+    padding: 15px 26px;
+    height: 100vh;
+}
+
+.mat-form-field {
+    width: 100%;
+}
+
+.footer-buttons {
+    bottom: 10px;
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.injection-container {
+    background-image: url("../../assets/noise-pattern.png");
+    background-color: #38a297;
+}
+
+.footer-buttons {
+    margin-top: auto;
+}
+
+.mat-input-container {
+    margin-bottom: 20px;
+}
+
+.mat-radio-group {
+    margin-bottom: 20px;
+}
+
+button.mat-raised-button {
+    background-color: #009688;
+    color: white;
+}
