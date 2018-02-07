@@ -4,7 +4,7 @@ export enum inyectionType {
 }
 
 export enum logType {
-    inyetable = 'basal',
-    food = 'rapida',
+    inyetable = 'inyectable',
+    food = 'food',
     measure = 'measure'
 }

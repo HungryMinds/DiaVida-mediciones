@@ -15,22 +15,26 @@ export class LogMeditionService {
   logMedition: Observable<LogMedition[]>;
 
   constructor(public afs: AngularFirestore) {
-    this.logMeditionCollection = this.afs.collection('logMedition');
-    this.logMedition = this.logMeditionCollection.snapshotChanges().map(changes => {
-      return changes.map(a => {
-        const data = a.payload.doc.data() as LogMedition;
-        data.id = a.payload.doc.id;
-        return data;
-      });
-    });
+    this.logMeditionCollection = this.afs.collection('log');
   }
 
   getLogMeditions() {
     return this.logMedition;
   }
 
-  addLogMedition(_campist: LogMedition) {
-    this.logMeditionCollection.add(_campist);
+  addLogMedition(_medition: LogMedition, _campist: string) {
+    var campistsLogsCollection = this.afs.collection('campists/' + _campist + '/logs');
+    this.logMeditionCollection.add(JSON.parse(JSON.stringify(_medition))).then(
+      (x) => {
+        campistsLogsCollection.add({ log: x }).then((x) => {
+          return x
+        }).catch((x) => {
+          return x
+        })
+      }
+    ).catch(function (x) {
+      return x
+    })
   }
 
   deleteLogMedition(_campist: LogMedition) {
