@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { FormControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { CampistService } from '../../../core/services/campist.service';
 
 @Component({
   selector: 'app-add-campista',
@@ -14,8 +15,14 @@ export class AddCampistaComponent implements OnInit {
   nextUrl = 'dosis';
   public basicsForm: FormGroup;
   camper: any;
+  camperId: string = null;
+  camperToEdit: any;
 
-  constructor(private fb: FormBuilder, private router: Router) {
+  constructor(
+    private fb: FormBuilder,
+    private route: ActivatedRoute,
+    private router: Router,
+    private campistService: CampistService, ) {
     this.title = 'Agregar Campista';
     this.subtitle = 'Detalles básicos';
 
@@ -36,7 +43,9 @@ export class AddCampistaComponent implements OnInit {
 
   next(event) {
     event.preventDefault();
-    this.camper = { ...this.basicsForm.value };
+    const id = this.camperId;
+    this.camper = { ...this.basicsForm.value, id };
+
     // Navigate to the next view
     this.router.navigate([this.url + this.nextUrl, ...this.camper]);
   }
@@ -45,5 +54,20 @@ export class AddCampistaComponent implements OnInit {
     event.preventDefault();
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.route.params.subscribe(params => {
+      this.camperId = params.id;
+    });
+
+    if (this.camperId) {
+      this.getCampistToEdit(this.camperId);
+    }
+  }
+
+  getCampistToEdit(id) {
+    return this.campistService.getSingleCampist(id).subscribe(camper => {
+      this.camperToEdit = { ...camper };
+      this.basicsForm.patchValue(camper);
+    });
+  }
 }

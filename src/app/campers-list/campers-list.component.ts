@@ -15,7 +15,7 @@ export class CampersListComponent implements OnInit, OnDestroy {
   dataSource;
   subscriptionCampers;
 
-  constructor(private cL: CampistService, private router: Router) {}
+  constructor(private cL: CampistService, private router: Router) { }
 
   ngOnInit() {
     let campists = [];

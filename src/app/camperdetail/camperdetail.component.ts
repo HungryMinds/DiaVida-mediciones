@@ -44,7 +44,7 @@ export class CamperdetailComponent implements OnInit {
 
   editCamper() {
     // Navigate to the next view
-    this.router.navigate(['camper/edit/', this.camperId]);
+    this.router.navigate(['camper/add-camper/edit/', this.camperId]);
   }
 
   ngOnInit() {
