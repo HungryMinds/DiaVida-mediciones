@@ -85,8 +85,8 @@ export class AddCampistaEsquemaComponent implements OnInit {
       comment
     } = this.esquemaForm.value.insulinSchemeRatio;
 
-    const insulinSchemeI = {
-      comments: this.esquemaForm.value.insulinSchemeInterval.eComments,
+    const insulinSchemeInterval = {
+      comments: this.esquemaForm.value.insulinSchemeInterval.comments,
       '<80': {
         Breakfast: this.esquemaForm.value.insulinSchemeInterval['<80'].Breakfast,
         Lunch: this.esquemaForm.value.insulinSchemeInterval['<80'].Lunch,
@@ -109,7 +109,7 @@ export class AddCampistaEsquemaComponent implements OnInit {
       }
     };
 
-    const insulinSchemeR = {
+    const insulinSchemeRatio = {
       Breakfast: Breakfast,
       Lunch: Lunch,
       Diner: Diner,
@@ -118,14 +118,13 @@ export class AddCampistaEsquemaComponent implements OnInit {
     };
 
     if (this.valueChecked === '1') {
-      this._flcs.updateCurrentCampiest({ insulinSchemeI })
+      this._flcs.updateCurrentCampiest({ insulinSchemeInterval })
 
     } else {
-      this._flcs.updateCurrentCampiest({ insulinSchemeR })
+      this._flcs.updateCurrentCampiest({ insulinSchemeRatio })
     }
 
     this.router.navigate([this.url + this.nextUrl]);
-
 
   }
 
