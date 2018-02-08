@@ -10,7 +10,7 @@ import { CampistService } from '../core';
 export class CamperdetailComponent implements OnInit, OnDestroy {
   private subs = [];
   private logs: any[];
-  private camper: any;
+  camper: any;
   idCamper: string;
   aditionalMedication: string;
   allergies: string;
