@@ -1,138 +1,192 @@
 <div class="add-camper">
-  <app-navbar [title]="title" [subtitle]="subtitle"></app-navbar>
+  <app-navbar isGoingBack="true" [title]="title" [subtitle]="subtitle"></app-navbar>
   <div class="add-camper-form">
     <form [formGroup]="foodForm" novalidate>
       <div class="form-1">
-        <div class="form-row">
-          <p>Desayuno</p>
+        <div formGroupName="foodTable">
 
-          <mat-form-field class="full-width">
-            <input formControlName="desayunoCarbs" type="number" min="0" max="250" matInput placeholder="Carbs">
-          </mat-form-field>
+          <div class="form-row">
+            <p>Desayuno</p>
 
-          <mat-form-field class="full-width">
-            <input formControlName="desayunoProt" type="number" min="0" max="250" matInput placeholder="Prot">
-          </mat-form-field>
+            <div class="form-group-item" formGroupName="carb">
+              <mat-form-field class="full-width">
+                <input formControlName="Breakfast" type="number" min="0" max="250" matInput placeholder="Carbs">
+              </mat-form-field>
+            </div>
 
-          <mat-form-field class="full-width">
-            <input formControlName="desayunoFrut" type="number" min="0" max="250" matInput placeholder="Frut">
-          </mat-form-field>
+            <div class="form-group-item" formGroupName="prot">
+              <mat-form-field class="full-width">
+                <input formControlName="Breakfast" type="number" min="0" max="250" matInput placeholder="Prot">
+              </mat-form-field>
+            </div>
 
-          <mat-form-field class="full-width">
-            <input formControlName="desayunoLact" type="number" min="0" max="250" matInput placeholder="Lact">
-          </mat-form-field>
+            <div class="form-group-item" formGroupName="frut">
+              <mat-form-field class="full-width">
+                <input formControlName="Breakfast" type="number" min="0" max="250" matInput placeholder="Frut">
+              </mat-form-field>
+            </div>
 
-        </div>
+            <div class="form-group-item" formGroupName="lact">
+              <mat-form-field class="full-width">
+                <input formControlName="Breakfast" type="number" min="0" max="250" matInput placeholder="Lact">
+              </mat-form-field>
+            </div>
 
-        <div class="form-row">
-          <p>Merienda</p>
+          </div>
 
-          <mat-form-field class="full-width">
-            <input formControlName="meriendaFirstCarbs" type="number" min="0" max="250" matInput placeholder="Carbs">
-          </mat-form-field>
+          <div class="form-row">
+            <p>Merienda</p>
 
-          <mat-form-field class="full-width">
-            <input formControlName="meriendaFirstProt" type="number" min="0" max="250" matInput placeholder="Prot">
-          </mat-form-field>
+            <div class="form-group-item" formGroupName="carb">
+              <mat-form-field class="full-width">
+                <input formControlName="MorningSnack" type="number" min="0" max="250" matInput placeholder="Carbs">
+              </mat-form-field>
+            </div>
 
-          <mat-form-field class="full-width">
-            <input formControlName="meriendaFirstFrut" type="number" min="0" max="250" matInput placeholder="Frut">
-          </mat-form-field>
+            <div class="form-group-item" formGroupName="prot">
+              <mat-form-field class="full-width">
+                <input formControlName="MorningSnack" type="number" min="0" max="250" matInput placeholder="Prot">
+              </mat-form-field>
+            </div>
 
-          <mat-form-field class="full-width">
-            <input formControlName="meriendaFirstLact" type="number" min="0" max="250" matInput placeholder="Lact">
-          </mat-form-field>
+            <div class="form-group-item" formGroupName="frut">
+              <mat-form-field class="full-width">
+                <input formControlName="MorningSnack" type="number" min="0" max="250" matInput placeholder="Frut">
+              </mat-form-field>
+            </div>
 
-        </div>
+            <div class="form-group-item" formGroupName="lact">
+              <mat-form-field class="full-width">
+                <input formControlName="MorningSnack" type="number" min="0" max="250" matInput placeholder="Lact">
+              </mat-form-field>
+            </div>
 
-        <div class="form-row">
-          <p>Almuerzo</p>
+          </div>
 
-          <mat-form-field class="full-width">
-            <input formControlName="almuerzoCarbs" type="number" min="0" max="250" matInput placeholder="Carbs">
-          </mat-form-field>
+          <div class="form-row">
+            <p>Almuerzo</p>
 
-          <mat-form-field class="full-width">
-            <input formControlName="almuerzoProt" type="number" min="0" max="250" matInput placeholder="Prot">
-          </mat-form-field>
+            <div class="form-group-item" formGroupName="carb">
+              <mat-form-field class="full-width">
+                <input formControlName="Lunch" type="number" min="0" max="250" matInput placeholder="Carbs">
+              </mat-form-field>
+            </div>
 
-          <mat-form-field class="full-width">
-            <input formControlName="almuerzoFrut" type="number" min="0" max="250" matInput placeholder="Frut">
-          </mat-form-field>
+            <div class="form-group-item" formGroupName="prot">
+              <mat-form-field class="full-width">
+                <input formControlName="Lunch" type="number" min="0" max="250" matInput placeholder="Prot">
+              </mat-form-field>
+            </div>
 
-          <mat-form-field class="full-width">
-            <input formControlName="almuerzoLact" type="number" min="0" max="250" matInput placeholder="Lact">
-          </mat-form-field>
+            <div class="form-group-item" formGroupName="frut">
+              <mat-form-field class="full-width">
+                <input formControlName="Lunch" type="number" min="0" max="250" matInput placeholder="Frut">
+              </mat-form-field>
+            </div>
 
-        </div>
+            <div class="form-group-item" formGroupName="lact">
+              <mat-form-field class="full-width">
+                <input formControlName="Lunch" type="number" min="0" max="250" matInput placeholder="Lact">
+              </mat-form-field>
+            </div>
 
-        <div class="form-row">
-          <p>Merienda</p>
+          </div>
 
-          <mat-form-field class="full-width">
-            <input formControlName="meriendaSecondCarbs" type="number" min="0" max="250" matInput placeholder="Carbs">
-          </mat-form-field>
+          <div class="form-row">
+            <p>Merienda</p>
 
-          <mat-form-field class="full-width">
-            <input formControlName="meriendaSecondProt" type="number" min="0" max="250" matInput placeholder="Prot">
-          </mat-form-field>
+            <div class="form-group-item" formGroupName="carb">
+              <mat-form-field class="full-width">
+                <input formControlName="AfternoonSnack" type="number" min="0" max="250" matInput placeholder="Carbs">
+              </mat-form-field>
+            </div>
 
-          <mat-form-field class="full-width">
-            <input formControlName="meriendaSecondFrut" type="number" min="0" max="250" matInput placeholder="Frut">
-          </mat-form-field>
+            <div class="form-group-item" formGroupName="prot">
+              <mat-form-field class="full-width">
+                <input formControlName="AfternoonSnack" type="number" min="0" max="250" matInput placeholder="Prot">
+              </mat-form-field>
+            </div>
 
-          <mat-form-field class="full-width">
-            <input formControlName="meriendaSecondLact" type="number" min="0" max="250" matInput placeholder="Lact">
-          </mat-form-field>
+            <div class="form-group-item" formGroupName="frut">
+              <mat-form-field class="full-width">
+                <input formControlName="AfternoonSnack" type="number" min="0" max="250" matInput placeholder="Frut">
+              </mat-form-field>
+            </div>
 
-        </div>
+            <div class="form-group-item" formGroupName="lact">
+              <mat-form-field class="full-width">
+                <input formControlName="AfternoonSnack" type="number" min="0" max="250" matInput placeholder="Lact">
+              </mat-form-field>
+            </div>
 
-        <div class="form-row">
-          <p>Cena</p>
+          </div>
 
-          <mat-form-field class="full-width">
-            <input formControlName="cenaCarbs" type="number" min="0" max="250" matInput placeholder="Carbs">
-          </mat-form-field>
+          <div class="form-row">
+            <p>Cena</p>
 
-          <mat-form-field class="full-width">
-            <input formControlName="cenaProt" type="number" min="0" max="250" matInput placeholder="Prot">
-          </mat-form-field>
+            <div class="form-group-item" formGroupName="carb">
+              <mat-form-field class="full-width">
+                <input formControlName="Diner" type="number" min="0" max="250" matInput placeholder="Carbs">
+              </mat-form-field>
+            </div>
 
-          <mat-form-field class="full-width">
-            <input formControlName="cenaFrut" type="number" min="0" max="250" matInput placeholder="Frut">
-          </mat-form-field>
+            <div class="form-group-item" formGroupName="prot">
+              <mat-form-field class="full-width">
+                <input formControlName="Diner" type="number" min="0" max="250" matInput placeholder="Prot">
+              </mat-form-field>
+            </div>
 
-          <mat-form-field class="full-width">
-            <input formControlName="cenaLact" type="number" min="0" max="250" matInput placeholder="Lact">
-          </mat-form-field>
+            <div class="form-group-item" formGroupName="frut">
+              <mat-form-field class="full-width">
+                <input formControlName="Diner" type="number" min="0" max="250" matInput placeholder="Frut">
+              </mat-form-field>
+            </div>
 
-        </div>
+            <div class="form-group-item" formGroupName="lact">
+              <mat-form-field class="full-width">
+                <input formControlName="Diner" type="number" min="0" max="250" matInput placeholder="Lact">
+              </mat-form-field>
+            </div>
 
-        <div class="form-row">
-          <p>Merienda</p>
+          </div>
 
-          <mat-form-field class="full-width">
-            <input formControlName="meriendaThirdCarbs" type="number" min="0" max="250" matInput placeholder="Carbs">
-          </mat-form-field>
+          <div class="form-row">
+            <p>Merienda</p>
 
-          <mat-form-field class="full-width">
-            <input formControlName="meriendaThirdProt" type="number" min="0" max="250" matInput placeholder="Prot">
-          </mat-form-field>
+            <div class="form-group-item" formGroupName="carb">
+              <mat-form-field class="full-width">
+                <input formControlName="BeforeSleep" type="number" min="0" max="250" matInput placeholder="Carbs">
+              </mat-form-field>
+            </div>
 
-          <mat-form-field class="full-width">
-            <input formControlName="meriendaThirdFrut" type="number" min="0" max="250" matInput placeholder="Frut">
-          </mat-form-field>
+            <div class="form-group-item" formGroupName="prot">
+              <mat-form-field class="full-width">
+                <input formControlName="BeforeSleep" type="number" min="0" max="250" matInput placeholder="Prot">
+              </mat-form-field>
+            </div>
 
-          <mat-form-field class="full-width">
-            <input formControlName="meriendaThirdLact" type="number" min="0" max="250" matInput placeholder="Lact">
-          </mat-form-field>
+            <div class="form-group-item" formGroupName="frut">
+              <mat-form-field class="full-width">
+                <input formControlName="BeforeSleep" type="number" min="0" max="250" matInput placeholder="Frut">
+              </mat-form-field>
+            </div>
 
+            <div class="form-group-item" formGroupName="lact">
+              <mat-form-field class="full-width">
+                <input formControlName="BeforeSleep" type="number" min="0" max="250" matInput placeholder="Lact">
+              </mat-form-field>
+            </div>
+
+          </div>
         </div>
       </div>
 
       <div class="button-row">
-        <button (click)="goBack($event)" mat-raised-button color="primary">Anterior</button>
-        <button [disabled]="!foodForm.valid" (click)="save($event)" mat-raised-button color="primary">Guardar</button>
+        <div>
+          <button (click)="goBack($event)" mat-raised-button color="primary">Anterior</button>
+          <button [disabled]="!foodForm.valid" (click)="save($event)" mat-raised-button color="primary">Guardar</button>
+        </div>
       </div>
     </form>
   </div>
+</div>

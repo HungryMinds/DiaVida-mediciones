@@ -2,6 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Location } from '@angular/common';
+import { CampistService } from '../../../core/services/campist.service';
 
 @Component({
   selector: 'app-add-campista-esquema',
@@ -23,7 +24,8 @@ export class AddCampistaEsquemaComponent implements OnInit {
     private fb: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
-    private _location: Location
+    private _location: Location,
+    private campistService: CampistService
   ) {
     this.title = 'Agregar Campista';
     this.subtitle = 'Esquema De Insulina';
@@ -33,24 +35,36 @@ export class AddCampistaEsquemaComponent implements OnInit {
 
   createForm() {
     this.esquemaForm = this.fb.group({
-      eDesayudoOption1: [''],
-      eDesayudoOption2: [''],
-      eDesayudoOption3: [''],
-      eDesayudoOption4: [''],
-      eAlmuerzoOption1: [''],
-      eAlmuerzoOption2: [''],
-      eAlmuerzoOption3: [''],
-      eAlmuerzoOption4: [''],
-      eCenaOption1: [''],
-      eCenaOption2: [''],
-      eCenaOption3: [''],
-      eCenaOption4: [''],
-      eComments: [''],
-      rDesayunoOption: [''],
-      rAlmuerzoOption: [''],
-      rCenaOption: [''],
-      rFactor: [''],
-      rComments: ['']
+      insulinSchemeInterval: this.fb.group({
+        comments: [''],
+        '<80': this.fb.group({
+          Breakfast: [''],
+          Lunch: [''],
+          Diner: ['']
+        }),
+        '81-160': this.fb.group({
+          Breakfast: [''],
+          Lunch: [''],
+          Diner: ['']
+        }),
+        '161-250': this.fb.group({
+          Breakfast: [''],
+          Lunch: [''],
+          Diner: ['']
+        }),
+        '>250': this.fb.group({
+          Breakfast: [''],
+          Lunch: [''],
+          Diner: ['']
+        })
+      }),
+      insulinSchemeRatio: this.fb.group({
+        Breakfast: [''],
+        Lunch: [''],
+        Diner: [''],
+        correctionFactor: [''],
+        comment: ['']
+      })
     });
   }
 
@@ -61,56 +75,43 @@ export class AddCampistaEsquemaComponent implements OnInit {
   next(event) {
     event.preventDefault();
     const {
-      eDesayudoOption1,
-      eDesayudoOption2,
-      eDesayudoOption3,
-      eDesayudoOption4,
-      eAlmuerzoOption1,
-      eAlmuerzoOption2,
-      eAlmuerzoOption3,
-      eAlmuerzoOption4,
-      eCenaOption1,
-      eCenaOption2,
-      eCenaOption3,
-      eCenaOption4,
-      eComments,
-      rDesayunoOption,
-      rAlmuerzoOption,
-      rCenaOption,
-      rFactor,
-      rComments
-    } = this.esquemaForm.value;
+      Breakfast,
+      Lunch,
+      Diner,
+      correctionFactor,
+      comment
+    } = this.esquemaForm.value.insulinSchemeRatio;
 
     const insulinSchemeI = {
-      comments: eComments,
+      comments: this.esquemaForm.value.insulinSchemeInterval.eComments,
       '<80': {
-        Breakfast: eDesayudoOption1,
-        Lunch: eAlmuerzoOption1,
-        Diner: eCenaOption1
+        Breakfast: this.esquemaForm.value.insulinSchemeInterval['<80'].Breakfast,
+        Lunch: this.esquemaForm.value.insulinSchemeInterval['<80'].Lunch,
+        Diner: this.esquemaForm.value.insulinSchemeInterval['<80'].Diner
       },
       '81-160': {
-        Breakfast: eDesayudoOption2,
-        Lunch: eAlmuerzoOption2,
-        Diner: eCenaOption2
+        Breakfast: this.esquemaForm.value.insulinSchemeInterval['81-160'].Breakfast,
+        Lunch: this.esquemaForm.value.insulinSchemeInterval['81-160'].Lunch,
+        Diner: this.esquemaForm.value.insulinSchemeInterval['81-160'].Diner
       },
       '161-250': {
-        Breakfast: eDesayudoOption3,
-        Lunch: eAlmuerzoOption3,
-        Diner: eCenaOption3
+        Breakfast: this.esquemaForm.value.insulinSchemeInterval['161-250'].Breakfast,
+        Lunch: this.esquemaForm.value.insulinSchemeInterval['161-250'].Lunch,
+        Diner: this.esquemaForm.value.insulinSchemeInterval['161-250'].Diner
       },
       '>250': {
-        Breakfast: eDesayudoOption4,
-        Lunch: eAlmuerzoOption4,
-        Diner: eCenaOption4
+        Breakfast: this.esquemaForm.value.insulinSchemeInterval['>250'].Breakfast,
+        Lunch: this.esquemaForm.value.insulinSchemeInterval['>250'].Lunch,
+        Diner: this.esquemaForm.value.insulinSchemeInterval['>250'].Diner
       }
     };
 
     const insulinSchemeR = {
-      Breakfast: rDesayunoOption,
-      Lunch: rAlmuerzoOption,
-      Diner: rCenaOption,
-      correctionFactor: rFactor,
-      comment: rComments
+      Breakfast: Breakfast,
+      Lunch: Lunch,
+      Diner: Diner,
+      correctionFactor: correctionFactor,
+      comment: comment
     };
 
     if (this.valueChecked === '1') {
@@ -128,6 +129,7 @@ export class AddCampistaEsquemaComponent implements OnInit {
     }
 
     this.camper = { ...this.camper };
+
     // Navigate to the next view
     this.router.navigate([this.url + this.nextUrl, this.camper]);
   }
@@ -137,9 +139,20 @@ export class AddCampistaEsquemaComponent implements OnInit {
     this._location.back();
   }
 
+  getCampistToEdit(id) {
+    return this.campistService.getSingleCampist(id).subscribe(camper => {
+      console.log(camper);
+      this.esquemaForm.patchValue(camper);
+    });
+  }
+
   ngOnInit() {
     this.route.params.subscribe(params => {
       this.camper = params;
     });
+
+    if (this.camper.id) {
+      this.getCampistToEdit(this.camper.id);
+    }
   }
 }

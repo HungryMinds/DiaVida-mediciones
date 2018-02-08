@@ -1,5 +1,5 @@
 <div class="add-camper">
-  <app-navbar [title]="title" [subtitle]="subtitle"></app-navbar>
+  <app-navbar isGoingBack="true" [title]="title" [subtitle]="subtitle"></app-navbar>
   <div class="choose-option">
     <mat-radio-group>
       <mat-radio-button checked (change)="toogleView($event)" class="option-item" labelPosition="before" value="1">Escalas</mat-radio-button>
@@ -9,103 +9,134 @@
   <div class="add-camper-form">
     <form [formGroup]="esquemaForm" novalidate>
       <div *ngIf="valueChecked === '1'" class="form-1">
-        <div class="form-row">
-          <p>Desayuno</p>
+        <div formGroupName="insulinSchemeInterval">
+          <div class="form-row">
+            <p>Desayuno</p>
+
+            <div class="form-group-item" formGroupName="<80">
+              <mat-form-field class="full-width">
+                <input formControlName="Breakfast" type="number" min="0" max="250" matInput placeholder="<80">
+              </mat-form-field>
+            </div>
+
+            <div class="form-group-item" formGroupName="81-160">
+              <mat-form-field class="full-width">
+                <input formControlName="Breakfast" type="number" min="0" max="250" matInput placeholder="81-160">
+              </mat-form-field>
+            </div>
+
+            <div class="form-group-item" formGroupName="161-250">
+              <mat-form-field class="full-width">
+                <input formControlName="Breakfast" type="number" min="0" max="250" matInput placeholder="161-250">
+              </mat-form-field>
+            </div>
+
+            <div class="form-group-item" formGroupName=">250">
+              <mat-form-field class="full-width">
+                <input formControlName="Breakfast" type="number" min="0" max="250" matInput placeholder=">250">
+              </mat-form-field>
+            </div>
+
+          </div>
+
+          <div class="form-row">
+            <p>Almuerzo</p>
+
+            <div class="form-group-item" formGroupName="<80">
+              <mat-form-field class="full-width">
+                <input formControlName="Lunch" type="number" min="0" max="250" matInput placeholder="<80">
+              </mat-form-field>
+            </div>
+
+            <div class="form-group-item" formGroupName="81-160">
+              <mat-form-field class="full-width">
+                <input formControlName="Lunch" type="number" min="0" max="250" matInput placeholder="81-160">
+              </mat-form-field>
+            </div>
+
+            <div class="form-group-item" formGroupName="161-250">
+              <mat-form-field class="full-width">
+                <input formControlName="Lunch" type="number" min="0" max="250" matInput placeholder="161-250">
+              </mat-form-field>
+            </div>
+
+            <div class="form-group-item" formGroupName=">250">
+              <mat-form-field class="full-width">
+                <input formControlName="Lunch" type="number" min="0" max="250" matInput placeholder=">250">
+              </mat-form-field>
+            </div>
+
+          </div>
+
+          <div class="form-row">
+            <p>Cena</p>
+
+            <div class="form-group-item" formGroupName="<80">
+              <mat-form-field class="full-width">
+                <input formControlName="Diner" type="number" min="0" max="250" matInput placeholder="<80">
+              </mat-form-field>
+            </div>
+
+            <div class="form-group-item" formGroupName="81-160">
+              <mat-form-field class="full-width">
+                <input formControlName="Diner" type="number" min="0" max="250" matInput placeholder="81-160">
+              </mat-form-field>
+            </div>
+
+            <div class="form-group-item" formGroupName="161-250">
+              <mat-form-field class="full-width">
+                <input formControlName="Diner" type="number" min="0" max="250" matInput placeholder="161-250">
+              </mat-form-field>
+            </div>
+
+            <div class="form-group-item" formGroupName=">250">
+              <mat-form-field class="full-width">
+                <input formControlName="Diner" type="number" min="0" max="250" matInput placeholder=">250">
+              </mat-form-field>
+            </div>
+
+          </div>
 
           <mat-form-field class="full-width">
-            <input formControlName="eDesayudoOption1" type="number" min="0" max="250" matInput placeholder="<80">
+            <textarea formControlName="comments" matInput placeholder="Comentarios"></textarea>
           </mat-form-field>
-
-          <mat-form-field class="full-width">
-            <input formControlName="eDesayudoOption2" type="number" min="0" max="250" matInput placeholder="81-160">
-          </mat-form-field>
-
-          <mat-form-field class="full-width">
-            <input formControlName="eDesayudoOption3" type="number" min="0" max="250" matInput placeholder="161-250">
-          </mat-form-field>
-
-          <mat-form-field class="full-width">
-            <input formControlName="eDesayudoOption4" type="number" min="0" max="250" matInput placeholder=">250">
-          </mat-form-field>
-
         </div>
-
-        <div class="form-row">
-          <p>Almuerzo</p>
-
-          <mat-form-field class="full-width">
-            <input formControlName="eAlmuerzoOption1" type="number" min="0" max="250" matInput placeholder="<80">
-          </mat-form-field>
-
-          <mat-form-field class="full-width">
-            <input formControlName="eAlmuerzoOption2" type="number" min="0" max="250" matInput placeholder="81-160">
-          </mat-form-field>
-
-          <mat-form-field class="full-width">
-            <input formControlName="eAlmuerzoOption3" type="number" min="0" max="250" matInput placeholder="161-250">
-          </mat-form-field>
-
-          <mat-form-field class="full-width">
-            <input formControlName="eAlmuerzoOption4" type="number" min="0" max="250" matInput placeholder=">250">
-          </mat-form-field>
-
-        </div>
-
-        <div class="form-row">
-          <p>Cena</p>
-
-          <mat-form-field class="full-width">
-            <input formControlName="eCenaOption1" type="number" min="0" max="250" matInput placeholder="<80">
-          </mat-form-field>
-
-          <mat-form-field class="full-width">
-            <input formControlName="eCenaOption2" type="number" min="0" max="250" matInput placeholder="81-160">
-          </mat-form-field>
-
-          <mat-form-field class="full-width">
-            <input formControlName="eCenaOption3" type="number" min="0" max="250" matInput placeholder="161-250">
-          </mat-form-field>
-
-          <mat-form-field class="full-width">
-            <input formControlName="eCenaOption4" type="number" min="0" max="250" matInput placeholder=">250">
-          </mat-form-field>
-
-        </div>
-
-        <mat-form-field class="full-width">
-          <textarea formControlName="eComments" matInput placeholder="Comentarios"></textarea>
-        </mat-form-field>
       </div>
 
       <div *ngIf="valueChecked === '2'" class="form-2">
-        <div class="form-row">
-          <p>Ratios</p>
+        <div formGroupName="insulinSchemeRatio">
+          <div class="form-row">
+            <p>Ratios</p>
+
+            <mat-form-field class="full-width">
+              <input formControlName="Breakfast" matInput placeholder="Desayuno">
+            </mat-form-field>
+
+            <mat-form-field class="full-width">
+              <input formControlName="Lunch" matInput placeholder="Almuerzo">
+            </mat-form-field>
+
+            <mat-form-field class="full-width">
+              <input formControlName="Diner" matInput placeholder="Cena">
+            </mat-form-field>
+
+          </div>
 
           <mat-form-field class="full-width">
-            <input formControlName="rDesayunoOption" matInput placeholder="Desayuno">
+            <textarea formControlName="correctionFactor" matInput placeholder="Factor de correción"></textarea>
           </mat-form-field>
 
           <mat-form-field class="full-width">
-            <input formControlName="rAlmuerzoOption" matInput placeholder="Almuerzo">
+            <textarea formControlName="comment" matInput placeholder="Comentarios"></textarea>
           </mat-form-field>
-
-          <mat-form-field class="full-width">
-            <input formControlName="rCenaOption" matInput placeholder="Cena">
-          </mat-form-field>
-
         </div>
-
-        <mat-form-field class="full-width">
-          <textarea formControlName="rFactor" matInput placeholder="Factor de correción"></textarea>
-        </mat-form-field>
-
-        <mat-form-field class="full-width">
-          <textarea formControlName="rComments" matInput placeholder="Comentarios"></textarea>
-        </mat-form-field>
       </div>
       <div class="button-row">
-        <button (click)="goBack($event)" mat-raised-button color="primary">Anterior</button>
-        <button [disabled]="!esquemaForm.valid" (click)="next($event)" mat-raised-button color="primary">Siguiente</button>
+        <div>
+          <button (click)="goBack($event)" mat-raised-button color="primary">Anterior</button>
+          <button [disabled]="!esquemaForm.valid" (click)="next($event)" mat-raised-button color="primary">Siguiente</button>
+        </div>
       </div>
     </form>
   </div>
+</div>
