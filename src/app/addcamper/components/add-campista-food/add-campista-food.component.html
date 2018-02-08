@@ -182,8 +182,10 @@
       </div>
 
       <div class="button-row">
-        <button (click)="goBack($event)" mat-raised-button color="primary">Anterior</button>
-        <button [disabled]="!foodForm.valid" (click)="save($event)" mat-raised-button color="primary">Guardar</button>
+        <div>
+          <button (click)="goBack($event)" mat-raised-button color="primary">Anterior</button>
+          <button [disabled]="!foodForm.valid" (click)="save($event)" mat-raised-button color="primary">Guardar</button>
+        </div>
       </div>
     </form>
   </div>

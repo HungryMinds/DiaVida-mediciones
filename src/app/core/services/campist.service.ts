@@ -40,8 +40,11 @@ export class CampistService {
     this.campistsCollection.add(JSON.parse(JSON.stringify(_campist)));
   }
 
-  deleteCampist(_campist: Campist) {
-    const campistDoc = this.afs.doc(`campists/${_campist.id}`);
+  deleteCampist(id: string) {
+    console.log('deleting!!!!');
+    console.log(id);
+
+    const campistDoc = this.afs.doc(`campists/${id}`);
     campistDoc.delete();
   }
 

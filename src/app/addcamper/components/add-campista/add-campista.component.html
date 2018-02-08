@@ -38,8 +38,10 @@
         <textarea formControlName="allergies" matInput placeholder="Alergias"></textarea>
       </mat-form-field>
       <div class="button-row">
-        <button (click)="goBack($event)" mat-raised-button color="primary">Cancelar</button>
-        <button [disabled]="!basicsForm.valid" (click)="next($event)" mat-raised-button color="primary">Siguiente</button>
+        <div>
+          <button (click)="goBack($event)" mat-raised-button color="primary">Cancelar</button>
+          <button [disabled]="!basicsForm.valid" (click)="next($event)" mat-raised-button color="primary">Siguiente</button>
+        </div>
       </div>
     </form>
   </div>

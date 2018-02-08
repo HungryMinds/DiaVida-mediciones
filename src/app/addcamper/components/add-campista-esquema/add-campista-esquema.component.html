@@ -132,8 +132,10 @@
         </div>
       </div>
       <div class="button-row">
-        <button (click)="goBack($event)" mat-raised-button color="primary">Anterior</button>
-        <button [disabled]="!esquemaForm.valid" (click)="next($event)" mat-raised-button color="primary">Siguiente</button>
+        <div>
+          <button (click)="goBack($event)" mat-raised-button color="primary">Anterior</button>
+          <button [disabled]="!esquemaForm.valid" (click)="next($event)" mat-raised-button color="primary">Siguiente</button>
+        </div>
       </div>
     </form>
   </div>

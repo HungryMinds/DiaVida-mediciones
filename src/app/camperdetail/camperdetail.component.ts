@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { CampistService } from '../core';
 
@@ -7,20 +7,28 @@ import { CampistService } from '../core';
   templateUrl: './camperdetail.component.html',
   styleUrls: ['./camperdetail.component.scss']
 })
-export class CamperdetailComponent implements OnInit {
+  export class CamperdetailComponent implements OnInit, OnDestroy {
+  private camperSubscription: any;
+  private camper: any;
+  id: string;
   aditionalMedication: string;
   allergies: string;
   basalInsulin: string;
   errorButtonMessage: string;
   insulinMessage: string;
   errorButtonCheck: boolean;
-  insulinScheme1: boolean = true;
-  insulinScheme2: boolean = false;
-  needsBasalInsulin: boolean = true;
+  insulinScheme1 = true;
+  insulinScheme2 = false;
+  needsBasalInsulin = true;
   insulinComment: string;
+  userName: string;
   camperId: string;
 
-  constructor(private route: ActivatedRoute, private router: Router, private cs: CampistService) {
+  constructor(
+    private cs: CampistService,
+    private route: ActivatedRoute,
+    private router: Router
+  ) {
     this.aditionalMedication = 'Beclometasona en inhalador';
     this.allergies = 'Abejas, queso y mariscos';
     this.basalInsulin = 'No necesita insulina basal';
@@ -29,30 +37,36 @@ export class CamperdetailComponent implements OnInit {
     this.insulinComment = 'tarde 2-3 unidades si es necesario';
   }
 
+  ngOnInit() {
+    this.id = this.route.snapshot.params.id;
+
+    this.camperSubscription = this.cs
+      .getSingleCampist(this.id)
+      .subscribe(_camper => {
+        this.camper = _camper;
+        this.userName = `${_camper.names} ${_camper.lastNames}`;
+      });
+  }
+
+  ngOnDestroy() {
+    this.camperSubscription.unsubscribe();
+  }
+
   deleteCamper(id) {
     if (!this.errorButtonCheck) {
       this.errorButtonMessage = 'ELIMINAR EL CAMPISTA';
       // TODO: Por ahora lo quita para probar
       this.errorButtonCheck = true;
     } else {
-      console.log('Delete camper Function!');
+      this.cs.deleteCampist(id);
+      this.router.navigate(['/listado']);
       // TODO: Por ahora lo quita para probar
       this.errorButtonMessage = 'ELIMINAR';
       this.errorButtonCheck = false;
     }
   }
-
   editCamper() {
     // Navigate to the next view
     this.router.navigate(['camper/add-camper/edit/', this.camperId]);
-  }
-
-  ngOnInit() {
-    this.route.params.subscribe(params => {
-      this.camperId = params.id;
-    });
-    this.cs.getSingleCampist(this.camperId).subscribe(x => {
-      console.log(x);
-    });
   }
 }
