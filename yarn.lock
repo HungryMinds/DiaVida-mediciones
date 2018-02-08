@@ -4687,10 +4687,6 @@ ng-pwa-tools@0.0.15:
     sha1 "^1.1.1"
     ts-node "^3.0.2"
 
-ngc-float-button@1.2.0:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/ngc-float-button/-/ngc-float-button-1.2.0.tgz#c68e0aad06145a9ee28215973fddb8a7dc47b837"
-
 no-case@^2.2.0:
   version "2.3.2"
   resolved "https://registry.yarnpkg.com/no-case/-/no-case-2.3.2.tgz#60b813396be39b3f1288a4c1ed5d1e7d28b464ac"

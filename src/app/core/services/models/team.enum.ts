@@ -1,7 +1,7 @@
 export enum Team {
-  morado = '#7A00E0',
-  verde = '#43E021',
-  azul = '#2189E0',
-  amarillo = '#E0D313',
-  rojo = '#E01612'
+  morado = '#855deb',
+  verde = '#80ad54',
+  azul = '#2d60e1',
+  amarillo = '#ecdf3d',
+  rojo = '#b65252'
 }

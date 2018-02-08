@@ -15,7 +15,7 @@ export class LogMeditionService {
   logMedition: Observable<LogMedition[]>;
 
   constructor(public afs: AngularFirestore) {
-    this.logMeditionCollection = this.afs.collection('log');
+    this.logMeditionCollection = this.afs.collection('logs');
   }
 
   getLogMeditions() {
@@ -23,27 +23,18 @@ export class LogMeditionService {
   }
 
   addLogMedition(_medition: LogMedition, _campist: string) {
-    var campistsLogsCollection = this.afs.collection('campists/' + _campist + '/logs');
-    this.logMeditionCollection.add(JSON.parse(JSON.stringify(_medition))).then(
-      (x) => {
-        campistsLogsCollection.add({ log: x }).then((x) => {
-          return x
-        }).catch((x) => {
-          return x
-        })
-      }
-    ).catch(function (x) {
-      return x
-    })
+    _medition.idCampist = _campist;
+    this.logMeditionCollection.add(JSON.parse(JSON.stringify(_medition)));
   }
 
-  deleteLogMedition(_campist: LogMedition) {
-    const campistDoc = this.afs.doc(`logMedition/${_campist.id}`);
-    campistDoc.delete();
-  }
+  // TODO: hacer de manera adecuada
+  // deleteLogMedition(_campist: LogMedition) {
+  //   const campistDoc = this.afs.doc(`log/${_campist.id}`);
+  //   campistDoc.delete();
+  // }
 
-  updateLogMedition(_campist: LogMedition) {
-    const campistDoc = this.afs.doc(`logMedition/${_campist.id}`);
-    campistDoc.update(_campist);
-  }
+  // updateLogMedition(_campist: LogMedition) {
+  //   const campistDoc = this.afs.doc(`log/${_campist.id}`);
+  //   campistDoc.update(_campist);
+  // }
 }

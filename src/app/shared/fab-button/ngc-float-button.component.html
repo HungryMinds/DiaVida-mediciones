@@ -1,0 +1,6 @@
+<nav class="fab-menu" [class.active]="(state | async).display">
+  <a class="fab-toggle" (click)="toggle()" [style.backgroundColor]="color">
+    <mat-icon> {{icon}} </mat-icon>
+  </a>
+  <ng-content></ng-content>
+</nav>

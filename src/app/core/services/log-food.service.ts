@@ -15,7 +15,7 @@ export class LogFoodService {
   logFood: Observable<LogFood[]>;
 
   constructor(public afs: AngularFirestore) {
-    this.logFoodCollection = this.afs.collection('log');
+    this.logFoodCollection = this.afs.collection('logs');
   }
 
   getLogFoods() {
@@ -23,27 +23,18 @@ export class LogFoodService {
   }
 
   addLogFood(_food: LogFood, _campist: string) {
-    var campistsLogsCollection = this.afs.collection('campists/' + _campist + '/logs');
-    this.logFoodCollection.add(JSON.parse(JSON.stringify(_food))).then(
-      (x) => {
-        campistsLogsCollection.add({ log: x }).then((x) => {
-          return x
-        }).catch((x) => {
-          return x
-        })
-      }
-    ).catch(function (x) {
-      return x
-    })
+    _food.idCampist = _campist;
+    return this.logFoodCollection.add(JSON.parse(JSON.stringify(_food)));
   }
 
-  deleteLogFood(_campist: LogFood) {
-    const campistDoc = this.afs.doc(`logFood/${_campist.id}`);
-    campistDoc.delete();
-  }
+  // TODO: hacer de manera adecuada
+  // deleteLogFood(_campist: LogFood) {
+  //   const campistDoc = this.afs.doc(`logFood/${_campist.id}`);
+  //   campistDoc.delete();
+  // }
 
-  updateLogFood(_campist: LogFood) {
-    const campistDoc = this.afs.doc(`logFood/${_campist.id}`);
-    campistDoc.update(_campist);
-  }
+  // updateLogFood(_campist: LogFood) {
+  //   const campistDoc = this.afs.doc(`logFood/${_campist.id}`);
+  //   campistDoc.update(_campist);
+  // }
 }
