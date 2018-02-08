@@ -23,7 +23,6 @@ import { NotfoundComponent } from './notfound/notfound.component';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { AngularFireAuthModule } from 'angularfire2/auth';
-import { NgcFloatButtonModule } from 'ngc-float-button';
 import { CamperdetailComponent } from './camperdetail/camperdetail.component';
 
 import { CoreModule } from './core';
@@ -57,7 +56,6 @@ import { MeasurementComponent } from './measurement/measurement.component';
       enabled: environment.production
     }),
     BrowserAnimationsModule,
-    NgcFloatButtonModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule.enablePersistence(),
     AngularFireAuthModule,

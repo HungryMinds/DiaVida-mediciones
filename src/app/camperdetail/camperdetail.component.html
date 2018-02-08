@@ -209,4 +209,15 @@
       </div>
     </mat-tab>
   </mat-tab-group>
+  <ngc-float-button
+      icon="add"
+      color="{{'#009688'}}"
+      direction="left"
+      style="position: fixed;bottom: 46px;right: 36px;"
+      (events)="openFloat($event)"
+    >
+      <ngc-float-item-button color="#009688" image="/assets/medition.svg" content="Mediciones"></ngc-float-item-button>
+      <ngc-float-item-button color="#009688" image="/assets/injection.svg" content="Inyecciones"></ngc-float-item-button>
+      <ngc-float-item-button color="#009688" image="/assets/food.svg" content="Comida"></ngc-float-item-button>
+    </ngc-float-button>
 </div>

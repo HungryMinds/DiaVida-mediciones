@@ -7,7 +7,7 @@ import { CampistService } from '../core';
   templateUrl: './camperdetail.component.html',
   styleUrls: ['./camperdetail.component.scss']
 })
-  export class CamperdetailComponent implements OnInit, OnDestroy {
+export class CamperdetailComponent implements OnInit, OnDestroy {
   private camperSubscription: any;
   private camper: any;
   id: string;
@@ -68,5 +68,8 @@ import { CampistService } from '../core';
   editCamper() {
     // Navigate to the next view
     this.router.navigate(['camper/edit/', this.camperId]);
+  }
+  openFloat(e) {
+    console.log(e);
   }
 }
