@@ -5,7 +5,6 @@
 import firebase from './firestore';
 
 export const environment = {
-  API_URL: '',
   production: false,
   firebase
 };
