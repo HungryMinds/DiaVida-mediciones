@@ -50,6 +50,6 @@ export class CampistService {
 
   updateCampist(_campist: Campist) {
     const campistDoc = this.afs.doc(`campists/${_campist.id}`);
-    campistDoc.update(_campist);
+    campistDoc.update(JSON.parse(JSON.stringify(_campist)));
   }
 }

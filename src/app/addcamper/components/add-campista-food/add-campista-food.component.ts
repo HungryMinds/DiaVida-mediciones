@@ -3,6 +3,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { FormControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CampistService } from '../../../core/services/campist.service';
 import { Location } from '@angular/common';
+import { FormLifeCycleService } from '../../form-life-cycle.service'
+
 
 @Component({
   selector: 'app-add-campista-food',
@@ -18,6 +20,7 @@ export class AddCampistaFoodComponent implements OnInit {
   camper: any;
 
   constructor(
+    private _flcs: FormLifeCycleService,
     private campistService: CampistService,
     private fb: FormBuilder,
     private route: ActivatedRoute,
@@ -72,7 +75,7 @@ export class AddCampistaFoodComponent implements OnInit {
   save(event) {
     event.preventDefault();
 
-    const foodTable = JSON.stringify({
+    const foodTable = ({
       fruta: {
         Breakfast: this.foodForm.value.foodTable.frut.Breakfast,
         MorningSnack: this.foodForm.value.foodTable.frut.MorningSnack,
@@ -107,19 +110,14 @@ export class AddCampistaFoodComponent implements OnInit {
       }
     });
 
-    this.camper = {
-      ...this.camper,
-      foodTable
-    };
-    this.camper = { ...this.camper };
+    this._flcs.updateCurrentCampiest({foodTable})
+    this.camper = this._flcs.getCurrentCampiest()
 
     // Save the data to database
     const newCamper = this.camper;
-    Object.keys(newCamper).forEach(item => {
-      if (newCamper[item].includes('{')) {
-        newCamper[item] = JSON.parse(newCamper[item]);
-      }
-    });
+    console.log ('The New Camper')
+    console.log (newCamper)
+
 
     if (newCamper.id) {
       this.campistService.updateCampist(newCamper);
@@ -143,12 +141,7 @@ export class AddCampistaFoodComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.route.params.subscribe(params => {
-      this.camper = params;
-    });
-
-    if (this.camper.id) {
-      this.getCampistToEdit(this.camper.id);
-    }
+    console.log('Got campist ', this._flcs.getCurrentCampiest())
+    this.foodForm.patchValue(this._flcs.getCurrentCampiest())
   }
 }

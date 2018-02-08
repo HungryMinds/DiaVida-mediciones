@@ -3,6 +3,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { FormControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Location } from '@angular/common';
 import { CampistService } from '../../../core/services/campist.service';
+import { FormLifeCycleService } from '../../form-life-cycle.service'
+
 
 @Component({
   selector: 'app-add-campista-esquema',
@@ -21,6 +23,7 @@ export class AddCampistaEsquemaComponent implements OnInit {
   camper: any;
 
   constructor(
+    private _flcs: FormLifeCycleService,
     private fb: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
@@ -115,23 +118,15 @@ export class AddCampistaEsquemaComponent implements OnInit {
     };
 
     if (this.valueChecked === '1') {
-      const insulinSchemeInterval = JSON.stringify(insulinSchemeI);
-      this.camper = {
-        ...this.camper,
-        insulinSchemeInterval
-      };
+      this._flcs.updateCurrentCampiest({ insulinSchemeI })
+
     } else {
-      const insulinSchemeRatio = JSON.stringify(insulinSchemeR);
-      this.camper = {
-        ...this.camper,
-        insulinSchemeRatio
-      };
+      this._flcs.updateCurrentCampiest({ insulinSchemeR })
     }
 
-    this.camper = { ...this.camper };
+    this.router.navigate([this.url + this.nextUrl]);
 
-    // Navigate to the next view
-    this.router.navigate([this.url + this.nextUrl, this.camper]);
+
   }
 
   goBack(event) {
@@ -139,20 +134,9 @@ export class AddCampistaEsquemaComponent implements OnInit {
     this._location.back();
   }
 
-  getCampistToEdit(id) {
-    return this.campistService.getSingleCampist(id).subscribe(camper => {
-      console.log(camper);
-      this.esquemaForm.patchValue(camper);
-    });
-  }
 
   ngOnInit() {
-    this.route.params.subscribe(params => {
-      this.camper = params;
-    });
-
-    if (this.camper.id) {
-      this.getCampistToEdit(this.camper.id);
-    }
+    console.log('Got campist ', this._flcs.getCurrentCampiest())
+    this.esquemaForm.patchValue(this._flcs.getCurrentCampiest())
   }
 }
