@@ -20,7 +20,7 @@ export class AddCampistaDosisComponent implements OnInit {
   @Input() checked;
   @Output() change: EventEmitter<boolean> = new EventEmitter<boolean>();
   url = 'camper/add-camper/';
-  previewsUrl = '';
+  previewsUrl = 'edit/';
   nextUrl = 'esquema';
   public dosisForm: FormGroup;
   camper: any;

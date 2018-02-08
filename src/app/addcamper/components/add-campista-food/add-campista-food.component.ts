@@ -44,7 +44,7 @@ export class AddCampistaFoodComponent implements OnInit {
           AfternoonSnack: [''],
           BeforeSleep: ['']
         }),
-        frut: this.fb.group({
+        fruta: this.fb.group({
           Breakfast: [''],
           Lunch: [''],
           Diner: [''],
@@ -77,12 +77,12 @@ export class AddCampistaFoodComponent implements OnInit {
 
     const foodTable = ({
       fruta: {
-        Breakfast: this.foodForm.value.foodTable.frut.Breakfast,
-        MorningSnack: this.foodForm.value.foodTable.frut.MorningSnack,
-        Lunch: this.foodForm.value.foodTable.frut.Lunch,
-        AfternoonSnack: this.foodForm.value.foodTable.frut.AfternoonSnack,
-        Diner: this.foodForm.value.foodTable.frut.Diner,
-        BeforeSleep: this.foodForm.value.foodTable.frut.BeforeSleep
+        Breakfast: this.foodForm.value.foodTable.fruta.Breakfast,
+        MorningSnack: this.foodForm.value.foodTable.fruta.MorningSnack,
+        Lunch: this.foodForm.value.foodTable.fruta.Lunch,
+        AfternoonSnack: this.foodForm.value.foodTable.fruta.AfternoonSnack,
+        Diner: this.foodForm.value.foodTable.fruta.Diner,
+        BeforeSleep: this.foodForm.value.foodTable.fruta.BeforeSleep
       },
       prot: {
         Breakfast: this.foodForm.value.foodTable.prot.Breakfast,
