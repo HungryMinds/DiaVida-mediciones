@@ -52,10 +52,10 @@ export class AddCampistaComponent implements OnInit {
     this.router.navigate([this.url + this.nextUrl]);
   }
 
-  goBack(event) {
-
+  goBack = (event) => {
+    if (event)
+      event.preventDefault();
     this.router.navigate(['/listado']);
-    event.preventDefault();
   }
 
   ngOnInit() {

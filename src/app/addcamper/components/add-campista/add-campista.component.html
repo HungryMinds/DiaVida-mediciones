@@ -1,5 +1,5 @@
 <div class="add-camper">
-  <app-navbar [title]="title" [subtitle]="subtitle"></app-navbar>
+  <app-navbar [isGoingBack] = 'true' [backFunction]= 'goBack' [title]="title" [subtitle]="subtitle"></app-navbar>
   <div class="add-camper-form">
     <form [formGroup]="basicsForm" novalidate>
       <mat-form-field class="full-width">

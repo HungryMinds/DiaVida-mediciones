@@ -17,6 +17,7 @@ export class AddCampistaEsquemaComponent implements OnInit {
   valueChecked = '1';
   checkedInterval = true;
   checkedRatio = false
+  previewsUrl = 'dosis'
   @Output() change: EventEmitter<boolean> = new EventEmitter<boolean>();
   url = 'camper/add-camper/';
   nextUrl = 'food';
@@ -119,18 +120,19 @@ export class AddCampistaEsquemaComponent implements OnInit {
     };
 
     if (this.valueChecked === '1') {
-      this._flcs.updateCurrentCampiest({ insulinSchemeInterval, 'insulinSchemeRatio' :null})
+      this._flcs.updateCurrentCampiest({ insulinSchemeInterval, 'insulinSchemeRatio': null })
     } else {
-      this._flcs.updateCurrentCampiest({ insulinSchemeRatio ,'insulinSchemeInterval' :null })
+      this._flcs.updateCurrentCampiest({ insulinSchemeRatio, 'insulinSchemeInterval': null })
     }
 
     this.router.navigate([this.url + this.nextUrl]);
 
   }
 
-  goBack(event) {
-    event.preventDefault();
-    this._location.back();
+  goBack = (event) => {
+    if (event)
+      event.preventDefault();
+    this.router.navigate([this.url + this.previewsUrl]);
   }
 
 

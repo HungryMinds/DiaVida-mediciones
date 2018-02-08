@@ -16,6 +16,7 @@ export class AddCampistaFoodComponent implements OnInit {
   subtitle: string;
   url = '/';
   nextUrl = 'listado';
+  previewsUrl = 'camper/add-camper/esquema'
   public foodForm: FormGroup;
   camper: any;
 
@@ -110,13 +111,13 @@ export class AddCampistaFoodComponent implements OnInit {
       }
     });
 
-    this._flcs.updateCurrentCampiest({foodTable})
+    this._flcs.updateCurrentCampiest({ foodTable })
     this.camper = this._flcs.getCurrentCampiest()
 
     // Save the data to database
     const newCamper = this.camper;
-    console.log ('The New Camper')
-    console.log (newCamper)
+    console.log('The New Camper')
+    console.log(newCamper)
 
 
     if (newCamper.id) {
@@ -129,9 +130,10 @@ export class AddCampistaFoodComponent implements OnInit {
     this.router.navigate([this.url + this.nextUrl]);
   }
 
-  goBack(event) {
-    event.preventDefault();
-    this._location.back();
+  goBack = (event) => {
+    if (event)
+      event.preventDefault();
+    this.router.navigate([this.url + this.previewsUrl]);
   }
 
   getCampistToEdit(id) {

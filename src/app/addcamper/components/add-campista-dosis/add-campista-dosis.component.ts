@@ -87,8 +87,9 @@ export class AddCampistaDosisComponent implements OnInit {
     this.router.navigate([this.url + this.nextUrl]);
   }
 
-  goBack(event) {
-    event.preventDefault();
+  goBack = (event) => {
+    if (event)
+      event.preventDefault();
     this.router.navigate([this.url + this.previewsUrl]);
   }
 
