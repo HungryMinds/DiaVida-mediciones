@@ -1,5 +1,5 @@
 <div class="add-camper">
-  <app-navbar [title]="title" [subtitle]="subtitle"></app-navbar>
+  <app-navbar isGoingBack="true" [title]="title" [subtitle]="subtitle"></app-navbar>
   <div class="choose-option">
     <p>Utiliza más de una dosis basal por día?</p>
     <mat-slide-toggle (change)="toogleView($event)" [color]="color" [checked]="checked" [disabled]="disabled">
