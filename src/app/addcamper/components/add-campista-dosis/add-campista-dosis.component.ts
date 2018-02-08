@@ -26,7 +26,7 @@ export class AddCampistaDosisComponent implements OnInit {
   camper: any;
 
   constructor(
-    private _flcs: FormLifeCycleService, 
+    private _flcs: FormLifeCycleService,
     private fb: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
@@ -75,15 +75,15 @@ export class AddCampistaDosisComponent implements OnInit {
         time: this.dosisForm.value.basalInsulin['first-application'].time
       },
       'second-application': {
-        dosage: this.dosisForm.value.basalInsulin['second-application']['second-sdosage'],
-        time: this.dosisForm.value.basalInsulin['second-application']['second-stime']
+        dosage: this.dosisForm.value.basalInsulin['second-application'].dosage,
+        time: this.dosisForm.value.basalInsulin['second-application'].time
       }
     };
 
     const basalInsulin = !this.isChecked ? fBasal : sBasal;
 
-    this._flcs.updateCurrentCampiest({basalInsulin})
-    
+    this._flcs.updateCurrentCampiest({ basalInsulin })
+
     this.router.navigate([this.url + this.nextUrl]);
   }
 
@@ -93,7 +93,11 @@ export class AddCampistaDosisComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log ('Got campist ', this._flcs.getCurrentCampiest())
+    console.log('Got campist ', this._flcs.getCurrentCampiest())
     this.dosisForm.patchValue(this._flcs.getCurrentCampiest())
+    if (this._flcs.getCurrentCampiest() && this._flcs.getCurrentCampiest()['basalInsulin'] && this._flcs.getCurrentCampiest()['basalInsulin']['second-application']) {
+      this.checked = true
+      this.isChecked = true
+    }
   }
 }

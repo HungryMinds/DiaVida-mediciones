@@ -124,6 +124,7 @@ export class AddCampistaFoodComponent implements OnInit {
     } else {
       this.campistService.addCampist(newCamper);
     }
+    this._flcs.cleanCurrent()
     // Navigate to the next view
     this.router.navigate([this.url + this.nextUrl]);
   }

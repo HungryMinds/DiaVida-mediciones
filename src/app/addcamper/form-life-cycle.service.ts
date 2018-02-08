@@ -15,5 +15,10 @@ export class FormLifeCycleService {
     this.currentCampiest = Object.assign(this.currentCampiest, campiest)
   }
 
+  cleanCurrent() {
+    this.currentCampiest = {}
+  }
+
+
 
 }
