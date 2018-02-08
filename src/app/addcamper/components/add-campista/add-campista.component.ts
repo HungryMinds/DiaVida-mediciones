@@ -43,8 +43,13 @@ export class AddCampistaComponent implements OnInit {
 
   next(event) {
     event.preventDefault();
-    const id = this.camperId;
-    this.camper = { ...this.basicsForm.value, id };
+    let id;
+    if (this.camperId) {
+      id = this.camperId;
+      this.camper = { ...this.basicsForm.value, id };
+    } else {
+      this.camper = { ...this.basicsForm.value };
+    }
 
     // Navigate to the next view
     this.router.navigate([this.url + this.nextUrl, ...this.camper]);

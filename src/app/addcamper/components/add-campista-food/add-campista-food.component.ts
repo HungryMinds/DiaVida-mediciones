@@ -121,7 +121,11 @@ export class AddCampistaFoodComponent implements OnInit {
       }
     });
 
-    this.campistService.addCampist(newCamper);
+    if (newCamper.id) {
+      this.campistService.updateCampist(newCamper);
+    } else {
+      this.campistService.addCampist(newCamper);
+    }
     // Navigate to the next view
     this.router.navigate([this.url + this.nextUrl]);
   }
