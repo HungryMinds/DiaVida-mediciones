@@ -67,12 +67,8 @@ import { CampistService } from '../core';
 
   deleteCamper(id) {
     if (!this.errorButtonCheck) {
-      // setTimeout(function() {
-      // this.errorButtonMessage = 'ELIMINAR EL CAMPISTA';
-      // }, 400);
       this.deleteButtonWidth = this.getWidthOfText("ELIMINAR EL CAMPISTA", "14") +100+ "px";
       this.errorButtonMessage = 'ELIMINAR EL CAMPISTA';
-      // TODO: Por ahora lo quita para probar
       this.errorButtonCheck = true;
     } else {
       this.cs.deleteCampist(id);
@@ -80,6 +76,25 @@ import { CampistService } from '../core';
       // TODO: Por ahora lo quita para probar
       this.errorButtonMessage = 'ELIMINAR';
       this.errorButtonCheck = false;
+    }
+  }
+  checkCancelDelete (event) {
+    if (this.errorButtonCheck) {
+      let target = event.target || event.srcElement || event.currentTarget;
+      let parent = target.parentElement;   
+      let classAttr = parent.attributes.class.value;
+      if ((classAttr + '').indexOf('deleteCamperButton') > -1) {
+        console.log('is the button')
+        console.log(classAttr)
+        
+      } else {
+        console.log('is not the button')
+        console.log(classAttr)
+        console.log(this.errorButtonCheck)
+        this.deleteButtonWidth = this.getWidthOfText("ELIMINAR", "14") +100+ "px";
+        this.errorButtonMessage = 'ELIMINAR';
+        this.errorButtonCheck = false        
+      }
     }
   }
   editCamper(id) {
