@@ -52,7 +52,7 @@
       margin: 0;
     }
     .mat-form-field {
-      width: 23%;
+      width: 100%;
     }
   }
 
@@ -63,4 +63,9 @@
       }
     }
   }
+}
+
+.form-group-item {
+  width: 24%;
+  display: inline-block;
 }

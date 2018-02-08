@@ -7,35 +7,41 @@
   </div>
   <div class="add-camper-form">
     <form [formGroup]="dosisForm" novalidate>
-      <div *ngIf="!isChecked" class="form-1">
-        <p>Aplicación</p>
-        <mat-form-field class="full-width">
-          <input formControlName="time" type="time" matInput placeholder="Hora">
-        </mat-form-field>
+      <div formGroupName="basalInsulin">
+        <div formGroupName="first-application">
+          <div *ngIf="!isChecked" class="form-1">
+            <p>Aplicación</p>
+            <mat-form-field class="full-width">
+              <input formControlName="time" type="time" matInput placeholder="Hora">
+            </mat-form-field>
 
-        <mat-form-field class="full-width">
-          <input formControlName="dosage" type="number" matInput placeholder="Dosis">
-        </mat-form-field>
-      </div>
+            <mat-form-field class="full-width">
+              <input formControlName="dosage" type="number" matInput placeholder="Dosis">
+            </mat-form-field>
+          </div>
+        </div>
 
-      <div *ngIf="isChecked" class="form-2">
-        <p>Primera aplicación</p>
-        <mat-form-field class="full-width">
-          <input formControlName="second-ftime" type="time" matInput placeholder="Hora">
-        </mat-form-field>
+        <div formGroupName="second-application">
+          <div *ngIf="isChecked" class="form-2">
+            <p>Primera aplicación</p>
+            <mat-form-field class="full-width">
+              <input formControlName="time" type="time" matInput placeholder="Hora">
+            </mat-form-field>
 
-        <mat-form-field class="full-width">
-          <input formControlName="second-fdosage" type="number" matInput placeholder="Dosis">
-        </mat-form-field>
+            <mat-form-field class="full-width">
+              <input formControlName="dosage" type="number" matInput placeholder="Dosis">
+            </mat-form-field>
 
-        <p>Segunda aplicación</p>
-        <mat-form-field class="full-width">
-          <input formControlName="second-stime" type="time" matInput placeholder="Hora">
-        </mat-form-field>
+            <p>Segunda aplicación</p>
+            <mat-form-field class="full-width">
+              <input formControlName="second-stime" type="time" matInput placeholder="Hora">
+            </mat-form-field>
 
-        <mat-form-field class="full-width">
-          <input formControlName="second-sdosage" type="number" matInput placeholder="Dosis">
-        </mat-form-field>
+            <mat-form-field class="full-width">
+              <input formControlName="second-sdosage" type="number" matInput placeholder="Dosis">
+            </mat-form-field>
+          </div>
+        </div>
       </div>
 
       <div class="button-row">

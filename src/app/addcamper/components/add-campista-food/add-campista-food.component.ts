@@ -32,94 +32,78 @@ export class AddCampistaFoodComponent implements OnInit {
 
   createForm() {
     this.foodForm = this.fb.group({
-      desayunoCarbs: [''],
-      desayunoProt: [''],
-      desayunoFrut: [''],
-      desayunoLact: [''],
-      almuerzoCarbs: [''],
-      almuerzoProt: [''],
-      almuerzoFrut: [''],
-      almuerzoLact: [''],
-      cenaCarbs: [''],
-      cenaProt: [''],
-      cenaFrut: [''],
-      cenaLact: [''],
-      meriendaFirstCarbs: [''],
-      meriendaFirstProt: [''],
-      meriendaFirstFrut: [''],
-      meriendaFirstLact: [''],
-      meriendaSecondCarbs: [''],
-      meriendaSecondProt: [''],
-      meriendaSecondFrut: [''],
-      meriendaSecondLact: [''],
-      meriendaThirdCarbs: [''],
-      meriendaThirdProt: [''],
-      meriendaThirdFrut: [''],
-      meriendaThirdLact: ['']
+      foodTable: this.fb.group({
+        carb: this.fb.group({
+          Breakfast: [''],
+          Lunch: [''],
+          Diner: [''],
+          MorningSnack: [''],
+          AfternoonSnack: [''],
+          BeforeSleep: ['']
+        }),
+        frut: this.fb.group({
+          Breakfast: [''],
+          Lunch: [''],
+          Diner: [''],
+          MorningSnack: [''],
+          AfternoonSnack: [''],
+          BeforeSleep: ['']
+        }),
+        prot: this.fb.group({
+          Breakfast: [''],
+          Lunch: [''],
+          Diner: [''],
+          MorningSnack: [''],
+          AfternoonSnack: [''],
+          BeforeSleep: ['']
+        }),
+        lact: this.fb.group({
+          Breakfast: [''],
+          Lunch: [''],
+          Diner: [''],
+          MorningSnack: [''],
+          AfternoonSnack: [''],
+          BeforeSleep: ['']
+        })
+      })
     });
   }
 
   save(event) {
     event.preventDefault();
-    const {
-      desayunoCarbs,
-      desayunoProt,
-      desayunoFrut,
-      desayunoLact,
-      almuerzoCarbs,
-      almuerzoProt,
-      almuerzoFrut,
-      almuerzoLact,
-      cenaCarbs,
-      cenaProt,
-      cenaFrut,
-      cenaLact,
-      meriendaFirstCarbs,
-      meriendaFirstProt,
-      meriendaFirstFrut,
-      meriendaFirstLact,
-      meriendaSecondCarbs,
-      meriendaSecondProt,
-      meriendaSecondFrut,
-      meriendaSecondLact,
-      meriendaThirdCarbs,
-      meriendaThirdProt,
-      meriendaThirdFrut,
-      meriendaThirdLact
-    } = this.foodForm.value;
 
     const foodTable = JSON.stringify({
       fruta: {
-        Breakfast: desayunoFrut,
-        MorningSnack: meriendaFirstFrut,
-        Lunch: almuerzoFrut,
-        AfternoonSnack: meriendaSecondFrut,
-        Diner: cenaFrut,
-        BeforeSleep: meriendaThirdFrut
+        Breakfast: this.foodForm.value.foodTable.frut.Breakfast,
+        MorningSnack: this.foodForm.value.foodTable.frut.MorningSnack,
+        Lunch: this.foodForm.value.foodTable.frut.Lunch,
+        AfternoonSnack: this.foodForm.value.foodTable.frut.AfternoonSnack,
+        Diner: this.foodForm.value.foodTable.frut.Diner,
+        BeforeSleep: this.foodForm.value.foodTable.frut.BeforeSleep
       },
       prot: {
-        Breakfast: desayunoProt,
-        MorningSnack: meriendaFirstProt,
-        Lunch: almuerzoProt,
-        AfternoonSnack: meriendaSecondProt,
-        Diner: cenaProt,
-        BeforeSleep: meriendaThirdProt
+        Breakfast: this.foodForm.value.foodTable.prot.Breakfast,
+        MorningSnack: this.foodForm.value.foodTable.prot.MorningSnack,
+        Lunch: this.foodForm.value.foodTable.prot.Lunch,
+        AfternoonSnack: this.foodForm.value.foodTable.prot.AfternoonSnack,
+        Diner: this.foodForm.value.foodTable.prot.Diner,
+        BeforeSleep: this.foodForm.value.foodTable.prot.BeforeSleep
       },
       carb: {
-        Breakfast: desayunoCarbs,
-        MorningSnack: meriendaFirstCarbs,
-        Lunch: almuerzoCarbs,
-        AfternoonSnack: meriendaSecondCarbs,
-        Diner: cenaCarbs,
-        BeforeSleep: meriendaThirdCarbs
+        Breakfast: this.foodForm.value.foodTable.carb.Breakfast,
+        MorningSnack: this.foodForm.value.foodTable.carb.MorningSnack,
+        Lunch: this.foodForm.value.foodTable.carb.Lunch,
+        AfternoonSnack: this.foodForm.value.foodTable.carb.AfternoonSnack,
+        Diner: this.foodForm.value.foodTable.carb.Diner,
+        BeforeSleep: this.foodForm.value.foodTable.carb.BeforeSleep
       },
       lact: {
-        Breakfast: desayunoLact,
-        MorningSnack: meriendaFirstLact,
-        Lunch: almuerzoLact,
-        AfternoonSnack: meriendaSecondLact,
-        Diner: cenaLact,
-        BeforeSleep: meriendaThirdLact
+        Breakfast: this.foodForm.value.foodTable.lact.Breakfast,
+        MorningSnack: this.foodForm.value.foodTable.lact.MorningSnack,
+        Lunch: this.foodForm.value.foodTable.lact.Lunch,
+        AfternoonSnack: this.foodForm.value.foodTable.lact.AfternoonSnack,
+        Diner: this.foodForm.value.foodTable.lact.Diner,
+        BeforeSleep: this.foodForm.value.foodTable.lact.BeforeSleep
       }
     });
 
@@ -147,9 +131,20 @@ export class AddCampistaFoodComponent implements OnInit {
     this._location.back();
   }
 
+  getCampistToEdit(id) {
+    return this.campistService.getSingleCampist(id).subscribe(camper => {
+      console.log('CAMPER', camper);
+      this.foodForm.patchValue(camper);
+    });
+  }
+
   ngOnInit() {
     this.route.params.subscribe(params => {
       this.camper = params;
     });
+
+    if (this.camper.id) {
+      this.getCampistToEdit(this.camper.id);
+    }
   }
 }
