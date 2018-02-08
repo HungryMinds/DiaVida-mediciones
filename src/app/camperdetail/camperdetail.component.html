@@ -13,10 +13,10 @@
         </div>
         <div class="topDataColumn">
           <p class="topDataColumValue">{{camper.team}}</p>
-          <p class="topDataColumLabel">Equipo</p>
+          <p class="topDataColumLabel">equipo</p>
         </div>
       </div>
-      <div class="bottomData">
+      <div class="bottomData" (click)="checkCancelDelete($event)">
           <mat-accordion class="camperAcordeon">
             <mat-expansion-panel>
                 <mat-expansion-panel-header>
@@ -190,7 +190,7 @@
                   </table>
               </mat-expansion-panel>
           </mat-accordion>
-          <button mat-raised-button id="deleteCamperButton" color="warn" (click)="deleteCamper(camper.id)" [style.width]="deleteButtonWidth">{{errorButtonMessage}}</button>
+          <button mat-raised-button id="deleteCamperButton" class="deleteCamperButton" color="warn" (click)="deleteCamper(camper.id)" [style.width]="deleteButtonWidth">{{errorButtonMessage}}</button>
           <button (click)="editCamper(camper.id)" mat-raised-button class="acceptButton">EDITAR</button>
       </div>
     </mat-tab>
