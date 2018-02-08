@@ -36,14 +36,23 @@ export class CampistService {
       });
   }
 
+  getLogsCampist(id) {
+    return this.afs.collection('logs', (ref) => ref.where('idCampist', '==', id))
+    .snapshotChanges()
+    .map((changes) => {
+      return changes.map((_data) => {
+        const data = _data.payload.doc.data();
+        data.id = _data.payload.doc.id;
+        return data;
+      });
+    });
+  }
+
   addCampist(_campist: Campist) {
     this.campistsCollection.add(JSON.parse(JSON.stringify(_campist)));
   }
 
   deleteCampist(id: string) {
-    console.log('deleting!!!!');
-    console.log(id);
-
     const campistDoc = this.afs.doc(`campists/${id}`);
     campistDoc.delete();
   }

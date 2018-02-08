@@ -15,7 +15,7 @@ export class LogInjectionService {
   logInjection: Observable<LogInjection[]>;
 
   constructor(public afs: AngularFirestore) {
-    this.logInjectionCollection = this.afs.collection('log');
+    this.logInjectionCollection = this.afs.collection('logs');
   }
 
   getLogInjections() {
@@ -23,27 +23,29 @@ export class LogInjectionService {
   }
 
   addLogInjection(_injection: LogInjection, _campist: string, ) {
-    var campistsLogsCollection = this.afs.collection('campists/' + _campist + '/logs');
+    _injection.idCampist = _campist;
+    const campistsLogsCollection = this.afs.collection('logs');
     this.logInjectionCollection.add(JSON.parse(JSON.stringify(_injection))).then(
       (x) => {
-        campistsLogsCollection.add({ log: x }).then((x) => {
-          return x
-        }).catch((x) => {
-          return x
-        })
+        campistsLogsCollection.add({ log: x }).then((_x) => {
+          return _x;
+        }).catch((_x) => {
+          return _x;
+        });
       }
-    ).catch(function (x) {
-      return x
-    })
+    ).catch(function (_x) {
+      return _x;
+    });
   }
 
-  deleteLogInjection(_campist: LogInjection) {
-    const campistDoc = this.afs.doc(`logInjection/${_campist.id}`);
-    campistDoc.delete();
-  }
+  // TODO: rehacer
+  // deleteLogInjection(_campist: LogInjection) {
+  //   const campistDoc = this.afs.doc(`logInjection/${_campist.id}`);
+  //   campistDoc.delete();
+  // }
 
-  updateLogInjection(_campist: LogInjection) {
-    const campistDoc = this.afs.doc(`logInjection/${_campist.id}`);
-    campistDoc.update(_campist);
-  }
+  // updateLogInjection(_campist: LogInjection) {
+  //   const campistDoc = this.afs.doc(`logInjection/${_campist.id}`);
+  //   campistDoc.update(_campist);
+  // }
 }

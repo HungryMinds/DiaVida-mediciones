@@ -1,6 +1,7 @@
-import { logType } from './log.enum'
+import { logType } from './log.enum';
 
 class Log {
+  idCampist: string;
   id: string; // id en firestore
   date: Date; // momento de la prueba
   description: string; // descripción que se agrega en caso de necesitarlo
@@ -14,7 +15,7 @@ class Log {
 }
 
 export class LogMedition extends Log {
-  logType = logType.measure
+  logType = logType.measure;
   moment: string; // momento como desayuno, almuerzo, etc.
 
   constructor(logRaw: any) {
@@ -34,7 +35,7 @@ const logMedition = new LogMedition({
 */
 
 export class LogInjection extends Log {
-  logType = logType.inyetable
+  logType = logType.inyetable;
   type: string;
 
   constructor(logRaw: any) {
@@ -54,7 +55,7 @@ const logInjection = new LogInjection({
 */
 
 export class LogFood extends Log {
-  logType = logType.food
+  logType = logType.food;
   type: string; // jugo, galleta, leche, etc.
 
   constructor(logRaw: any) {

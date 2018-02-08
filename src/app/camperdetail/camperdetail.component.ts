@@ -8,9 +8,9 @@ import { CampistService } from '../core';
   styleUrls: ['./camperdetail.component.scss']
 })
 export class CamperdetailComponent implements OnInit, OnDestroy {
-  private camperSubscription: any;
+  private subs = [];
   private camper: any;
-  id: string;
+  idCamper: string;
   aditionalMedication: string;
   allergies: string;
   basalInsulin: string;
@@ -38,18 +38,25 @@ export class CamperdetailComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.id = this.route.snapshot.params.id;
+    this.idCamper = this.route.snapshot.params.id;
 
-    this.camperSubscription = this.cs
-      .getSingleCampist(this.id)
+    this.subs.push(this.cs
+      .getSingleCampist(this.idCamper)
       .subscribe(_camper => {
         this.camper = _camper;
         this.userName = `${_camper.names} ${_camper.lastNames}`;
-      });
+      }));
+      this.subs.push(this.cs.getLogsCampist(this.idCamper));
   }
 
   ngOnDestroy() {
-    this.camperSubscription.unsubscribe();
+    if (this.subs.length) {
+      this.subs.forEach((sub) => {
+        if (sub.unsubscribe) {
+          sub.unsubscribe();
+        }
+      });
+    }
   }
 
   deleteCamper(id) {
@@ -67,9 +74,19 @@ export class CamperdetailComponent implements OnInit, OnDestroy {
   }
   editCamper() {
     // Navigate to the next view
-    this.router.navigate(['camper/edit/', this.camperId]);
+    this.router.navigate(['camper/edit/', this.idCamper]);
   }
   openFloat(e) {
     console.log(e);
+  }
+
+  openNewMedition() {
+    this.router.navigateByUrl(`/camperDetail/${this.idCamper}/measurement`);
+  }
+  openNewInjection() {
+    this.router.navigateByUrl(`/camperDetail/${this.idCamper}/injection`);
+  }
+  openNewFood() {
+    this.router.navigateByUrl(`/camperDetail/${this.idCamper}/food`);
   }
 }
