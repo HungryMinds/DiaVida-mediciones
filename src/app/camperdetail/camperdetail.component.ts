@@ -10,7 +10,7 @@ import { CampistService } from '../core';
 export class CamperdetailComponent implements OnInit, OnDestroy {
   private subs = [];
   private logs: any[];
-  private camper: any;
+  camper: any;
   idCamper: string;
   aditionalMedication: string;
   allergies: string;
@@ -24,6 +24,7 @@ export class CamperdetailComponent implements OnInit, OnDestroy {
   insulinComment: string;
   userName: string;
   camperId: string;
+  deleteButtonWidth: string;
 
   constructor(
     private cs: CampistService,
@@ -44,6 +45,7 @@ export class CamperdetailComponent implements OnInit, OnDestroy {
     this.subs.push(
       this.cs.getSingleCampist(this.idCamper).subscribe(_camper => {
         this.camper = _camper;
+        console.log(this.camper);
         this.userName = `${_camper.names} ${_camper.lastNames}`;
       })
     );
@@ -54,6 +56,7 @@ export class CamperdetailComponent implements OnInit, OnDestroy {
           const bT = new Date(b.date).getTime();
           return bT - aT;
         });
+
         const orderedByDay = data.reduce((acum, curr, idx) => {
           curr.date = new Date(curr.date);
           if (!acum.length) {
@@ -77,6 +80,16 @@ export class CamperdetailComponent implements OnInit, OnDestroy {
         this.logs = orderedByDay;
       })
     );
+    this.deleteButtonWidth = this.getWidthOfText('ELIMINAR', '14') + 40 + 'px';
+
+  }
+
+  getWidthOfText(txt, fontsize) {
+    const c = document.createElement('canvas');
+    const ctx = c.getContext('2d');
+    ctx.font = fontsize + 'px' ;
+    const length = ctx.measureText(txt).width;
+    return length;
   }
 
   ngOnDestroy() {
@@ -91,8 +104,8 @@ export class CamperdetailComponent implements OnInit, OnDestroy {
 
   deleteCamper(id) {
     if (!this.errorButtonCheck) {
+      this.deleteButtonWidth = this.getWidthOfText('ELIMINAR EL CAMPISTA', '14') + 100 + 'px';
       this.errorButtonMessage = 'ELIMINAR EL CAMPISTA';
-      // TODO: Por ahora lo quita para probar
       this.errorButtonCheck = true;
     } else {
       this.cs.deleteCampist(id);
@@ -102,9 +115,28 @@ export class CamperdetailComponent implements OnInit, OnDestroy {
       this.errorButtonCheck = false;
     }
   }
-  editCamper() {
+  checkCancelDelete (event) {
+    if (this.errorButtonCheck) {
+      const target = event.target || event.srcElement || event.currentTarget;
+      const parent = target.parentElement;
+      const classAttr = parent.attributes.class.value;
+      if ((classAttr + '').indexOf('deleteCamperButton') > -1) {
+        console.log('is the button');
+        console.log(classAttr);
+
+      } else {
+        console.log('is not the button');
+        console.log(classAttr);
+        console.log(this.errorButtonCheck);
+        this.deleteButtonWidth = this.getWidthOfText('ELIMINAR', '14') + 100 + 'px';
+        this.errorButtonMessage = 'ELIMINAR';
+        this.errorButtonCheck = false;
+      }
+    }
+  }
+  editCamper(id) {
     // Navigate to the next view
-    this.router.navigate(['camper/edit/', this.idCamper]);
+    this.router.navigate(['/camper/add-camper/edit/', id]);
   }
   openFloat(e) {
     console.log(e);

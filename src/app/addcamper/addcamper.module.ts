@@ -26,6 +26,7 @@ import {
   EditCampistaComponent
 } from './components';
 import { SharedModule } from '../shared/shared.module';
+import { FormLifeCycleService } from './form-life-cycle.service'
 
 @NgModule({
   imports: [
@@ -49,7 +50,7 @@ import { SharedModule } from '../shared/shared.module';
     AddCampistaFoodComponent,
     EditCampistaComponent
   ],
-  providers: [CampistService],
+  providers: [CampistService, FormLifeCycleService],
   exports: [
     AddCampistaComponent,
     AddCampistaDosisComponent,

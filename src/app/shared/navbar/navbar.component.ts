@@ -11,6 +11,8 @@ export class NavBarComponent {
   @Input() title: string;
   @Input() subtitle: string;
   @Input() isGoingBack: boolean;
+  @Input() backFunction = this.goBack;
+
   goBack() {
     this._location.back();
   }

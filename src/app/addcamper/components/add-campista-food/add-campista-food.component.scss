@@ -1,6 +1,7 @@
 .add-camper {
   background-color: #e6edec;
-  height: 100vh;
+  min-height: 100vh;
+  height: 100%;
   position: relative;
 
   .add-camper-form {
@@ -12,14 +13,18 @@
     }
   }
   .button-row {
-    padding: 0px 28px;
+    //padding: 0px 28px;
     margin-top: 20px;
     text-align: right;
-    position: absolute;
+    //position: absolute;
     bottom: 20px;
     right: 0;
+    display: flex;
+    /* align-items: flex-end; */
+    flex-direction: row-reverse;
 
     button {
+      margin-left: 10px;
       padding: 5px 22px;
       font-size: 16px;
       font-weight: bold;
@@ -52,7 +57,7 @@
       margin: 0;
     }
     .mat-form-field {
-      width: 23%;
+      width: 100%;
     }
   }
 
@@ -63,4 +68,9 @@
       }
     }
   }
+}
+
+.form-group-item {
+  width: 24%;
+  display: inline-block;
 }

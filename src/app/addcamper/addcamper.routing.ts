@@ -14,14 +14,15 @@ import {
 
 const addCamperRoutes = [
   { path: 'add-camper', component: AddCampistaComponent },
+  { path: 'add-camper/edit/:id', component: AddCampistaComponent },
+  { path: 'add-camper/edit', component: AddCampistaComponent },
   { path: 'add-camper/dosis', component: AddCampistaDosisComponent },
   { path: 'add-camper/esquema', component: AddCampistaEsquemaComponent },
-  { path: 'add-camper/food', component: AddCampistaFoodComponent },
-  { path: 'edit/:id', component: EditCampistaComponent }
+  { path: 'add-camper/food', component: AddCampistaFoodComponent }
 ];
 
 @NgModule({
   imports: [FormsModule, ReactiveFormsModule, RouterModule.forChild(addCamperRoutes)],
   exports: [RouterModule]
 })
-export class AddCamperRoutingModule {}
+export class AddCamperRoutingModule { }

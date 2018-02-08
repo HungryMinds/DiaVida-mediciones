@@ -1,46 +1,45 @@
 <div class="add-camper">
-  <app-navbar isGoingBack="true" [title]="title" [subtitle]="subtitle"></app-navbar>
+  <app-navbar [isGoingBack] = 'true' [backFunction]= 'goBack' [title]="title" [subtitle]="subtitle"></app-navbar>
   <div class="choose-option">
     <p>Utiliza más de una dosis basal por día?</p>
-    <mat-slide-toggle (change)="toogleView($event)" [color]="color" [checked]="checked" [disabled]="disabled">
+    <mat-slide-toggle (change)="toogleView($event)" [color]="color" [checked]="checked">
     </mat-slide-toggle>
   </div>
   <div class="add-camper-form">
     <form [formGroup]="dosisForm" novalidate>
-      <div *ngIf="!isChecked" class="form-1">
-        <p>Aplicación</p>
-        <mat-form-field class="full-width">
-          <input formControlName="time" type="time" matInput placeholder="Hora">
-        </mat-form-field>
+      <div formGroupName="basalInsulin">
+        <div >
+          <div formGroupName="first-application" class="form-1">
+            <p  *ngIf="!isChecked" >Aplicación</p>
+            <p  *ngIf="isChecked" >Primera aplicación</p>
+            <mat-form-field class="full-width">
+              <input formControlName="time" type="time" matInput placeholder="Hora">
+            </mat-form-field>
 
-        <mat-form-field class="full-width">
-          <input formControlName="dosage" type="number" matInput placeholder="Dosis">
-        </mat-form-field>
-      </div>
+            <mat-form-field class="full-width">
+              <input formControlName="dosage" type="number" matInput placeholder="Dosis">
+            </mat-form-field>
+          </div>
+          <div  formGroupName="second-application" *ngIf="isChecked" class="form-2">
+              <p>Segunda aplicación</p>
+              <mat-form-field class="full-width">
+                <input formControlName="time" type="time" matInput placeholder="Hora">
+              </mat-form-field>
+  
+              <mat-form-field class="full-width">
+                <input formControlName="dosage" type="number" matInput placeholder="Dosis">
+              </mat-form-field>
+            </div>
+        </div>
 
-      <div *ngIf="isChecked" class="form-2">
-        <p>Primera aplicación</p>
-        <mat-form-field class="full-width">
-          <input formControlName="second-ftime" type="time" matInput placeholder="Hora">
-        </mat-form-field>
 
-        <mat-form-field class="full-width">
-          <input formControlName="second-fdosage" type="number" matInput placeholder="Dosis">
-        </mat-form-field>
-
-        <p>Segunda aplicación</p>
-        <mat-form-field class="full-width">
-          <input formControlName="second-stime" type="time" matInput placeholder="Hora">
-        </mat-form-field>
-
-        <mat-form-field class="full-width">
-          <input formControlName="second-sdosage" type="number" matInput placeholder="Dosis">
-        </mat-form-field>
       </div>
 
       <div class="button-row">
-        <button (click)="goBack($event)" mat-raised-button color="primary">Anterior</button>
-        <button [disabled]="!dosisForm.valid" (click)="next($event)" mat-raised-button color="primary">Siguiente</button>
+        <div>
+          <button (click)="goBack($event)" mat-raised-button color="primary">Anterior</button>
+          <button [disabled]="!dosisForm.valid" (click)="next($event)" mat-raised-button color="primary">Siguiente</button>
+        </div>
       </div>
     </form>
   </div>
