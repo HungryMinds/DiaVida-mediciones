@@ -58,7 +58,7 @@
                     </tr>
                   </table>
                 </div>
-                <div *ngIf="camper.insulinSchemeRatio != null">
+                <div *ngIf="camper.insulinSchemeRatio != null" style="margin-bottom: 1em;">
                   <div class="insulinScheme">
                     <table>
                         <tr style="text-align:right">
@@ -82,7 +82,11 @@
                 </div>
                 <div *ngIf="camper.insulinSchemeInterval">
                   <p>Comentarios</p>
-                  <p>{{camper.insulinSchemeInterval.comment}}</p>
+                  <p>{{camper.insulinSchemeInterval.comments}}</p>
+                </div>
+                <div *ngIf="camper.insulinSchemeRatio" style="margin-bottom: 10;">
+                  <p>Comentarios</p>
+                  <p>{{camper.insulinSchemeRatio.comment}}</p>
                 </div>
               </mat-expansion-panel>
               <mat-expansion-panel>
@@ -114,12 +118,12 @@
                       <th>Dosis</th>
                     </tr>
                     <tr style="text-align:right" *ngIf="camper.basalInsulin['first-application'] != null">
-                      <td>{{camper.basalInsulin["first-application"].date}}</td>
-                      <td>{{camper.basalInsulin["first-application"].doses}}</td>
+                      <td>{{camper.basalInsulin["first-application"].time}}</td>
+                      <td>{{camper.basalInsulin["first-application"].dosage}}</td>
                     </tr>
                     <tr style="text-align:right" *ngIf="camper.basalInsulin['second-application'] != null">
-                      <td>{{camper.basalInsulin["second-application"].date}}</td>
-                      <td>{{camper.basalInsulin["second-application"].doses}}</td>
+                      <td>{{camper.basalInsulin["second-application"].time}}</td>
+                      <td>{{camper.basalInsulin["second-application"].dosage}}</td>
                     </tr>
                   </table>
                 </div>
@@ -130,7 +134,7 @@
               <mat-expansion-panel class="lastExpansion" *ngIf="camper && camper.foodTable">
                 <mat-expansion-panel-header>
                   <mat-panel-title class="dropTitle">
-                    Porciones de alimentos
+                    Porciones de Alimentos
                   </mat-panel-title>
                 </mat-expansion-panel-header>
                 <table >
@@ -141,42 +145,42 @@
                       <th>Fruta</th>
                       <th>Láct</th>
                     </tr>
-                    <tr *ngIf="camper && camper.foodTable && camper.foodTable.carb && camper.foodTable.carb.Breakfast">
+                    <tr >
                       <th class="first-colum">Desayuno</th>
                       <td>{{camper.foodTable.carb.Breakfast}}</td>
                       <td>{{camper.foodTable.prot.Breakfast}}</td>
                       <td>{{camper.foodTable.fruta.Breakfast}}</td>
                       <td>{{camper.foodTable.lact.Breakfast}}</td>
                     </tr>
-                    <tr *ngIf="camper && camper.foodTable && camper.foodTable.carb && camper.foodTable.carb.MorningSnack">
+                    <tr >
                       <th class="first-colum">Merienda</th>
                       <td>{{camper.foodTable.carb.MorningSnack}}</td>
                       <td>{{camper.foodTable.prot.MorningSnack}}</td>
                       <td>{{camper.foodTable.fruta.MorningSnack}}</td>
                       <td>{{camper.foodTable.lact.MorningSnack}}</td>
                     </tr>
-                    <tr *ngIf="camper && camper.foodTable && camper.foodTable.carb && camper.foodTable.carb.Lunch">
+                    <tr>
                       <th class="first-colum">Almuerzo</th>
                       <td>{{camper.foodTable.carb.Lunch}}</td>
                       <td>{{camper.foodTable.prot.Lunch}}</td>
                       <td>{{camper.foodTable.fruta.Lunch}}</td>
                       <td>{{camper.foodTable.lact.Lunch}}</td>
                     </tr>
-                    <tr *ngIf="camper && camper.foodTable && camper.foodTable.carb && camper.foodTable.carb.AfternoonSnack">
+                    <tr >
                       <th class="first-colum">Merienda</th>
                       <td>{{camper.foodTable.carb.AfternoonSnack}}</td>
                       <td>{{camper.foodTable.prot.AfternoonSnack}}</td>
                       <td>{{camper.foodTable.fruta.AfternoonSnack}}</td>
                       <td>{{camper.foodTable.lact.AfternoonSnack}}</td>
                     </tr>
-                    <tr *ngIf="camper && camper.foodTable && camper.foodTable.carb && camper.foodTable.carb.Diner">
+                    <tr >
                       <th class="first-colum">Cena</th>
                       <td>{{camper.foodTable.carb.Diner}}</td>
                       <td>{{camper.foodTable.prot.Diner}}</td>
                       <td>{{camper.foodTable.fruta.Diner}}</td>
                       <td>{{camper.foodTable.lact.Diner}}</td>
                     </tr>
-                    <tr *ngIf="camper && camper.foodTable && camper.foodTable.carb && camper.foodTable.carb.BeforeSleep">
+                    <tr >
                       <th class="first-colum">Merienda</th>
                       <td>{{camper.foodTable.carb.BeforeSleep}}</td>
                       <td>{{camper.foodTable.prot.BeforeSleep}}</td>
@@ -186,8 +190,8 @@
                   </table>
               </mat-expansion-panel>
           </mat-accordion>
-          <button mat-raised-button id="deleteCamperButton" color="warn" (click)="deleteCamper(camper.id)">{{errorButtonMessage}}</button>
-          <button (click)="editCamper()" mat-raised-button class="acceptButton">EDITAR</button>
+          <button mat-raised-button id="deleteCamperButton" color="warn" (click)="deleteCamper(camper.id)" [style.width]="deleteButtonWidth">{{errorButtonMessage}}</button>
+          <button (click)="editCamper(camper.id)" mat-raised-button class="acceptButton">EDITAR</button>
       </div>
     </mat-tab>
     <mat-tab label="Diario">

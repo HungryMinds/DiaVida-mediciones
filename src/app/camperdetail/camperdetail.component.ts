@@ -10,6 +10,7 @@ import { CampistService } from '../core';
   export class CamperdetailComponent implements OnInit, OnDestroy {
   private camperSubscription: any;
   private camper: any;
+  // private button: any = document.getElementById("deleteCamperButton")[0];
   id: string;
   aditionalMedication: string;
   allergies: string;
@@ -23,6 +24,7 @@ import { CampistService } from '../core';
   insulinComment: string;
   userName: string;
   camperId: string;
+  deleteButtonWidth: string;
 
   constructor(
     private cs: CampistService,
@@ -38,14 +40,25 @@ import { CampistService } from '../core';
   }
 
   ngOnInit() {
+    
     this.id = this.route.snapshot.params.id;
 
     this.camperSubscription = this.cs
       .getSingleCampist(this.id)
       .subscribe(_camper => {
         this.camper = _camper;
+        console.log(this.camper)
         this.userName = `${_camper.names} ${_camper.lastNames}`;
       });
+      this.deleteButtonWidth = this.getWidthOfText("ELIMINAR", "14") +40+ "px";
+  }
+
+   getWidthOfText(txt, fontsize) {
+    var c = document.createElement('canvas');
+    var ctx = c.getContext('2d');
+    ctx.font = fontsize + 'px' ;
+    var length = ctx.measureText(txt).width;
+    return length;
   }
 
   ngOnDestroy() {
@@ -54,6 +67,10 @@ import { CampistService } from '../core';
 
   deleteCamper(id) {
     if (!this.errorButtonCheck) {
+      // setTimeout(function() {
+      // this.errorButtonMessage = 'ELIMINAR EL CAMPISTA';
+      // }, 400);
+      this.deleteButtonWidth = this.getWidthOfText("ELIMINAR EL CAMPISTA", "14") +100+ "px";
       this.errorButtonMessage = 'ELIMINAR EL CAMPISTA';
       // TODO: Por ahora lo quita para probar
       this.errorButtonCheck = true;
@@ -65,8 +82,8 @@ import { CampistService } from '../core';
       this.errorButtonCheck = false;
     }
   }
-  editCamper() {
+  editCamper(id) {
     // Navigate to the next view
-    this.router.navigate(['camper/add-camper/edit/', this.camperId]);
+    this.router.navigate(['/camper/add-camper/edit/', id]);
   }
 }
