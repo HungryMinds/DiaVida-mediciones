@@ -1,5 +1,5 @@
 <div class="camperDetail" >
-  <app-navbar class="app-navbar" [title]="userName" [isGoingBack]="true"></app-navbar>
+  <app-navbar [backFunction]='goBack' class="app-navbar" [title]="userName" [isGoingBack]="true"></app-navbar>
   <mat-tab-group *ngIf="camper" class="camperDetailTabs">
     <mat-tab label="Información General">
       <div class="topData">

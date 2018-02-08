@@ -87,7 +87,7 @@ export class CamperdetailComponent implements OnInit, OnDestroy {
   getWidthOfText(txt, fontsize) {
     const c = document.createElement('canvas');
     const ctx = c.getContext('2d');
-    ctx.font = fontsize + 'px' ;
+    ctx.font = fontsize + 'px';
     const length = ctx.measureText(txt).width;
     return length;
   }
@@ -115,7 +115,7 @@ export class CamperdetailComponent implements OnInit, OnDestroy {
       this.errorButtonCheck = false;
     }
   }
-  checkCancelDelete (event) {
+  checkCancelDelete(event) {
     if (this.errorButtonCheck) {
       const target = event.target || event.srcElement || event.currentTarget;
       const parent = target.parentElement;
@@ -150,5 +150,11 @@ export class CamperdetailComponent implements OnInit, OnDestroy {
   }
   openNewFood() {
     this.router.navigateByUrl(`/camperDetail/${this.idCamper}/food`);
+  }
+  
+  goBack = (event) => {
+    if (event)
+      event.preventDefault();
+    this.router.navigate(['/listado']);
   }
 }
