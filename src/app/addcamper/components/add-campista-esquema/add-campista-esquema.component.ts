@@ -15,7 +15,8 @@ export class AddCampistaEsquemaComponent implements OnInit {
   title: string;
   subtitle: string;
   valueChecked = '1';
-  @Input() checked;
+  checkedInterval = true;
+  checkedRatio = false
   @Output() change: EventEmitter<boolean> = new EventEmitter<boolean>();
   url = 'camper/add-camper/';
   nextUrl = 'food';
@@ -118,10 +119,9 @@ export class AddCampistaEsquemaComponent implements OnInit {
     };
 
     if (this.valueChecked === '1') {
-      this._flcs.updateCurrentCampiest({ insulinSchemeInterval })
-
+      this._flcs.updateCurrentCampiest({ insulinSchemeInterval, 'insulinSchemeRatio' :null})
     } else {
-      this._flcs.updateCurrentCampiest({ insulinSchemeRatio })
+      this._flcs.updateCurrentCampiest({ insulinSchemeRatio ,'insulinSchemeInterval' :null })
     }
 
     this.router.navigate([this.url + this.nextUrl]);
@@ -136,6 +136,24 @@ export class AddCampistaEsquemaComponent implements OnInit {
 
   ngOnInit() {
     console.log('Got campist ', this._flcs.getCurrentCampiest())
-    this.esquemaForm.patchValue(this._flcs.getCurrentCampiest())
+    var campist = this.clean(this._flcs.getCurrentCampiest())
+    this.esquemaForm.patchValue(campist)
+    if (campist.insulinSchemeRatio) {
+      this.valueChecked = '2'
+      this.checkedRatio = true
+      this.checkedInterval = false
+    }
   }
+
+  clean(obj) {
+    var propNames = Object.getOwnPropertyNames(obj);
+    for (var i = 0; i < propNames.length; i++) {
+      var propName = propNames[i];
+      if (obj[propName] === null || obj[propName] === undefined) {
+        delete obj[propName];
+      }
+    }
+    return obj
+  }
+
 }

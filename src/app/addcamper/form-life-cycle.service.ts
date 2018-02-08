@@ -19,6 +19,11 @@ export class FormLifeCycleService {
     this.currentCampiest = {}
   }
 
+  deleteKey(key) {
+    if (this.currentCampiest[key])
+      delete this.currentCampiest[key]
+  }
+
 
 
 }
