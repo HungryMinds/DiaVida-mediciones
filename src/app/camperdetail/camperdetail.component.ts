@@ -9,6 +9,7 @@ import { CampistService } from '../core';
 })
 export class CamperdetailComponent implements OnInit, OnDestroy {
   private subs = [];
+  private logs: any[];
   private camper: any;
   idCamper: string;
   aditionalMedication: string;
@@ -40,18 +41,47 @@ export class CamperdetailComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.idCamper = this.route.snapshot.params.id;
 
-    this.subs.push(this.cs
-      .getSingleCampist(this.idCamper)
-      .subscribe(_camper => {
+    this.subs.push(
+      this.cs.getSingleCampist(this.idCamper).subscribe(_camper => {
         this.camper = _camper;
         this.userName = `${_camper.names} ${_camper.lastNames}`;
-      }));
-      this.subs.push(this.cs.getLogsCampist(this.idCamper));
+      })
+    );
+    this.subs.push(
+      this.cs.getLogsCampist(this.idCamper).subscribe(data => {
+        data = data.sort((a, b) => {
+          const aT = new Date(a.date).getTime();
+          const bT = new Date(b.date).getTime();
+          return bT - aT;
+        });
+        const orderedByDay = data.reduce((acum, curr, idx) => {
+          curr.date = new Date(curr.date);
+          if (!acum.length) {
+            // array vacio
+            acum.push([curr]);
+          } else {
+            // si es un dia distinto
+            if (
+              new Date(curr.date).getDay() !==
+              new Date(acum[acum.length - 1][0].date).getDay()
+            ) {
+              acum.push([curr]);
+            } else {
+              // si son del mismo dia
+              acum[acum.length - 1].push(curr);
+            }
+          }
+          return acum;
+        }, []) as any[];
+        console.log(orderedByDay);
+        this.logs = orderedByDay;
+      })
+    );
   }
 
   ngOnDestroy() {
     if (this.subs.length) {
-      this.subs.forEach((sub) => {
+      this.subs.forEach(sub => {
         if (sub.unsubscribe) {
           sub.unsubscribe();
         }

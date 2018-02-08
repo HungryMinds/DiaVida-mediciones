@@ -24,18 +24,7 @@ export class LogInjectionService {
 
   addLogInjection(_injection: LogInjection, _campist: string, ) {
     _injection.idCampist = _campist;
-    const campistsLogsCollection = this.afs.collection('logs');
-    this.logInjectionCollection.add(JSON.parse(JSON.stringify(_injection))).then(
-      (x) => {
-        campistsLogsCollection.add({ log: x }).then((_x) => {
-          return _x;
-        }).catch((_x) => {
-          return _x;
-        });
-      }
-    ).catch(function (_x) {
-      return _x;
-    });
+    return this.logInjectionCollection.add(JSON.parse(JSON.stringify(_injection)));
   }
 
   // TODO: rehacer

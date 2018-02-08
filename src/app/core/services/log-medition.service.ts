@@ -24,18 +24,7 @@ export class LogMeditionService {
 
   addLogMedition(_medition: LogMedition, _campist: string) {
     _medition.idCampist = _campist;
-    const campistsLogsCollection = this.afs.collection('logs');
-    this.logMeditionCollection.add(JSON.parse(JSON.stringify(_medition))).then(
-      (x) => {
-        campistsLogsCollection.add({ log: x }).then((_x) => {
-          return _x;
-        }).catch((_x) => {
-          return _x;
-        });
-      }
-    ).catch(function (x) {
-      return x;
-    });
+    this.logMeditionCollection.add(JSON.parse(JSON.stringify(_medition)));
   }
 
   // TODO: hacer de manera adecuada

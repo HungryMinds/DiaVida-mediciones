@@ -24,18 +24,7 @@ export class LogFoodService {
 
   addLogFood(_food: LogFood, _campist: string) {
     _food.idCampist = _campist;
-    const campistsLogsCollection = this.afs.collection('logs');
-    this.logFoodCollection.add(JSON.parse(JSON.stringify(_food))).then(
-      (x) => {
-        campistsLogsCollection.add({ log: x }).then((_x) => {
-          return _x;
-        }).catch((_x) => {
-          return _x;
-        });
-      }
-    ).catch(function (x) {
-      return x;
-    });
+    return this.logFoodCollection.add(JSON.parse(JSON.stringify(_food)));
   }
 
   // TODO: hacer de manera adecuada

@@ -192,13 +192,21 @@
     </mat-tab>
     <mat-tab label="Diario">
       <div class="cards-day-body">
-        <div class="card-day">
-            <div class="card-day-header">asd</div>
-            <div class="card-day-log">
+        <div class="card-day" *ngFor="let day of logs">
+            <div class="card-day-header">{{day[0].date | date}}</div>
+            <div class="card-day-log" *ngFor="let log of day">
               <div class="log-left">
-                left
+                <ng-container *ngIf="log.logType==='measure'">
+                  Glucemia | {{log.foodTime}}
+                </ng-container>
+                <ng-container *ngIf="log.logType==='inyectable'">
+                  Dosis | {{log.type=='quick'&&'rápida'||'lenta'}}
+                </ng-container>
+                <ng-container *ngIf="log.logType==='food'">
+                  Comida | {{log.type}}
+                </ng-container>
                 <p>
-                  sub-left
+                    {{log.date.toTimeString().substring(0, 5)}}
                 </p>
               </div>
               <div class="log-right">

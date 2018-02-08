@@ -16,18 +16,18 @@ class Log {
 
 export class LogMedition extends Log {
   logType = logType.measure;
-  moment: string; // momento como desayuno, almuerzo, etc.
+  foodTime: string; // momento como desayuno, almuerzo, etc.
 
   constructor(logRaw: any) {
     super(logRaw);
 
-    this.moment = logRaw.moment;
+    this.foodTime = logRaw.foodTime;
   }
 }
 
 /*
 const logMedition = new LogMedition({
-  moment: '[breakfast...]', // revisar el enum FoodTime en el archivo food.enum
+  foodTime: '[breakfast...]', // revisar el enum FoodTime en el archivo food.enum
   date: '[formato de fecha en el momento que se realizo la medicion]',
   description: '[descripción opcional]',
   value: '[valor numerico del resultado de la prueba]'
