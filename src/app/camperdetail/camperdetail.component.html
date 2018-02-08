@@ -210,7 +210,15 @@
                 </p>
               </div>
               <div class="log-right">
-                right
+                  <ng-container *ngIf="log.logType==='measure'">
+                      {{log.value}} mg/dL
+                    </ng-container>
+                    <ng-container *ngIf="log.logType==='inyectable'">
+                      {{log.value}} U
+                    </ng-container>
+                    <ng-container *ngIf="log.logType==='food'">
+                      {{log.value}} g
+                    </ng-container>
               </div>
             </div>
         </div>
