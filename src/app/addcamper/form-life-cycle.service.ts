@@ -2,28 +2,25 @@ import { Injectable } from '@angular/core';
 
 @Injectable()
 export class FormLifeCycleService {
+  constructor() {}
 
-  constructor() { }
-
-  currentCampiest = {}
+  currentCampiest = {};
 
   getCurrentCampiest() {
-    return this.currentCampiest
+    return this.currentCampiest;
   }
 
   updateCurrentCampiest(campiest) {
-    this.currentCampiest = Object.assign(this.currentCampiest, campiest)
+    this.currentCampiest = Object.assign(this.currentCampiest, campiest);
   }
 
   cleanCurrent() {
-    this.currentCampiest = {}
+    this.currentCampiest = {};
   }
 
   deleteKey(key) {
-    if (this.currentCampiest[key])
-      delete this.currentCampiest[key]
+    if (this.currentCampiest[key]) {
+      delete this.currentCampiest[key];
+    }
   }
-
-
-
 }
