@@ -7,10 +7,11 @@ import { CampistService } from '../core';
   templateUrl: './camperdetail.component.html',
   styleUrls: ['./camperdetail.component.scss']
 })
-  export class CamperdetailComponent implements OnInit, OnDestroy {
-  private camperSubscription: any;
-  private camper: any;
-  id: string;
+export class CamperdetailComponent implements OnInit, OnDestroy {
+  private subs = [];
+  private logs: any[];
+  camper: any;
+  idCamper: string;
   aditionalMedication: string;
   allergies: string;
   basalInsulin: string;
@@ -23,6 +24,7 @@ import { CampistService } from '../core';
   insulinComment: string;
   userName: string;
   camperId: string;
+  deleteButtonWidth: string;
 
   constructor(
     private cs: CampistService,
@@ -38,24 +40,72 @@ import { CampistService } from '../core';
   }
 
   ngOnInit() {
-    this.id = this.route.snapshot.params.id;
+    this.idCamper = this.route.snapshot.params.id;
 
-    this.camperSubscription = this.cs
-      .getSingleCampist(this.id)
-      .subscribe(_camper => {
+    this.subs.push(
+      this.cs.getSingleCampist(this.idCamper).subscribe(_camper => {
         this.camper = _camper;
+        console.log(this.camper);
         this.userName = `${_camper.names} ${_camper.lastNames}`;
-      });
+      })
+    );
+    this.subs.push(
+      this.cs.getLogsCampist(this.idCamper).subscribe(data => {
+        data = data.sort((a, b) => {
+          const aT = new Date(a.date).getTime();
+          const bT = new Date(b.date).getTime();
+          return bT - aT;
+        });
+
+        const orderedByDay = data.reduce((acum, curr, idx) => {
+          curr.date = new Date(curr.date);
+          if (!acum.length) {
+            // array vacio
+            acum.push([curr]);
+          } else {
+            // si es un dia distinto
+            if (
+              new Date(curr.date).getDay() !==
+              new Date(acum[acum.length - 1][0].date).getDay()
+            ) {
+              acum.push([curr]);
+            } else {
+              // si son del mismo dia
+              acum[acum.length - 1].push(curr);
+            }
+          }
+          return acum;
+        }, []) as any[];
+        console.log(orderedByDay);
+        this.logs = orderedByDay;
+      })
+    );
+    this.deleteButtonWidth = this.getWidthOfText('ELIMINAR', '14') + 40 + 'px';
+
+  }
+
+  getWidthOfText(txt, fontsize) {
+    const c = document.createElement('canvas');
+    const ctx = c.getContext('2d');
+    ctx.font = fontsize + 'px';
+    const length = ctx.measureText(txt).width;
+    return length;
   }
 
   ngOnDestroy() {
-    this.camperSubscription.unsubscribe();
+    if (this.subs.length) {
+      this.subs.forEach(sub => {
+        if (sub.unsubscribe) {
+          sub.unsubscribe();
+        }
+      });
+    }
   }
 
   deleteCamper(id) {
     if (!this.errorButtonCheck) {
+      this.deleteButtonWidth = this.getWidthOfText('ELIMINAR EL CAMPISTA', '14') + 100 + 'px';
       this.errorButtonMessage = 'ELIMINAR EL CAMPISTA';
-      // TODO: Por ahora lo quita para probar
       this.errorButtonCheck = true;
     } else {
       this.cs.deleteCampist(id);
@@ -65,8 +115,46 @@ import { CampistService } from '../core';
       this.errorButtonCheck = false;
     }
   }
-  editCamper() {
+  checkCancelDelete(event) {
+    if (this.errorButtonCheck) {
+      const target = event.target || event.srcElement || event.currentTarget;
+      const parent = target.parentElement;
+      const classAttr = parent.attributes.class.value;
+      if ((classAttr + '').indexOf('deleteCamperButton') > -1) {
+        console.log('is the button');
+        console.log(classAttr);
+
+      } else {
+        console.log('is not the button');
+        console.log(classAttr);
+        console.log(this.errorButtonCheck);
+        this.deleteButtonWidth = this.getWidthOfText('ELIMINAR', '14') + 100 + 'px';
+        this.errorButtonMessage = 'ELIMINAR';
+        this.errorButtonCheck = false;
+      }
+    }
+  }
+  editCamper(id) {
     // Navigate to the next view
-    this.router.navigate(['camper/add-camper/edit/', this.camperId]);
+    this.router.navigate(['/camper/add-camper/edit/', id]);
+  }
+  openFloat(e) {
+    console.log(e);
+  }
+
+  openNewMedition() {
+    this.router.navigateByUrl(`/camperDetail/${this.idCamper}/measurement`);
+  }
+  openNewInjection() {
+    this.router.navigateByUrl(`/camperDetail/${this.idCamper}/injection`);
+  }
+  openNewFood() {
+    this.router.navigateByUrl(`/camperDetail/${this.idCamper}/food`);
+  }
+  
+  goBack = (event) => {
+    if (event)
+      event.preventDefault();
+    this.router.navigate(['/listado']);
   }
 }

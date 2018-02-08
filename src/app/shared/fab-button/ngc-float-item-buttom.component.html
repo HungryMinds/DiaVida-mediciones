@@ -1,0 +1,9 @@
+<div #elementref class="item {{ disabled ? 'disabled' : ''}}" (click)="emitClickEvent($event)">
+  <div class="content-wrapper" #contentref>
+    <div class="content" [style.display]="content ? 'block' : 'none'">{{content}}</div>
+  </div>
+  <a class="fab-item" [style.backgroundColor]="color">
+    <mat-icon *ngIf="icon"> {{ icon }} </mat-icon>
+    <img class="img-item" *ngIf="image" src="{{image}}" />
+  </a>
+</div>

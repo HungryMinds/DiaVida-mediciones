@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { LogMeditionService, LogMedition, FoodTime } from '../core'
+import { LogMeditionService, LogMedition, FoodTime } from '../core';
 import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -10,8 +10,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class MeasurementComponent implements OnInit {
 
-  foods = Object.entries(FoodTime)
-  id
+  foods = Object.entries(FoodTime);
+  id;
 
   public form: FormGroup;
 
@@ -19,9 +19,9 @@ export class MeasurementComponent implements OnInit {
   subtitle: string;
 
   constructor(private fb: FormBuilder, private LogMS: LogMeditionService, private router: Router, private route: ActivatedRoute) {
-    this.title = 'Agregar Inyección';
+    this.title = 'Agregar Glicemia';
     this.subtitle = 'Detalles';
-    this.createForm()
+    this.createForm();
   }
 
   ngOnInit() {
@@ -31,28 +31,29 @@ export class MeasurementComponent implements OnInit {
   }
 
   createForm() {
-    var d = new Date()
+    const d = new Date();
     this.form = this.fb.group({
       value: ['', [Validators.required]],
       date: [this.currentDate(), Validators.required],
       time: [this.currenTime(), Validators.required],
       description: [''],
-      foodTime: [this.currenTime(), Validators.required]
+      foodTime: ['', Validators.required]
     });
   }
 
   onSubmit() {
-    var objToSend = {
+    const objToSend = {
       id: null,
       date: new Date(this.form.value.date + ' ' + this.form.value.time),
       value: this.form.value.value,
       description: this.form.value.description,
-    }
-    console.log(objToSend)
-    //TODO  Use current campist id
-    this.LogMS.addLogMedition(new LogMedition(objToSend), 'B9BpyzwCwL4KEXVmRPi4')
-    //TODO  Redirect to current campist id
-    this.router.navigate(['/camperDetail/'+this.id]);
+      foodTime : this.form.value.foodTime
+    };
+    console.log(objToSend);
+    // TODO  Use current campist id
+    this.LogMS.addLogMedition(new LogMedition(objToSend), this.id);
+    // TODO  Redirect to current campist id
+    this.router.navigate(['/camperDetail/' + this.id]);
   }
 
   currentDate() {
@@ -62,7 +63,7 @@ export class MeasurementComponent implements OnInit {
 
   currenTime() {
     const currentDate = new Date();
-    return currentDate.toTimeString().substring(0, 5)
+    return currentDate.toTimeString().substring(0, 5);
   }
 
 }

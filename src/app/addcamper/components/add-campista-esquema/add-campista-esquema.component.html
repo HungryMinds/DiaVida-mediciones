@@ -1,9 +1,9 @@
 <div class="add-camper">
-  <app-navbar isGoingBack="true" [title]="title" [subtitle]="subtitle"></app-navbar>
+  <app-navbar [isGoingBack] = 'true' [backFunction]= 'goBack' [title]="title" [subtitle]="subtitle"></app-navbar>
   <div class="choose-option">
     <mat-radio-group>
-      <mat-radio-button checked (change)="toogleView($event)" class="option-item" labelPosition="before" value="1">Escalas</mat-radio-button>
-      <mat-radio-button (change)="toogleView($event)" class="option-item" labelPosition="before" value="2">Ratios</mat-radio-button>
+      <mat-radio-button  [checked]="checkedInterval" (change)="toogleView($event)" class="option-item" labelPosition="before" value="1">Escalas</mat-radio-button>
+      <mat-radio-button  [checked]="checkedRatio" radioChecked (change)="toogleView($event)" class="option-item" labelPosition="before" value="2">Ratios</mat-radio-button>
     </mat-radio-group>
   </div>
   <div class="add-camper-form">

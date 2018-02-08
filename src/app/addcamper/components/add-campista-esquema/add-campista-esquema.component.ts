@@ -3,6 +3,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { FormControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Location } from '@angular/common';
 import { CampistService } from '../../../core/services/campist.service';
+import { FormLifeCycleService } from '../../form-life-cycle.service'
+
 
 @Component({
   selector: 'app-add-campista-esquema',
@@ -13,7 +15,9 @@ export class AddCampistaEsquemaComponent implements OnInit {
   title: string;
   subtitle: string;
   valueChecked = '1';
-  @Input() checked;
+  checkedInterval = true;
+  checkedRatio = false
+  previewsUrl = 'dosis'
   @Output() change: EventEmitter<boolean> = new EventEmitter<boolean>();
   url = 'camper/add-camper/';
   nextUrl = 'food';
@@ -21,6 +25,7 @@ export class AddCampistaEsquemaComponent implements OnInit {
   camper: any;
 
   constructor(
+    private _flcs: FormLifeCycleService,
     private fb: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
@@ -82,8 +87,8 @@ export class AddCampistaEsquemaComponent implements OnInit {
       comment
     } = this.esquemaForm.value.insulinSchemeRatio;
 
-    const insulinSchemeI = {
-      comments: this.esquemaForm.value.insulinSchemeInterval.eComments,
+    const insulinSchemeInterval = {
+      comments: this.esquemaForm.value.insulinSchemeInterval.comments,
       '<80': {
         Breakfast: this.esquemaForm.value.insulinSchemeInterval['<80'].Breakfast,
         Lunch: this.esquemaForm.value.insulinSchemeInterval['<80'].Lunch,
@@ -106,7 +111,7 @@ export class AddCampistaEsquemaComponent implements OnInit {
       }
     };
 
-    const insulinSchemeR = {
+    const insulinSchemeRatio = {
       Breakfast: Breakfast,
       Lunch: Lunch,
       Diner: Diner,
@@ -115,44 +120,42 @@ export class AddCampistaEsquemaComponent implements OnInit {
     };
 
     if (this.valueChecked === '1') {
-      const insulinSchemeInterval = JSON.stringify(insulinSchemeI);
-      this.camper = {
-        ...this.camper,
-        insulinSchemeInterval
-      };
+      this._flcs.updateCurrentCampiest({ insulinSchemeInterval, 'insulinSchemeRatio': null })
     } else {
-      const insulinSchemeRatio = JSON.stringify(insulinSchemeR);
-      this.camper = {
-        ...this.camper,
-        insulinSchemeRatio
-      };
+      this._flcs.updateCurrentCampiest({ insulinSchemeRatio, 'insulinSchemeInterval': null })
     }
 
-    this.camper = { ...this.camper };
+    this.router.navigate([this.url + this.nextUrl]);
 
-    // Navigate to the next view
-    this.router.navigate([this.url + this.nextUrl, this.camper]);
   }
 
-  goBack(event) {
-    event.preventDefault();
-    this._location.back();
+  goBack = (event) => {
+    if (event)
+      event.preventDefault();
+    this.router.navigate([this.url + this.previewsUrl]);
   }
 
-  getCampistToEdit(id) {
-    return this.campistService.getSingleCampist(id).subscribe(camper => {
-      console.log(camper);
-      this.esquemaForm.patchValue(camper);
-    });
-  }
 
   ngOnInit() {
-    this.route.params.subscribe(params => {
-      this.camper = params;
-    });
-
-    if (this.camper.id) {
-      this.getCampistToEdit(this.camper.id);
+    console.log('Got campist ', this._flcs.getCurrentCampiest())
+    var campist = this.clean(this._flcs.getCurrentCampiest())
+    this.esquemaForm.patchValue(campist)
+    if (campist.insulinSchemeRatio) {
+      this.valueChecked = '2'
+      this.checkedRatio = true
+      this.checkedInterval = false
     }
   }
+
+  clean(obj) {
+    var propNames = Object.getOwnPropertyNames(obj);
+    for (var i = 0; i < propNames.length; i++) {
+      var propName = propNames[i];
+      if (obj[propName] === null || obj[propName] === undefined) {
+        delete obj[propName];
+      }
+    }
+    return obj
+  }
+
 }
