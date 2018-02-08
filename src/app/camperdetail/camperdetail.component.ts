@@ -9,7 +9,7 @@ import { CampistService } from '../core';
 })
   export class CamperdetailComponent implements OnInit, OnDestroy {
   private camperSubscription: any;
-  private camper: any;
+  camper: any;
   // private button: any = document.getElementById("deleteCamperButton")[0];
   id: string;
   aditionalMedication: string;
