@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material';
 import { Team } from '../core/services/models/team.enum';
 import { CampistService } from '../core/services/campist.service';
@@ -12,7 +12,8 @@ import { Campist } from '../core';
 })
 export class CampersListComponent implements OnInit, OnDestroy {
   displayedColumns = ['group', 'name', 'age'];
-  dataSource;
+  dataSource = new MatTableDataSource();
+  // @ViewChild('table') table;
   subscriptionCampers;
 
   constructor(private cL: CampistService, private router: Router) { }
