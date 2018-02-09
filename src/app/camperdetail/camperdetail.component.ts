@@ -97,13 +97,13 @@ export class CamperdetailComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    // if (this.subs.length) {
-    //   this.subs.forEach(sub => {
-    //     if (sub.unsubscribe) {
-    //       sub.unsubscribe();
-    //     }
-    //   });
-    // }
+    if (this.subs.length) {
+      this.subs.forEach(sub => {
+        if (sub.unsubscribe) {
+          sub.unsubscribe();
+        }
+      });
+    }
   }
 
   deleteCamper(id) {
@@ -112,22 +112,26 @@ export class CamperdetailComponent implements OnInit, OnDestroy {
       this.errorButtonMessage = 'ELIMINAR EL CAMPISTA';
       this.errorButtonCheck = true;
     } else {
-      const delRes = this.cs.deleteCampist(id);
-      delRes.then(() => {
-        this.router.navigate(['/listado']);
-      });
+      this.cs.deleteCampist(id);
+      this.router.navigate(['/listado']);
+      // TODO: Por ahora lo quita para probar
       this.errorButtonMessage = 'ELIMINAR';
       this.errorButtonCheck = false;
     }
   }
-
   checkCancelDelete(event) {
     if (this.errorButtonCheck) {
       const target = event.target || event.srcElement || event.currentTarget;
       const parent = target.parentElement;
       const classAttr = parent.attributes.class.value;
       if ((classAttr + '').indexOf('deleteCamperButton') > -1) {
+        console.log('is the button');
+        console.log(classAttr);
+
       } else {
+        console.log('is not the button');
+        console.log(classAttr);
+        console.log(this.errorButtonCheck);
         this.deleteButtonWidth = this.getWidthOfText('ELIMINAR', '14') + 100 + 'px';
         this.errorButtonMessage = 'ELIMINAR';
         this.errorButtonCheck = false;
@@ -139,6 +143,7 @@ export class CamperdetailComponent implements OnInit, OnDestroy {
     this.router.navigate(['/camper/add-camper/edit/', id]);
   }
   openFloat(e) {
+    console.log(e);
   }
 
   openNewMedition() {
@@ -150,11 +155,10 @@ export class CamperdetailComponent implements OnInit, OnDestroy {
   openNewFood() {
     this.router.navigateByUrl(`/camperDetail/${this.idCamper}/food`);
   }
-
+  
   goBack = (event) => {
-    if (event) {
+    if (event)
       event.preventDefault();
-    }
     this.router.navigate(['/listado']);
   }
 }
