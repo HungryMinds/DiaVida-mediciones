@@ -18,6 +18,7 @@ export class AddCampistaComponent implements OnInit {
   camper: any;
   camperId: string = null;
   camperToEdit: any;
+  previewsUrl = '/camperDetail/'
 
   constructor(
     private _flcs: FormLifeCycleService,
@@ -52,11 +53,10 @@ export class AddCampistaComponent implements OnInit {
     this.router.navigate([this.url + this.nextUrl]);
   }
 
-  goBack(event) {
-    if (event) {
+  goBack = (event) => {
+    if (event)
       event.preventDefault();
-    }
-    this.router.navigate(['/listado']);
+    this.router.navigate([this.previewsUrl + this._flcs.getCurrentCampiest()['id']]);
   }
 
   ngOnInit() {

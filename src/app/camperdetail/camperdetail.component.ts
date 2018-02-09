@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { CampistService } from '../core';
+import { CampistService, Snack, FoodTime } from '../core';
 
 @Component({
   selector: 'app-camperdetail',
@@ -25,6 +25,10 @@ export class CamperdetailComponent implements OnInit, OnDestroy {
   userName: string;
   camperId: string;
   deleteButtonWidth: string;
+
+  snackType = Snack;
+  foodTime = FoodTime;
+
 
   constructor(
     private cs: CampistService,
