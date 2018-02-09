@@ -81,7 +81,20 @@ export class CamperdetailComponent implements OnInit, OnDestroy {
       })
     );
     this.deleteButtonWidth = this.getWidthOfText('ELIMINAR', '14') + 40 + 'px';
+  }
 
+  goToEdit(log) {
+    switch (log.logType) {
+      case 'food':
+        this.router.navigate(['/logFood/', log.id]);
+        break;
+      case 'inyectable':
+        this.router.navigate(['/logInjection/', log.id]);
+        break;
+      case 'inyectable':
+        this.router.navigate(['/logMeasure/', log.id]);
+        break;
+    }
   }
 
   getWidthOfText(txt, fontsize) {
@@ -104,7 +117,8 @@ export class CamperdetailComponent implements OnInit, OnDestroy {
 
   deleteCamper(id) {
     if (!this.errorButtonCheck) {
-      this.deleteButtonWidth = this.getWidthOfText('ELIMINAR EL CAMPISTA', '14') + 100 + 'px';
+      this.deleteButtonWidth =
+        this.getWidthOfText('ELIMINAR EL CAMPISTA', '14') + 100 + 'px';
       this.errorButtonMessage = 'ELIMINAR EL CAMPISTA';
       this.errorButtonCheck = true;
     } else {
@@ -123,12 +137,12 @@ export class CamperdetailComponent implements OnInit, OnDestroy {
       if ((classAttr + '').indexOf('deleteCamperButton') > -1) {
         console.log('is the button');
         console.log(classAttr);
-
       } else {
         console.log('is not the button');
         console.log(classAttr);
         console.log(this.errorButtonCheck);
-        this.deleteButtonWidth = this.getWidthOfText('ELIMINAR', '14') + 100 + 'px';
+        this.deleteButtonWidth =
+          this.getWidthOfText('ELIMINAR', '14') + 100 + 'px';
         this.errorButtonMessage = 'ELIMINAR';
         this.errorButtonCheck = false;
       }
@@ -151,10 +165,11 @@ export class CamperdetailComponent implements OnInit, OnDestroy {
   openNewFood() {
     this.router.navigateByUrl(`/camperDetail/${this.idCamper}/food`);
   }
-  
-  goBack = (event) => {
-    if (event)
+
+  goBack = event => {
+    if (event) {
       event.preventDefault();
+    }
     this.router.navigate(['/listado']);
   }
 }

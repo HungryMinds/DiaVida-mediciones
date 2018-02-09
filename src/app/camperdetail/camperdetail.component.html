@@ -198,7 +198,7 @@
       <div class="cards-day-body">
         <div class="card-day" *ngFor="let day of logs">
             <div class="card-day-header">{{day[0].date | date}}</div>
-            <div class="card-day-log" *ngFor="let log of day">
+            <div class="card-day-log" *ngFor="let log of day" (click)="goToEdit(log)">
               <div class="log-left">
                 <ng-container *ngIf="log.logType==='measure'">
                   Glucemia | {{log.foodTime}}
