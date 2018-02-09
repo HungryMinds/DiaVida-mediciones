@@ -68,7 +68,6 @@ export class AddCampistaComponent implements OnInit {
       if (this.camperId) {
         this.getCampistToEdit(this.camperId);
       } else {
-        console.log('Got campist not from id ', this._flcs.getCurrentCampiest());
         this.basicsForm.patchValue(this._flcs.getCurrentCampiest());
       }
     }

@@ -128,7 +128,6 @@ export class AddCampistaEsquemaComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log('Got campist ', this._flcs.getCurrentCampiest());
     const campist = this.clean(this._flcs.getCurrentCampiest());
     this.esquemaForm.patchValue(campist);
     if (campist.insulinSchemeRatio) {

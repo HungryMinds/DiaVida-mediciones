@@ -51,10 +51,7 @@ export class InjectionComponent implements OnInit {
       type: this.form.value.injectionType,
       moment : this.form.value
     }
-    console.log(objToSend)
-    //TODO  Use current campist id
     this.LogIS.addLogInjection(new LogInjection(objToSend), this.id)
-    //TODO  Redirect to current campist id
     this.router.navigate(['/camperDetail/'+this.id]);
   }
 

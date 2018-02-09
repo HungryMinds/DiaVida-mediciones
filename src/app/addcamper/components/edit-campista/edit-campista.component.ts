@@ -16,7 +16,6 @@ export class EditCampistaComponent implements OnInit {
       this.camperId = params.id;
     });
     const camper = this.campistService.getSingleCampist(this.camperId).subscribe(res => {
-      console.log(res);
     });
   }
 }

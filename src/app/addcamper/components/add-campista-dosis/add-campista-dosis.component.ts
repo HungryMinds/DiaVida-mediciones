@@ -93,7 +93,6 @@ export class AddCampistaDosisComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log('Got campist ', this._flcs.getCurrentCampiest());
     this.dosisForm.patchValue(this._flcs.getCurrentCampiest());
     if (
       this._flcs.getCurrentCampiest() &&

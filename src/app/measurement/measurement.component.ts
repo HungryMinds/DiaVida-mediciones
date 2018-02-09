@@ -49,10 +49,7 @@ export class MeasurementComponent implements OnInit {
       description: this.form.value.description,
       foodTime : this.form.value.foodTime
     };
-    console.log(objToSend);
-    // TODO  Use current campist id
     this.LogMS.addLogMedition(new LogMedition(objToSend), this.id);
-    // TODO  Redirect to current campist id
     this.router.navigate(['/camperDetail/' + this.id]);
   }
 
