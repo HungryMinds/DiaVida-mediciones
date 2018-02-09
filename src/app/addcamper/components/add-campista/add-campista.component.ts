@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CampistService } from '../../../core/services/campist.service';
-import { FormLifeCycleService } from '../../form-life-cycle.service'
-
+import { FormLifeCycleService } from '../../form-life-cycle.service';
 
 @Component({
   selector: 'app-add-campista',
@@ -25,7 +24,8 @@ export class AddCampistaComponent implements OnInit {
     private fb: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
-    private campistService: CampistService, ) {
+    private campistService: CampistService
+  ) {
     this.title = 'Agregar Campista';
     this.subtitle = 'Detalles básicos';
 
@@ -46,20 +46,20 @@ export class AddCampistaComponent implements OnInit {
 
   next(event) {
     event.preventDefault();
-    this._flcs.updateCurrentCampiest(this.basicsForm.value)
+    this._flcs.updateCurrentCampiest(this.basicsForm.value);
 
     // Navigate to the next view
     this.router.navigate([this.url + this.nextUrl]);
   }
 
-  goBack = (event) => {
-    if (event)
+  goBack(event) {
+    if (event) {
       event.preventDefault();
+    }
     this.router.navigate(['/listado']);
   }
 
   ngOnInit() {
-
     if (this.router.url.indexOf('edit') > -1) {
       this.route.params.subscribe(params => {
         this.camperId = params.id;
@@ -67,17 +67,16 @@ export class AddCampistaComponent implements OnInit {
 
       if (this.camperId) {
         this.getCampistToEdit(this.camperId);
-      }
-      else {
-        console.log('Got campist not from id ', this._flcs.getCurrentCampiest())
-        this.basicsForm.patchValue(this._flcs.getCurrentCampiest())
+      } else {
+        console.log('Got campist not from id ', this._flcs.getCurrentCampiest());
+        this.basicsForm.patchValue(this._flcs.getCurrentCampiest());
       }
     }
   }
 
   getCampistToEdit(id) {
     return this.campistService.getSingleCampist(id).subscribe(camper => {
-      camper.id = id
+      camper.id = id;
       this._flcs.updateCurrentCampiest(camper);
       this.basicsForm.patchValue(camper);
     });

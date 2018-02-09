@@ -4,8 +4,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { FormControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Location } from '@angular/common';
 import { CampistService } from '../../../core/services/campist.service';
-import { FormLifeCycleService } from '../../form-life-cycle.service'
-
+import { FormLifeCycleService } from '../../form-life-cycle.service';
 
 @Component({
   selector: 'app-add-campista',
@@ -44,7 +43,7 @@ export class AddCampistaDosisComponent implements OnInit {
       basalInsulin: this.fb.group({
         'first-application': this.fb.group({
           time: [''],
-          dosage: [''],
+          dosage: ['']
         }),
         'second-application': this.fb.group({
           time: [''],
@@ -82,23 +81,28 @@ export class AddCampistaDosisComponent implements OnInit {
 
     const basalInsulin = !this.isChecked ? fBasal : sBasal;
 
-    this._flcs.updateCurrentCampiest({ basalInsulin })
+    this._flcs.updateCurrentCampiest({ basalInsulin });
 
     this.router.navigate([this.url + this.nextUrl]);
   }
 
-  goBack = (event) => {
-    if (event)
+  goBack(event) {
+    if (event) {
       event.preventDefault();
+    }
     this.router.navigate([this.url + this.previewsUrl]);
   }
 
   ngOnInit() {
-    console.log('Got campist ', this._flcs.getCurrentCampiest())
-    this.dosisForm.patchValue(this._flcs.getCurrentCampiest())
-    if (this._flcs.getCurrentCampiest() && this._flcs.getCurrentCampiest()['basalInsulin'] && this._flcs.getCurrentCampiest()['basalInsulin']['second-application']) {
-      this.checked = true
-      this.isChecked = true
+    console.log('Got campist ', this._flcs.getCurrentCampiest());
+    this.dosisForm.patchValue(this._flcs.getCurrentCampiest());
+    if (
+      this._flcs.getCurrentCampiest() &&
+      this._flcs.getCurrentCampiest()['basalInsulin'] &&
+      this._flcs.getCurrentCampiest()['basalInsulin']['second-application']
+    ) {
+      this.checked = true;
+      this.isChecked = true;
     }
   }
 }
