@@ -22,9 +22,22 @@ export class LogInjectionService {
     return this.logInjection;
   }
 
-  addLogInjection(_injection: LogInjection, _campist: string, ) {
+  addLogInjection(_injection: LogInjection, _campist: string) {
     _injection.idCampist = _campist;
-    return this.logInjectionCollection.add(JSON.parse(JSON.stringify(_injection)));
+    return this.logInjectionCollection.add(
+      JSON.parse(JSON.stringify(_injection))
+    );
+  }
+
+  getLogInjection(id) {
+    return this.logInjectionCollection
+      .doc(id)
+      .snapshotChanges()
+      .map(x => {
+        const data = x.payload.data() as LogInjection;
+        data.id = x.payload.id;
+        return data;
+      });
   }
 
   // TODO: rehacer

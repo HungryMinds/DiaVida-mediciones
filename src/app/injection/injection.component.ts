@@ -18,6 +18,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class InjectionComponent implements OnInit {
   public form: FormGroup;
   idCampist;
+  idInjection;
 
   title: string;
   subtitle: string;
@@ -35,6 +36,18 @@ export class InjectionComponent implements OnInit {
 
   ngOnInit() {
     this.idCampist = this.route.snapshot.params.id;
+    if (!this.idCampist) {
+      this.idInjection = this.route.snapshot.params.idInjection;
+
+      this.LogIS.getLogInjection(this.idInjection)
+      .subscribe((data) => {
+        debugger;
+        const info = {
+
+        };
+        this.form.patchValue(info);
+      });
+    }
   }
 
   createForm() {
