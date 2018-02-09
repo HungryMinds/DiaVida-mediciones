@@ -54,7 +54,7 @@ export class CampistService {
 
   deleteCampist(id: string) {
     const campistDoc = this.afs.doc(`campists/${id}`);
-    campistDoc.delete();
+    return campistDoc.delete();
   }
 
   updateCampist(_campist: Campist) {
