@@ -1,9 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { LogFoodService, inyectionType } from '../core'
-import { LogFood, Campist, Snack } from '../core'
+import {
+  FormControl,
+  FormBuilder,
+  FormGroup,
+  Validators
+} from '@angular/forms';
+import { LogFoodService, inyectionType } from '../core';
+import { LogFood, Campist, Snack } from '../core';
 import { Router, ActivatedRoute } from '@angular/router';
-
 
 @Component({
   selector: 'app-food',
@@ -11,29 +15,30 @@ import { Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./food.component.scss']
 })
 export class FoodComponent implements OnInit {
-
-  id
-  foods = Object.entries(Snack)
-
+  idCampist;
+  foods = Object.entries(Snack);
   public form: FormGroup;
-
   title: string;
   subtitle: string;
 
-  constructor(private fb: FormBuilder, private LogIS: LogFoodService, private router: Router, private route: ActivatedRoute) {
+  constructor(
+    private fb: FormBuilder,
+    private LogIS: LogFoodService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {
     this.title = 'Agregar Comida Extra';
     this.subtitle = 'Detalles';
-    this.createForm()
+    this.createForm();
   }
 
   ngOnInit() {
-    this.route.params.subscribe(params => {
-      this.id = params['id'];
-    });
+    this.idCampist = this.route.snapshot.params.id;
+
   }
 
   createForm() {
-    var d = new Date()
+    const d = new Date();
     this.form = this.fb.group({
       foodType: ['', [Validators.required]],
       value: ['', [Validators.required]],
@@ -44,18 +49,16 @@ export class FoodComponent implements OnInit {
   }
 
   onSubmit() {
-    var objToSend = {
+    const objToSend = {
       id: null,
       date: new Date(this.form.value.date + ' ' + this.form.value.time),
       value: this.form.value.value,
       description: this.form.value.description,
       type: this.form.value.foodType
-    }
-    console.log(objToSend)
-    //TODO  Use current campist id
-    this.LogIS.addLogFood(new LogFood(objToSend), this.id)
-    //TODO  Redirect to current campist id
-    this.router.navigate(['/camperDetail/'+this.id]);
+    };
+    console.log(objToSend);
+    this.LogIS.addLogFood(new LogFood(objToSend), this.idCampist);
+    this.router.navigate(['/camperDetail/' + this.idCampist]);
   }
 
   currentDate() {
@@ -65,8 +68,6 @@ export class FoodComponent implements OnInit {
 
   currenTime() {
     const currentDate = new Date();
-    return currentDate.toTimeString().substring(0, 5)
+    return currentDate.toTimeString().substring(0, 5);
   }
-
-
 }

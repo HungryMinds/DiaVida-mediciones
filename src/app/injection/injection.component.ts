@@ -1,10 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { LogInjectionService, inyectionType } from '../core'
-import { LogInjection } from '../core'
-import { Campist } from '../core'
-import { Router, ActivatedRoute} from '@angular/router';
-
+import {
+  FormControl,
+  FormBuilder,
+  FormGroup,
+  Validators
+} from '@angular/forms';
+import { LogInjectionService, inyectionType } from '../core';
+import { LogInjection } from '../core';
+import { Campist } from '../core';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-injection',
@@ -12,27 +16,29 @@ import { Router, ActivatedRoute} from '@angular/router';
   styleUrls: ['./injection.component.scss']
 })
 export class InjectionComponent implements OnInit {
-
   public form: FormGroup;
-  id
+  idCampist;
 
   title: string;
   subtitle: string;
 
-  constructor(private fb: FormBuilder, private LogIS: LogInjectionService, private router: Router, private route : ActivatedRoute) {
+  constructor(
+    private fb: FormBuilder,
+    private LogIS: LogInjectionService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {
     this.title = 'Agregar Inyección';
     this.subtitle = 'Detalles';
-    this.createForm()
+    this.createForm();
   }
 
   ngOnInit() {
-    this.route.params.subscribe(params => {
-      this.id = params['id'];
-    });
+    this.idCampist = this.route.snapshot.params.id;
   }
 
   createForm() {
-    var d = new Date()
+    const d = new Date();
     this.form = this.fb.group({
       value: ['', [Validators.required]],
       date: [this.currentDate(), Validators.required],
@@ -43,19 +49,17 @@ export class InjectionComponent implements OnInit {
   }
 
   onSubmit() {
-    var objToSend = {
+    const objToSend = {
       id: null,
       date: new Date(this.form.value.date + ' ' + this.form.value.time),
       value: this.form.value.value,
       description: this.form.value.description,
       type: this.form.value.injectionType,
-      moment : this.form.value
-    }
-    console.log(objToSend)
-    //TODO  Use current campist id
-    this.LogIS.addLogInjection(new LogInjection(objToSend), this.id)
-    //TODO  Redirect to current campist id
-    this.router.navigate(['/camperDetail/'+this.id]);
+      moment: this.form.value
+    };
+    console.log(objToSend);
+    this.LogIS.addLogInjection(new LogInjection(objToSend), this.idCampist);
+    this.router.navigate(['/camperDetail/' + this.idCampist]);
   }
 
   currentDate() {
@@ -65,8 +69,6 @@ export class InjectionComponent implements OnInit {
 
   currenTime() {
     const currentDate = new Date();
-    return currentDate.toTimeString().substring(0, 5)
+    return currentDate.toTimeString().substring(0, 5);
   }
-
-
 }
