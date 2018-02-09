@@ -3,8 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { FormControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CampistService } from '../../../core/services/campist.service';
 import { Location } from '@angular/common';
-import { FormLifeCycleService } from '../../form-life-cycle.service'
-
+import { FormLifeCycleService } from '../../form-life-cycle.service';
 
 @Component({
   selector: 'app-add-campista-food',
@@ -16,7 +15,7 @@ export class AddCampistaFoodComponent implements OnInit {
   subtitle: string;
   url = '/';
   nextUrl = 'listado';
-  previewsUrl = 'camper/add-camper/esquema'
+  previewsUrl = 'camper/add-camper/esquema';
   public foodForm: FormGroup;
   camper: any;
 
@@ -76,7 +75,7 @@ export class AddCampistaFoodComponent implements OnInit {
   save(event) {
     event.preventDefault();
 
-    const foodTable = ({
+    const foodTable = {
       fruta: {
         Breakfast: this.foodForm.value.foodTable.fruta.Breakfast,
         MorningSnack: this.foodForm.value.foodTable.fruta.MorningSnack,
@@ -109,42 +108,41 @@ export class AddCampistaFoodComponent implements OnInit {
         Diner: this.foodForm.value.foodTable.lact.Diner,
         BeforeSleep: this.foodForm.value.foodTable.lact.BeforeSleep
       }
-    });
+    };
 
-    this._flcs.updateCurrentCampiest({ foodTable })
-    this.camper = this._flcs.getCurrentCampiest()
+    this._flcs.updateCurrentCampiest({ foodTable });
+    this.camper = this._flcs.getCurrentCampiest();
 
     // Save the data to database
     const newCamper = this.camper;
-    console.log('The New Camper')
-    console.log(newCamper)
-
+    console.log('The New Camper');
+    console.log(newCamper);
 
     if (newCamper.id) {
       this.campistService.updateCampist(newCamper);
     } else {
       this.campistService.addCampist(newCamper);
     }
-    this._flcs.cleanCurrent()
+    this._flcs.cleanCurrent();
     // Navigate to the next view
     this.router.navigate([this.url + this.nextUrl]);
   }
 
-  goBack = (event) => {
-    if (event)
+  goBack(event) {
+    if (event) {
       event.preventDefault();
+    }
     this.router.navigate([this.url + this.previewsUrl]);
   }
 
   getCampistToEdit(id) {
     return this.campistService.getSingleCampist(id).subscribe(camper => {
-      console.log('CAMPER', camper);
       this.foodForm.patchValue(camper);
     });
   }
 
   ngOnInit() {
-    console.log('Got campist ', this._flcs.getCurrentCampiest())
-    this.foodForm.patchValue(this._flcs.getCurrentCampiest())
+    console.log('Got campist ', this._flcs.getCurrentCampiest());
+    this.foodForm.patchValue(this._flcs.getCurrentCampiest());
   }
 }

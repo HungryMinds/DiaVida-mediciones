@@ -201,13 +201,13 @@
             <div class="card-day-log" *ngFor="let log of day">
               <div class="log-left">
                 <ng-container *ngIf="log.logType==='measure'">
-                  Glucemia | {{log.foodTime}}
+                  Glucemia | {{foodTime[log.foodTime]}}
                 </ng-container>
                 <ng-container *ngIf="log.logType==='inyectable'">
-                  Dosis | {{log.type=='quick'&&'rápida'||'lenta'}}
+                  Dosis | {{log.type=='quick'&&' Insulina Rápida'||'Insulina Lenta'}}
                 </ng-container>
                 <ng-container *ngIf="log.logType==='food'">
-                  Comida | {{log.type}}
+                  Comida | {{snackType[log.type]}}
                 </ng-container>
                 <p>
                     {{log.date.toTimeString().substring(0, 5)}}
