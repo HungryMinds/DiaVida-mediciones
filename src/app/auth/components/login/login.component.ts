@@ -104,14 +104,12 @@ export class LoginComponent {
       .then(res => {
         this.errorWhenSubmitted = false;
         this.error = '';
-        console.log(res);
         // Navigate to listado de campistas
         this.router.navigate(['/listado']);
       })
       .catch(err => {
         this.errorWhenSubmitted = true;
         this.setErrorMessage(err);
-        console.log(err);
       });
   }
 }

@@ -49,7 +49,6 @@ export class CamperdetailComponent implements OnInit, OnDestroy {
     this.subs.push(
       this.cs.getSingleCampist(this.idCamper).subscribe(_camper => {
         this.camper = _camper;
-        console.log(this.camper);
         this.userName = `${_camper.names} ${_camper.lastNames}`;
       })
     );
@@ -80,7 +79,6 @@ export class CamperdetailComponent implements OnInit, OnDestroy {
           }
           return acum;
         }, []) as any[];
-        console.log(orderedByDay);
         this.logs = orderedByDay;
       })
     );
@@ -125,13 +123,8 @@ export class CamperdetailComponent implements OnInit, OnDestroy {
       const parent = target.parentElement;
       const classAttr = parent.attributes.class.value;
       if ((classAttr + '').indexOf('deleteCamperButton') > -1) {
-        console.log('is the button');
-        console.log(classAttr);
 
       } else {
-        console.log('is not the button');
-        console.log(classAttr);
-        console.log(this.errorButtonCheck);
         this.deleteButtonWidth = this.getWidthOfText('ELIMINAR', '14') + 100 + 'px';
         this.errorButtonMessage = 'ELIMINAR';
         this.errorButtonCheck = false;
@@ -143,7 +136,6 @@ export class CamperdetailComponent implements OnInit, OnDestroy {
     this.router.navigate(['/camper/add-camper/edit/', id]);
   }
   openFloat(e) {
-    console.log(e);
   }
 
   openNewMedition() {

@@ -51,7 +51,6 @@ export class FoodComponent implements OnInit {
       description: this.form.value.description,
       type: this.form.value.foodType
     }
-    console.log(objToSend)
     //TODO  Use current campist id
     this.LogIS.addLogFood(new LogFood(objToSend), this.id)
     //TODO  Redirect to current campist id

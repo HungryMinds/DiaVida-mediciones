@@ -115,8 +115,6 @@ export class AddCampistaFoodComponent implements OnInit {
 
     // Save the data to database
     const newCamper = this.camper;
-    console.log('The New Camper');
-    console.log(newCamper);
 
     if (newCamper.id) {
       this.campistService.updateCampist(newCamper);
@@ -142,7 +140,6 @@ export class AddCampistaFoodComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log('Got campist ', this._flcs.getCurrentCampiest());
     this.foodForm.patchValue(this._flcs.getCurrentCampiest());
   }
 }
