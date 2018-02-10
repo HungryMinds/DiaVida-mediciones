@@ -38,20 +38,23 @@ export class InjectionComponent implements OnInit {
   ngOnInit() {
     this.idCampist = this.route.snapshot.params.id;
     this.idInjection = this.route.snapshot.params.idInjection;
-    console.log ('ids ', this.idCampist, ' ', this.idInjection )
+    console.log('ids ', this.idCampist, ' ', this.idInjection)
     if (this.idInjection) {
+      this.title = 'Editar Inyección';
       this.LogIS.getLogInjection(this.idInjection)
         .subscribe((data) => {
-          this.currentEdit = data;
-          console.log(data);
-          const info = {
-            value: data.value,
-            date: new Date(data.date).toISOString().substring(0, 10),
-            time: new Date(data.date).toTimeString().substring(0, 5),
-            injectionType: data.type,
-            description: data.description
-          };
-          this.form.patchValue(info);
+          if (data) {
+            this.currentEdit = data;
+            console.log(data);
+            const info = {
+              value: data.value,
+              date: new Date(data.date).toISOString().substring(0, 10),
+              time: new Date(data.date).toTimeString().substring(0, 5),
+              injectionType: data.type,
+              description: data.description
+            };
+            this.form.patchValue(info);
+          }
         });
     }
   }
@@ -93,5 +96,11 @@ export class InjectionComponent implements OnInit {
   currenTime() {
     const currentDate = new Date();
     return currentDate.toTimeString().substring(0, 5);
+  }
+
+  delete() {
+    console.log('Delete ' + this.idCampist);
+    this.LogIS.deleteLogInjection(this.currentEdit.id);
+    this.router.navigate(['/camperDetail/' + this.idCampist]);
   }
 }

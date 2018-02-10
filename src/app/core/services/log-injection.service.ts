@@ -36,14 +36,20 @@ export class LogInjectionService {
     );
   }
 
+  deleteLogInjection(_log) {
+    return this.logInjectionCollection.doc(_log).delete();
+  }
+
   getLogInjection(id) {
     return this.logInjectionCollection
       .doc(id)
       .snapshotChanges()
       .map(x => {
-        const data = x.payload.data() as LogInjection;
-        data.id = x.payload.id;
-        return data;
+        if (x.payload.exists) {
+          const data = x.payload.data() as LogInjection;
+          data.id = x.payload.id;
+          return data;
+        }
       });
   }
 
