@@ -56,8 +56,9 @@ export class InjectionComponent implements OnInit {
   }
 
   currentDate() {
-    const currentDate = new Date();
-    return currentDate.toISOString().substring(0, 10);
+    var date = new Date(); // Or the date you'd like converted.
+    var isoDate = new Date(date.getTime() - (date.getTimezoneOffset() * 60000)).toISOString();
+    return isoDate.substring(0, 10);
   }
 
   currenTime() {
