@@ -86,13 +86,13 @@ export class CamperdetailComponent implements OnInit, OnDestroy {
   goToEdit(log) {
     switch (log.logType) {
       case 'food':
-        this.router.navigate(['/logFood/', log.id]);
+        this.router.navigate([`/camperDetail/${this.idCamper}/measurement/${log.id}`]);
         break;
       case 'inyectable':
-        this.router.navigate(['/logInjection/', log.id]);
+        this.router.navigate([`/camperDetail/${this.idCamper}/injection/${log.id}`]);
         break;
       case 'inyectable':
-        this.router.navigate(['/logMeasure/', log.id]);
+        this.router.navigate([`/camperDetail/${this.idCamper}/food/${log.id}`]);
         break;
     }
   }

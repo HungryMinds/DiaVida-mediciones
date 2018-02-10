@@ -29,6 +29,13 @@ export class LogInjectionService {
     );
   }
 
+  patchLogInjection(_injection: LogInjection, _log: string) {
+    console.log(_injection)
+    return this.logInjectionCollection.doc(_log).update(
+      JSON.parse(JSON.stringify(_injection))
+    );
+  }
+
   getLogInjection(id) {
     return this.logInjectionCollection
       .doc(id)

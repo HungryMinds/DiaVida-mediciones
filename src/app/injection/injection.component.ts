@@ -22,8 +22,9 @@ export class InjectionComponent implements OnInit {
 
   title: string;
   subtitle: string;
+  currentEdit: LogInjection;
 
-  constructor(
+  constructor(;
     private fb: FormBuilder,
     private LogIS: LogInjectionService,
     private router: Router,
@@ -36,17 +37,22 @@ export class InjectionComponent implements OnInit {
 
   ngOnInit() {
     this.idCampist = this.route.snapshot.params.id;
-    if (!this.idCampist) {
-      this.idInjection = this.route.snapshot.params.idInjection;
-
+    this.idInjection = this.route.snapshot.params.idInjection;
+    console.log ('ids ', this.idCampist, ' ', this.idInjection )
+    if (this.idInjection) {
       this.LogIS.getLogInjection(this.idInjection)
-      .subscribe((data) => {
-        debugger;
-        const info = {
-
-        };
-        this.form.patchValue(info);
-      });
+        .subscribe((data) => {
+          this.currentEdit = data;
+          console.log(data);
+          const info = {
+            value: data.value,
+            date: new Date(data.date).toISOString().substring(0, 10),
+            time: new Date(data.date).toTimeString().substring(0, 5),
+            injectionType: data.type,
+            description: data.description
+          };
+          this.form.patchValue(info);
+        });
     }
   }
 
@@ -71,7 +77,11 @@ export class InjectionComponent implements OnInit {
       moment: this.form.value
     };
     console.log(objToSend);
-    this.LogIS.addLogInjection(new LogInjection(objToSend), this.idCampist);
+    if (this.currentEdit) {
+      this.LogIS.patchLogInjection(new LogInjection(objToSend), this.currentEdit.id);
+    } else {
+      this.LogIS.addLogInjection(new LogInjection(objToSend), this.idCampist);
+    }
     this.router.navigate(['/camperDetail/' + this.idCampist]);
   }
 
