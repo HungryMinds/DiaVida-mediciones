@@ -24,7 +24,7 @@ export class InjectionComponent implements OnInit {
   subtitle: string;
   currentEdit: LogInjection;
 
-  constructor(;
+  constructor(
     private fb: FormBuilder,
     private LogIS: LogInjectionService,
     private router: Router,
@@ -37,26 +37,7 @@ export class InjectionComponent implements OnInit {
 
   ngOnInit() {
     this.idCampist = this.route.snapshot.params.id;
-    this.idInjection = this.route.snapshot.params.idInjection;
-    console.log('ids ', this.idCampist, ' ', this.idInjection)
-    if (this.idInjection) {
-      this.title = 'Editar Inyección';
-      this.LogIS.getLogInjection(this.idInjection)
-        .subscribe((data) => {
-          if (data) {
-            this.currentEdit = data;
-            console.log(data);
-            const info = {
-              value: data.value,
-              date: new Date(data.date).toISOString().substring(0, 10),
-              time: new Date(data.date).toTimeString().substring(0, 5),
-              injectionType: data.type,
-              description: data.description
-            };
-            this.form.patchValue(info);
-          }
-        });
-    }
+    this.loadEditMode();
   }
 
   createForm() {
@@ -102,5 +83,28 @@ export class InjectionComponent implements OnInit {
     console.log('Delete ' + this.idCampist);
     this.LogIS.deleteLogInjection(this.currentEdit.id);
     this.router.navigate(['/camperDetail/' + this.idCampist]);
+  }
+
+  loadEditMode() {
+    this.idInjection = this.route.snapshot.params.idInjection;
+    console.log('ids ', this.idCampist, ' ', this.idInjection);
+    if (this.idInjection) {
+      this.title = 'Editar Inyección';
+      this.LogIS.getLogInjection(this.idInjection)
+        .subscribe((data) => {
+          if (data) {
+            this.currentEdit = data;
+            console.log(data);
+            const info = {
+              value: data.value,
+              date: new Date(data.date).toISOString().substring(0, 10),
+              time: new Date(data.date).toTimeString().substring(0, 5),
+              injectionType: data.type,
+              description: data.description
+            };
+            this.form.patchValue(info);
+          }
+        });
+    }
   }
 }

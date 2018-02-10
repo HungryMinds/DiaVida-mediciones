@@ -33,8 +33,10 @@
 
     <div class="footer-buttons">
       <div class="footer-buttons-subcontainer">
-        <button [routerLink]="['/camperDetail/'+id]" type="button" mat-raised-button>Cancelar</button>
-        <button [disabled]="!form.valid" mat-raised-button>Agregar</button>
+        <button *ngIf='this.currentEdit' (click)='delete()' type="button" mat-raised-button>Borrar</button>
+        <button [routerLink]="['/camperDetail/'+idCampist]" type="button" mat-raised-button>Cancelar</button>
+        <button *ngIf='!this.currentEdit' [disabled]="!form.valid" mat-raised-button>Agregar</button>
+        <button *ngIf='this.currentEdit' [disabled]="!form.valid" mat-raised-button>Guardar</button>
       </div>
     </div>
 

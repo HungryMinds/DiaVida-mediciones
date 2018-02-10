@@ -27,6 +27,30 @@ export class LogMeditionService {
     this.logMeditionCollection.add(JSON.parse(JSON.stringify(_medition)));
   }
 
+  patchMedition(_medition: LogMedition, _log: string) {
+    console.log(_medition);
+    return this.logMeditionCollection.doc(_log).update(
+      JSON.parse(JSON.stringify(_medition))
+    );
+  }
+
+  getLogMedition(id) {
+    return this.logMeditionCollection
+      .doc(id)
+      .snapshotChanges()
+      .map(x => {
+        if (x.payload.exists) {
+          const data = x.payload.data() as LogMedition;
+          data.id = x.payload.id;
+          return data;
+        }
+      });
+  }
+
+  deleteLogMedition(_log) {
+    return this.logMeditionCollection.doc(_log).delete();
+  }
+
   // TODO: hacer de manera adecuada
   // deleteLogMedition(_campist: LogMedition) {
   //   const campistDoc = this.afs.doc(`log/${_campist.id}`);

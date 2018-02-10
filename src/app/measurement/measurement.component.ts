@@ -11,7 +11,9 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class MeasurementComponent implements OnInit {
 
   foods = Object.entries(FoodTime);
-  id;
+  idMeasurement
+  idCampist
+  currentEdit: LogMedition;
 
   public form: FormGroup;
 
@@ -26,8 +28,9 @@ export class MeasurementComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-      this.id = params['id'];
+      this.idCampist = params['id'];
     });
+    this.loadEditMode();
   }
 
   createForm() {
@@ -47,13 +50,16 @@ export class MeasurementComponent implements OnInit {
       date: new Date(this.form.value.date + ' ' + this.form.value.time),
       value: this.form.value.value,
       description: this.form.value.description,
-      foodTime : this.form.value.foodTime
+      foodTime: this.form.value.foodTime
     };
-    console.log(objToSend);
-    // TODO  Use current campist id
-    this.LogMS.addLogMedition(new LogMedition(objToSend), this.id);
-    // TODO  Redirect to current campist id
-    this.router.navigate(['/camperDetail/' + this.id]);
+
+    if (this.currentEdit) {
+      this.LogMS.patchMedition(new LogMedition(objToSend), this.currentEdit.id);
+    } else {
+      this.LogMS.addLogMedition(new LogMedition(objToSend), this.idCampist);
+    }
+
+    this.router.navigate(['/camperDetail/' + this.idCampist]);
   }
 
   currentDate() {
@@ -64,6 +70,35 @@ export class MeasurementComponent implements OnInit {
   currenTime() {
     const currentDate = new Date();
     return currentDate.toTimeString().substring(0, 5);
+  }
+
+  delete() {
+    console.log('Delete ' + this.idCampist);
+    this.LogMS.deleteLogMedition(this.currentEdit.id);
+    this.router.navigate(['/camperDetail/' + this.idCampist]);
+  }
+
+  loadEditMode() {
+    this.idMeasurement = this.route.snapshot.params.idMeasurement;
+    console.log('ids ', this.idCampist, ' ', this.idMeasurement);
+    if (this.idMeasurement) {
+      this.title = 'Editar Inyección';
+      this.LogMS.getLogMedition(this.idMeasurement)
+        .subscribe((data) => {
+          if (data) {
+            this.currentEdit = data;
+            console.log(data);
+            const info = {
+              value: data.value,
+              date: new Date(data.date).toISOString().substring(0, 10),
+              time: new Date(data.date).toTimeString().substring(0, 5),
+              foodTime: data.foodTime,
+              description: data.description
+            };
+            this.form.patchValue(info);
+          }
+        });
+    }
   }
 
 }

@@ -23,8 +23,8 @@ const appRoutes = [
   { path: 'camperDetail/:id/food', component: FoodComponent },
   { path: 'camperDetail/:id/measurement', component: MeasurementComponent },
   { path: 'camperDetail/:id/injection/:idInjection', component: InjectionComponent },
-  { path: 'camperDetail/:id/measurement/:idMeasurement', component: InjectionComponent },
-  { path: 'camperDetail/:id/food/:idFood', component: InjectionComponent },
+  { path: 'camperDetail/:id/measurement/:idMeasurement', component: MeasurementComponent },
+  { path: 'camperDetail/:id/food/:idFood', component: FoodComponent },
 
   { path: '**', component: NotfoundComponent }
 ];
