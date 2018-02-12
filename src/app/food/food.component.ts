@@ -20,6 +20,8 @@ export class FoodComponent implements OnInit {
   public form: FormGroup;
   title: string;
   subtitle: string;
+  idFood;
+  currentEdit;
 
   constructor(
     private fb: FormBuilder,
@@ -34,6 +36,7 @@ export class FoodComponent implements OnInit {
 
   ngOnInit() {
     this.idCampist = this.route.snapshot.params.id;
+    this.loadEditMode();
 
   }
 
@@ -56,8 +59,13 @@ export class FoodComponent implements OnInit {
       description: this.form.value.description,
       type: this.form.value.foodType
     };
+
+    if (this.currentEdit) {
+      this.LogIS.patchLogFood(new LogFood(objToSend), this.currentEdit.id);
+    } else {
+      this.LogIS.addLogFood(new LogFood(objToSend), this.idCampist);
+    }
     console.log(objToSend);
-    this.LogIS.addLogFood(new LogFood(objToSend), this.idCampist);
     this.router.navigate(['/camperDetail/' + this.idCampist]);
   }
 
@@ -70,4 +78,33 @@ export class FoodComponent implements OnInit {
     const currentDate = new Date();
     return currentDate.toTimeString().substring(0, 5);
   }
+
+  delete() {
+    console.log('Delete ' + this.idCampist);
+    this.LogIS.deleteFood(this.currentEdit.id);
+    this.router.navigate(['/camperDetail/' + this.idCampist]);
+  }
+
+  loadEditMode() {
+    this.idFood = this.route.snapshot.params.idMeasurement;
+    console.log('ids ', this.idCampist, ' ', this.idFood);
+    if (this.idFood) {
+      this.title = 'Editar Comida';
+      this.LogIS.getLogFood(this.idFood)
+        .subscribe((data) => {
+          if (data) {
+            this.currentEdit = data;
+            console.log(data);
+            const info = {
+              value: data.value,
+              date: new Date(data.date).toISOString().substring(0, 10),
+              time: new Date(data.date).toTimeString().substring(0, 5),
+              description: data.description
+            };
+            this.form.patchValue(info);
+          }
+        });
+    }
+  }
+
 }

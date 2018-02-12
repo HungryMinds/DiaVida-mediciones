@@ -27,6 +27,29 @@ export class LogFoodService {
     return this.logFoodCollection.add(JSON.parse(JSON.stringify(_food)));
   }
 
+  deleteFood(_log) {
+    return this.logFoodCollection.doc(_log).delete();
+  }
+
+  getLogFood(id) {
+    return this.logFoodCollection
+      .doc(id)
+      .snapshotChanges()
+      .map(x => {
+        if (x.payload.exists) {
+          const data = x.payload.data() as LogFood;
+          data.id = x.payload.id;
+          return data;
+        }
+      });
+  }
+  patchLogFood(_injection: LogFood, _log: string) {
+    console.log(_injection);
+    return this.logFoodCollection.doc(_log).update(
+      JSON.parse(JSON.stringify(_injection))
+    );
+  }
+
   // TODO: hacer de manera adecuada
   // deleteLogFood(_campist: LogFood) {
   //   const campistDoc = this.afs.doc(`logFood/${_campist.id}`);

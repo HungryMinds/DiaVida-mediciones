@@ -82,7 +82,7 @@ export class MeasurementComponent implements OnInit {
     this.idMeasurement = this.route.snapshot.params.idMeasurement;
     console.log('ids ', this.idCampist, ' ', this.idMeasurement);
     if (this.idMeasurement) {
-      this.title = 'Editar Inyección';
+      this.title = 'Editar Medición';
       this.LogMS.getLogMedition(this.idMeasurement)
         .subscribe((data) => {
           if (data) {
